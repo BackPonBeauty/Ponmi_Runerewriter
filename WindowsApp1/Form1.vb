@@ -362,20 +362,20 @@ Public Class Form1
             Exit Sub
         End If
         Dim patch As String = vernew
-        If System.IO.Directory.Exists("images\" & patch & "\loading\") Then
+        If System.IO.Directory.Exists("images\" & patch & "\tiles\") Then
 
         Else
-            System.IO.Directory.CreateDirectory("images\" & patch & "\loading\")
+            System.IO.Directory.CreateDirectory("images\" & patch & "\tiles\")
         End If
         'System.Threading.Thread.Sleep(5000)
 
         If verold = vernew Then
-            'TextBox1.AppendText("Update Not Found" & vbCrLf & "Loading LocalData" & vbCrLf)
+            'TextBox1.AppendText("Update Not Found" & vbCrLf & "tiles LocalData" & vbCrLf)
             Call LocalRuneDataLoad(vernew)
 
             Call LocalSumspeLoad()
         Else
-            TextBox1.AppendText("Update Found" & vbCrLf & "Loading OnlineData" & vbCrLf)
+            TextBox1.AppendText("Update Found" & vbCrLf & "tiles OnlineData" & vbCrLf)
             Call OnlineRuneDataLoad(vernew)
             Call LocalSumspeLoad()
             Call OnlineChampDataLoad(vernew)
@@ -429,7 +429,7 @@ Public Class Form1
 
     Private Sub Tiles()
 
-        Dim files As String() = System.IO.Directory.GetFiles(".\loading\", "*.jpg", System.IO.SearchOption.AllDirectories)
+        Dim files As String() = System.IO.Directory.GetFiles(".\images\" & vernew & "\tiles\", "*.jpg", System.IO.SearchOption.AllDirectories)
         'ListBox1に結果を表示する
         CBox.Items.AddRange(files)
     End Sub
@@ -475,7 +475,7 @@ Public Class Form1
         Else
             System.IO.Directory.CreateDirectory("images\" & patch & "\runeimage\")
         End If
-        'TextBox1.AppendText("RuneImage2Loading" & patch & vbCrLf)
+        'TextBox1.AppendText("RuneImage2tiles" & patch & vbCrLf)
         Dim c4 As Integer = 0
         For i As Integer = 0 To rc
 
@@ -687,7 +687,7 @@ Public Class Form1
         Else
             System.IO.Directory.CreateDirectory("images\" & patch & "\runeimage\")
         End If
-        'TextBox1.AppendText("RuneImage2Loading" & patch & vbCrLf)
+        'TextBox1.AppendText("RuneImage2tiles" & patch & vbCrLf)
         Dim c4 As Integer = 0
         For i As Integer = 0 To rc
 
@@ -1100,7 +1100,7 @@ Public Class Form1
         Else
             System.IO.Directory.CreateDirectory("images\" & patch & "\runeimage\")
         End If
-        'TextBox1.AppendText("RuneImage2Loading" & patch & vbCrLf)
+        'TextBox1.AppendText("RuneImage2tiles" & patch & vbCrLf)
         Dim c4 As Integer = 0
         For i As Integer = 0 To rc
 
@@ -1245,7 +1245,7 @@ Public Class Form1
         Else
             System.IO.Directory.CreateDirectory("images\" & patch & "\runeimage\")
         End If
-        'TextBox1.AppendText("RuneImage2Loading" & patch & vbCrLf)
+        'TextBox1.AppendText("RuneImage2tiles" & patch & vbCrLf)
         Dim c4 As Integer = 0
         For i As Integer = 0 To rc
 
@@ -1726,7 +1726,7 @@ Public Class Form1
     End Sub
 
     Private Sub LocalRuneDataLoad(vernew As String)
-        'TextBox1.AppendText("LocalRuneData Loading" & vbCrLf)
+        'TextBox1.AppendText("LocalRuneData tiles" & vbCrLf)
         Application.DoEvents()
         If runedata.Columns.Count = 0 Then
             runedata.Columns.Add("id", GetType(String))
@@ -1865,7 +1865,7 @@ Public Class Form1
         Else
             System.IO.Directory.CreateDirectory("images\" & patch & "\runeimage\")
         End If
-        'TextBox1.AppendText("RuneImageLoading" & patch & vbCrLf)
+        'TextBox1.AppendText("RuneImagetiles" & patch & vbCrLf)
         For i As Integer = 0 To rc
             Dim icon As String = runedata.Rows(i).Item("icon")
             Dim name As String = runedata.Rows(i).Item("name")
@@ -2468,16 +2468,16 @@ Public Class Form1
         'Dim cmp As String = LVdata.Rows(rc).Item("mp")
         Dim patch As String = vernew
         'TextBox1.AppendText(cm & vbCrLf)
-
-        Dim imm As String = "images\" & patch & "\loading\" & idi & "_0.jpg"
-        'Dim imm As String = "images\" & patch & "\loading\" & skillno1
+        Label15.Text = idi
+        Dim imm As String = "images\" & patch & "\tiles\" & idi & "_0.jpg"
+        'Dim imm As String = "images\" & patch & "\tiles\" & skillno1
 
         If System.IO.File.Exists(imm) Then
         Else
             TextBox1.AppendText("tiles data not found : " & imm & vbCrLf)
-            'imm = "loading\" & champ1 & "_0.jpg"
+            'imm = "tiles\" & champ1 & "_0.jpg"
             Dim wc As New System.Net.WebClient()
-            wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/img/champion/loading/" & idi & "_0.jpg", imm)
+            wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/" & idi & "_0.jpg", imm)
             wc.Dispose()
         End If
 
@@ -2544,7 +2544,7 @@ Public Class Form1
             orespe.Clear()
             'pagedata.Rows.Add(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
             'Pagedataload(0)
-            TextBox1.AppendText("Data not found" & vbCrLf)
+            TextBox1.AppendText(idi & "'s Data not found" & vbCrLf)
             'orespe.Rows.Add("SampleData", "8400", "8437", "8446", "8429", "8451", "8000", "8014", "9111", "5008", "5008", "5001", cm, "4", "32")
             'ConvertDataTableToCsv(orespe, "orepage.csv", False, True)
             'LocalRuneReformLoad()
@@ -2697,6 +2697,9 @@ Public Class Form1
             Dim imgg As Image = Image.FromFile(immm)
             ps1.BackgroundImage = New Bitmap(imgg, s1.Width, s1.Height)
             ps1.Tag = sss1
+            If Form2.Visible = True Then
+                Form2.TextBox8.Text = sss1
+            End If
             'imgg.Dispose()
             'imgg = Nothing
             'immm = Nothing
@@ -2705,6 +2708,9 @@ Public Class Form1
             imgg = Image.FromFile(immm)
             ps2.BackgroundImage = New Bitmap(imgg, s2.Width, s2.Height)
             ps2.Tag = sss2
+            If Form2.Visible = True Then
+                Form2.TextBox9.Text = sss2
+            End If
             ' imgg.Dispose()
             'imgg = Nothing
             'immm = Nothing
@@ -3518,13 +3524,13 @@ Public Class Form1
     Public dai As Integer = 1
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         If dai = 0 Then
-            Me.Width = 458
-            Me.Height = 310
+            Me.Width = 460
+            Me.Height = 420
             dai = 1
             Button4.Text = "<"
         Else
             Me.Width = 1062
-            Me.Height = 705
+            Me.Height = 824
             dai = 0
             Button4.Text = ">"
         End If
@@ -3563,7 +3569,17 @@ Public Class Form1
                 Timer7.Enabled = True
                 'Timer5.Enabled = False
                 Form3.theme_end()
-                Form3.theme_start("butchersbridge\renata", 3000000)
+                'Form3.theme_start("butchersbridge\renata", 3000000)
+                If Form3.RadioButton1.Checked Then
+
+                    Form3.theme_start("butchersbridge\renata1", 6000000)
+                End If
+                If Form3.RadioButton2.Checked Then
+                    Form3.theme_start("butchersbridge\renata1", 6000000)
+                End If
+                If Form3.RadioButton3.Checked Then
+                    Form3.theme_start("butchersbridge\renata2", 3000000)
+                End If
             End If
         Else
             If themestartflag = False Then
@@ -3718,156 +3734,263 @@ Public Class Form1
             ' Dim enc As Encoding = Encoding.UTF8
             'Dim ndb As New NonDispBrowser
 
-
+            'If na = "Nilah" Then
+            '    Continue For
+            'End If
+            'na = "Nilah"
             'b.NavigateAndWait("https://www.metasrc.com/aram/na/champion/" & na)
             '  Dim doc As HtmlDocument = ndb.Document
-            Dim url As String = "https://www.murderbridge.com/Champion/" & na
-            Dim wc As System.Net.WebClient = New System.Net.WebClient
-            Dim st As System.IO.Stream = wc.OpenRead(url)
-            Dim enc As System.Text.Encoding = System.Text.Encoding.GetEncoding("UTF-8")
-            Dim sr As System.IO.StreamReader = New System.IO.StreamReader(st, enc)
-            Dim html As String = sr.ReadToEnd
-            sr.Close()
-            st.Close()
-            Dim doc As HtmlAgilityPack.HtmlDocument = New HtmlAgilityPack.HtmlDocument
-            doc.LoadHtml(html)
+            'Dim url As String = "https://www.murderbridge.com/Champion/" & na & "?version=12.20.1&mode=ARAM"
+            'Dim url As String = "http://www.murderbridge.com/Champion/Nilah?version=12.19.1&mode=ARAM"
 
-            Dim nn As Integer = 0
-            For Each item As HtmlAgilityPack.HtmlNode In doc.DocumentNode.SelectNodes("//div[@class=""runes-column runes-primary""]//img[@class=""rune-image""][@alt]")
+            'Dim wc As System.Net.WebClient = New System.Net.WebClient
+            'Dim st As System.IO.Stream = wc.OpenRead(url)
+            'Dim enc As System.Text.Encoding = System.Text.Encoding.GetEncoding("UTF-8")
+            'Dim sr As System.IO.StreamReader = New System.IO.StreamReader(st, enc)
+            'Dim html As String = sr.ReadToEnd
 
-                If (Not String.IsNullOrEmpty(item.Attributes("alt").Value)) Then
-                    Dim href As String = item.Attributes("alt").Value
-                    Dim runes As String = href.Substring(5, 4)
-
-                    TextBox1.AppendText(runes.ToString & vbCrLf)
-                    If nn = 0 Then
-                        Dim prr As String = runes.Substring(0, 2)
-                        If prr = "91" Then
-                            prr = "80"
-                        End If
-                        If prr = "99" Then
-                            prr = "81"
-                        End If
-                        Dim pr As String = prr & "00"
-                        sumspe1.Rows.Add(pr)
-                    End If
-
-                    sumspe1.Rows.Add(runes)
-                End If
-                nn += 1
-            Next
-            nn = 0
-            For Each item As HtmlAgilityPack.HtmlNode In doc.DocumentNode.SelectNodes("//div[@class=""runes-column runes-secondary""]//img[@class=""rune-image""][@alt]")
-
-                If (Not String.IsNullOrEmpty(item.Attributes("alt").Value)) Then
-                    Dim href As String = item.Attributes("alt").Value
-                    Dim runes As String = href.Substring(5, 4)
-                    TextBox1.AppendText(runes.ToString & vbCrLf)
-                    If nn = 0 Then
-                        Dim prr As String = runes.Substring(0, 2)
-                        If prr = "91" Then
-                            prr = "80"
-                        End If
-                        If prr = "99" Then
-                            prr = "81"
-                        End If
-                        Dim pr As String = prr & "00"
-                        sumspe1.Rows.Add(pr)
-                    End If
-                    sumspe1.Rows.Add(runes)
-                End If
-                nn += 1
-            Next
-            nn = 0
-            For Each item As HtmlAgilityPack.HtmlNode In doc.DocumentNode.SelectNodes("//div[@class=""stat-shard-left""]//img")
-                Dim href As String = item.Attributes("src").Value
-                'If (Not String.IsNullOrEmpty(item.Attributes("class").Value)) Then
-                '    Dim href As String = item.Attributes("class").Value
-                'Dim spli() As String = href.Split("/"c)
-
-                Dim len As Integer = href.Length - 1
-                Dim adp As String = ""
-                Select Case len
-                    Case 945
-                        adp = "5008"
-                    Case 1065
-                        adp = "5005"
-                    Case 1125
-                        adp = "5007"
-
-                    Case 949
-                        adp = "5002"
-                    Case 1377
-                        adp = "5003"
-
-                    Case 841
-                        adp = "5001"
-                    Case Else
-                        adp = "9999"
-                End Select
-                TextBox1.AppendText(adp & vbCrLf)
-                sumspe1.Rows.Add(adp)
-                nn += 1
-            Next
-
-
-            For Each item As HtmlAgilityPack.HtmlNode In doc.DocumentNode.SelectNodes("//div[@class=""summoners-row""]//div[@class =""image-square""]")
-                Dim href As String = item.Attributes("style").Value
-                Dim sum As String() = href.Split("/"c)
-                Dim summ As String = sum(sum.Count - 1)
-                Dim ssum As String = sum(sum.Count - 2)
-                Dim sssum As String() = summ.Split(")"c)
-                Dim su1 As String = sssum(0)
-                If ssum = "spell" Then
-                    Dim sums As String
-                    Select Case su1
-                        Case "SummonerBoost.png"
-                            sums = "1"
-                        Case "SummonerExhaust.png"
-                            sums = "3"
-                        Case "SummonerFlash.png"
-                            sums = "4"
-                        Case "SummonerBacktrack.png"
-                            sums = "5"
-                        Case "SummonerHaste.png"
-                            sums = "6"
-                        Case "SummonerHeal.png"
-                            sums = "7"
-                        Case "SummonerSmite.png"
-                            sums = "11"
-                        Case "SummonerTeleport.png"
-                            sums = "12"
-                        Case "SummonerMana.png"
-                            sums = "13"
-                        Case "SummonerDot.png"
-                            sums = "14"
-                        Case "SummonerBarrier.png"
-                            sums = "21"
-                        Case "SummonerSnowball.png"
-                            sums = "32"
-                        Case Else
-                            sums = summ
-                    End Select
-                    TextBox1.AppendText(sums.ToString & vbCrLf)
-                    sumspe_bin.Rows.Add(sums)
-                End If
-            Next
-            Dim spp1 As String = "4"
-            Dim spp2 As String
-            If sumspe_bin.Rows(0).Item(0) <> "4" Then
-                spp2 = sumspe_bin.Rows(0).Item(0)
-            Else
-                spp2 = sumspe_bin.Rows(1).Item(0)
+            Dim strURL As String = "https://app.mobalytics.gg/ja_jp/lol/champions/" & na & "/aram-builds"
+            If aram = "5v5" Then
+                strURL = "https://app.mobalytics.gg/ja_jp/lol/champions/" & na & "/builds"
             End If
-            sumspe1.Rows.Add(spp1)
-            sumspe1.Rows.Add(spp2)
+            Dim strOutput As String = ""
 
-            orespe.Rows.Add("ARAM", sumspe1.Rows(0).Item("id"), sumspe1.Rows(1).Item("id"), sumspe1.Rows(2).Item("id"), sumspe1.Rows(3).Item("id"), sumspe1.Rows(4).Item("id"), sumspe1.Rows(5).Item("id"), sumspe1.Rows(6).Item("id"), sumspe1.Rows(7).Item("id"), sumspe1.Rows(8).Item("id"), sumspe1.Rows(9).Item("id"), sumspe1.Rows(10).Item("id"), key, sumspe1.Rows(11).Item("id"), sumspe1.Rows(12).Item("id"))
+            Dim wrResponse As WebResponse
+            Dim wrRequest As WebRequest = HttpWebRequest.Create(strURL)
+
+            'txtScrape.Text = "Extracting..." & Environment.NewLine
+
+            wrResponse = wrRequest.GetResponse()
+
+            Using sr As New StreamReader(wrResponse.GetResponseStream())
+                strOutput = sr.ReadToEnd()
+                ' Close and clean up the StreamReader
+                sr.Close()
+            End Using
+
+
+
+            'SR.Close()
+            'st.Close()
+            Dim doc As New HtmlAgilityPack.HtmlDocument
+
+            doc.LoadHtml(strOutput)
+
+
+            'TextBox1.AppendText(strOutput.ToString & vbCrLf)
+
+            'For Each item As HtmlAgilityPack.HtmlNode In doc.DocumentNode.SelectNodes("//img/@data-cfsrc[@tiles=""lazy""]")
+            Dim j As Integer = 0
+            For Each item As HtmlAgilityPack.HtmlNode In doc.DocumentNode.SelectNodes("//img[@data-cfsrc]")
+                If (Not String.IsNullOrEmpty(item.Attributes("alt").Value)) Then
+                    If item.Attributes("class").Value = "m-oa6z1e" Or item.Attributes("class").Value = "m-1lpzqd7" Or item.Attributes("class").Value = "m-j7ixa3" Or item.Attributes("class").Value = "m-bgbjt4" Or item.Attributes("class").Value = "m-cnfpoq" Then
+                        Dim href As String = item.Attributes("data-cfsrc").Value
+                        Dim arr1() As String = href.Split("/")
+                        Dim arr1last As String = arr1.Last
+                        Dim arr As String = arr1last.Substring(0, 4)
+                        If item.Attributes("class").Value = "m-cnfpoq" Then
+                            Dim sums As String
+                            Select Case arr1last
+                                Case "SummonerBoost.png"
+                                    sums = "1"
+                                Case "SummonerExhaust.png"
+                                    sums = "3"
+                                Case "SummonerFlash.png"
+                                    sums = "4"
+                                Case "SummonerBacktrack.png"
+                                    sums = "5"
+                                Case "SummonerHaste.png"
+                                    sums = "6"
+                                Case "SummonerHeal.png"
+                                    sums = "7"
+                                Case "SummonerSmite.png"
+                                    sums = "11"
+                                Case "SummonerTeleport.png"
+                                    sums = "12"
+                                Case "SummonerMana.png"
+                                    sums = "13"
+                                Case "SummonerDot.png"
+                                    sums = "14"
+                                Case "SummonerBarrier.png"
+                                    sums = "21"
+                                Case "SummonerSnowball.png"
+                                    sums = "32"
+                                Case Else
+                                    sums = "4"
+                            End Select
+                            TextBox1.AppendText(j & ":" & sums.ToString & vbCrLf)
+                            sumspe1.Rows.Add(sums)
+                        Else
+                            TextBox1.AppendText(j & ":" & arr.ToString & vbCrLf)
+                            sumspe1.Rows.Add(arr)
+                        End If
+
+                        j += 1
+                    End If
+                End If
+
+            Next
+
+            orespe.Rows.Add(aram, sumspe1.Rows(0).Item("id"), sumspe1.Rows(1).Item("id"), sumspe1.Rows(2).Item("id"), sumspe1.Rows(3).Item("id"), sumspe1.Rows(4).Item("id"), sumspe1.Rows(5).Item("id"), sumspe1.Rows(6).Item("id"), sumspe1.Rows(7).Item("id"), sumspe1.Rows(8).Item("id"), sumspe1.Rows(9).Item("id"), sumspe1.Rows(10).Item("id"), key, sumspe1.Rows(11).Item("id"), sumspe1.Rows(12).Item("id"))
             ConvertDataTableToCsv(orespe, Orepages, False, True)
+            orespe.Clear()
+
+
         Next
 
+        'Exit Sub
+        '        Dim nn As Integer = 0
+        '        For Each item As HtmlAgilityPack.HtmlNode In doc.DocumentNode.SelectNodes("//div[@class=""runes-column runes-primary""]//img[@class=""rune-image""][@alt]")
 
-        Exit Sub
+        '            If (Not String.IsNullOrEmpty(item.Attributes("alt").Value)) Then
+        '                Dim href As String = item.Attributes("alt").Value
+        '                Dim runes As String = href.Substring(5, 4)
+
+        '                TextBox1.AppendText(runes.ToString & vbCrLf)
+        '                If nn = 0 Then
+        '                    Dim prr As String = runes.Substring(0, 2)
+        '                    If prr = "91" Then
+        '                        prr = "80"
+        '                    End If
+        '                    If prr = "99" Then
+        '                        prr = "81"
+        '                    End If
+        '                    If runes = "8242" Then
+        '                        prr = "84"
+        '                    End If
+        '                    If runes = "8299" Then
+        '                        prr = "80"
+        '                    End If
+        '                    Dim pr As String = prr & "00"
+        '                    sumspe1.Rows.Add(pr)
+        '                End If
+
+        '                sumspe1.Rows.Add(runes)
+        '                'TextBox1.AppendText(href)
+        '            End If
+        '            nn += 1
+
+        '        Next
+
+        '        'Exit Sub
+        '        nn = 0
+        '        For Each item As HtmlAgilityPack.HtmlNode In doc.DocumentNode.SelectNodes("//div[@class=""runes-column runes-secondary""]//img[@class=""rune-image""][@alt]")
+
+        '            If (Not String.IsNullOrEmpty(item.Attributes("alt").Value)) Then
+        '                Dim href As String = item.Attributes("alt").Value
+        '                Dim runes As String = href.Substring(5, 4)
+        '                TextBox1.AppendText(runes.ToString & vbCrLf)
+        '                If nn = 0 Then
+        '                    Dim prr As String = runes.Substring(0, 2)
+        '                    If prr = "91" Then
+        '                        prr = "80"
+        '                    End If
+        '                    If prr = "99" Then
+        '                        prr = "81"
+        '                    End If
+        '                    If runes = "8242" Then
+        '                        prr = "84"
+        '                    End If
+        '                    If runes = "8299" Then
+        '                        prr = "80"
+        '                    End If
+        '                    Dim pr As String = prr & "00"
+        '                    sumspe1.Rows.Add(pr)
+        '                End If
+        '                sumspe1.Rows.Add(runes)
+        '            End If
+        '            nn += 1
+        '        Next
+        '        nn = 0
+        '        For Each item As HtmlAgilityPack.HtmlNode In doc.DocumentNode.SelectNodes("//div[@class=""stat-shard-left""]//img")
+        '            Dim href As String = item.Attributes("src").Value
+        '            'If (Not String.IsNullOrEmpty(item.Attributes("class").Value)) Then
+        '            '    Dim href As String = item.Attributes("class").Value
+        '            'Dim spli() As String = href.Split("/"c)
+
+        '            Dim len As Integer = href.Length - 1
+        '            Dim adp As String = ""
+        '            Select Case len
+        '                Case 945
+        '                    adp = "5008"
+        '                Case 1065
+        '                    adp = "5005"
+        '                Case 1125
+        '                    adp = "5007"
+
+        '                Case 949
+        '                    adp = "5002"
+        '                Case 1377
+        '                    adp = "5003"
+
+        '                Case 841
+        '                    adp = "5001"
+        '                Case Else
+        '                    adp = "9999"
+        '            End Select
+        '            TextBox1.AppendText(adp & vbCrLf)
+        '            sumspe1.Rows.Add(adp)
+        '            nn += 1
+        '        Next
+
+
+        '        For Each item As HtmlAgilityPack.HtmlNode In doc.DocumentNode.SelectNodes("//div[@class=""summoners-row""]//div[@class =""image-square""]")
+        '            Dim href As String = item.Attributes("style").Value
+        '            Dim sum As String() = href.Split("/"c)
+        '            Dim summ As String = sum(sum.Count - 1)
+        '            Dim ssum As String = sum(sum.Count - 2)
+        '            Dim sssum As String() = summ.Split(")"c)
+        '            Dim su1 As String = sssum(0)
+        '            If ssum = "spell" Then
+        '                Dim sums As String
+        '                Select Case su1
+        '                    Case "SummonerBoost.png"
+        '                        sums = "1"
+        '                    Case "SummonerExhaust.png"
+        '                        sums = "3"
+        '                    Case "SummonerFlash.png"
+        '                        sums = "4"
+        '                    Case "SummonerBacktrack.png"
+        '                        sums = "5"
+        '                    Case "SummonerHaste.png"
+        '                        sums = "6"
+        '                    Case "SummonerHeal.png"
+        '                        sums = "7"
+        '                    Case "SummonerSmite.png"
+        '                        sums = "11"
+        '                    Case "SummonerTeleport.png"
+        '                        sums = "12"
+        '                    Case "SummonerMana.png"
+        '                        sums = "13"
+        '                    Case "SummonerDot.png"
+        '                        sums = "14"
+        '                    Case "SummonerBarrier.png"
+        '                        sums = "21"
+        '                    Case "SummonerSnowball.png"
+        '                        sums = "32"
+        '                    Case Else
+        '                        sums = summ
+        '                End Select
+        '                TextBox1.AppendText(sums.ToString & vbCrLf)
+        '                sumspe_bin.Rows.Add(sums)
+        '            End If
+        '        Next
+        '        Dim spp1 As String = "4"
+        '        Dim spp2 As String
+        '        If sumspe_bin.Rows(0).Item(0) <> "4" Then
+        '            spp2 = sumspe_bin.Rows(0).Item(0)
+        '        Else
+        '            spp2 = sumspe_bin.Rows(1).Item(0)
+        '        End If
+        '        sumspe1.Rows.Add(spp1)
+        '        sumspe1.Rows.Add(spp2)
+
+        '        orespe.Rows.Add("ARAM", sumspe1.Rows(0).Item("id"), sumspe1.Rows(1).Item("id"), sumspe1.Rows(2).Item("id"), sumspe1.Rows(3).Item("id"), sumspe1.Rows(4).Item("id"), sumspe1.Rows(5).Item("id"), sumspe1.Rows(6).Item("id"), sumspe1.Rows(7).Item("id"), sumspe1.Rows(8).Item("id"), sumspe1.Rows(9).Item("id"), sumspe1.Rows(10).Item("id"), key, sumspe1.Rows(11).Item("id"), sumspe1.Rows(12).Item("id"))
+        '        ConvertDataTableToCsv(orespe, Orepages, False, True)
+        ''Next
+
+
+        'Exit Sub
 
 
         '    '' リンク文字列とそのURLの列挙
@@ -4498,24 +4621,24 @@ Public Class Form1
                     Next
                     skillno1 = champ1 & "_" & ret2 & ".jpg"
                     Dim patch As String = vernew
-                    'If System.IO.Directory.Exists("images\" & patch & "\loading\") Then
+                    'If System.IO.Directory.Exists("images\" & patch & "\tiles\") Then
 
                     'Else
-                    '    System.IO.Directory.CreateDirectory("images\" & patch & "\loading\")
+                    '    System.IO.Directory.CreateDirectory("images\" & patch & "\tiles\")
                     'End If
                     'TextBox1.AppendText(skillno1 & vbCrLf)
                     'If skillno1 = "Seraphine_1.jpg" Then
                     '    skillno1 = "Seraphine_3.jpg"
                     'End If
 
-                    Dim imm As String = "images\" & patch & "\loading\" & skillno1
-                        If System.IO.File.Exists(imm) Then
+                    Dim imm As String = "images\" & patch & "\tiles\" & skillno1
+                    If System.IO.File.Exists(imm) Then
                         Else
-                            TextBox1.AppendText("Loading data not found : " & imm & vbCrLf)
-                            'imm = "loading\" & champ1 & "_0.jpg"
-                            Dim wc As New System.Net.WebClient()
-                            wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/img/champion/loading/" & skillno1, imm)
-                            wc.Dispose()
+                        TextBox1.AppendText("tiles data not found : " & imm & vbCrLf)
+                        'imm = "tiles\" & champ1 & "_0.jpg"
+                        Dim wc As New System.Net.WebClient()
+                        wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/" & skillno1, imm)
+                        wc.Dispose()
                         End If
 
                         Dim img As Image = Image.FromFile(imm)
@@ -4635,33 +4758,33 @@ Public Class Form1
                     End If
                     skillno = champ & "_" & ret2 & ".jpg"
                     Dim patch As String = vernew
-                    'If System.IO.Directory.Exists("images\" & patch & "\loading\") Then
+                    'If System.IO.Directory.Exists("images\" & patch & "\tiles\") Then
 
                     'Else
-                    '    System.IO.Directory.CreateDirectory("images\" & patch & "\loading\")
+                    '    System.IO.Directory.CreateDirectory("images\" & patch & "\tiles\")
                     'End If
                     'TextBox1.AppendText(skillno & vbCrLf)
                     'If skillno = "Seraphine_1.jpg" Then
                     '    skillno = "Seraphine_3.jpg"
                     'End If
 
-                    Dim imm As String = "images\" & patch & "\loading\" & skillno
+                    Dim imm As String = "images\" & patch & "\tiles\" & skillno
                     If System.IO.File.Exists(imm) Then
                     Else
                         TextBox1.AppendText("tiles data not found : " & imm & vbCrLf)
-                        'imm = "loading\" & champ1 & "_0.jpg"
+                        'imm = "tiles\" & champ1 & "_0.jpg"
                         Dim wc As New System.Net.WebClient()
-                        wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/img/champion/loading/" & skillno, imm)
+                        wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/" & skillno, imm)
                         wc.Dispose()
                     End If
 
 
                     '-----------------------------------
-                    'Dim imm As String = "loading\" & skillno
+                    'Dim imm As String = "tiles\" & skillno
                     'If System.IO.File.Exists(imm) Then
                     'Else
                     '    TextBox1.AppendText("tiles data not found : " & imm & vbCrLf)
-                    '    imm = "loading\" & champ & "_0.jpg"
+                    '    imm = "tiles\" & champ & "_0.jpg"
                     'End If
                     '-----------------------------------------
                     Dim img As Image = Image.FromFile(imm)
@@ -4739,8 +4862,8 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.Width = 458
-        Me.Height = 310
+        Me.Width = 460
+        Me.Height = 420
     End Sub
 
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged, RadioButton2.CheckedChanged
@@ -4915,7 +5038,8 @@ Public Class Form1
 
             For Each item In grid
                 'Application.DoEvents()
-                Form2.Pa7.Controls("lvl" & i).Text = grid(i).scores.creepScore
+                'Form2.Pa7.Controls("lvl" & i).Text = grid(i).scores.creepScore
+                Form2.Pa7.Controls("lvl" & i).Text = grid(i).level
                 Form2.Pa7.Controls("sc" & i).Text = grid(i).scores.kills & "/" & grid(i).scores.deaths & "/" & grid(i).scores.assists
 
                 'For Each items In grid(i).items
@@ -5420,6 +5544,13 @@ Public Class Form1
     Private Sub Timer7_Tick(sender As Object, e As EventArgs) Handles Timer7.Tick
         Timer7.Enabled = False
         history()
+
+    End Sub
+
+    Private Sub Button15_Click(sender As Object, e As EventArgs) Handles Button15.Click
+        Dim na As String = Label15.Text
+        'System.Diagnostics.Process.Start("https://www.murderbridge.com/Champion/" & na)
+        System.Diagnostics.Process.Start("https://app.mobalytics.gg/ja_jp/lol/champions/" & na & "/aram-builds")
 
     End Sub
     'Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick

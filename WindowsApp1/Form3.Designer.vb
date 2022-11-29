@@ -192,7 +192,7 @@ Partial Class Form3
         Me.DataGridView1.Location = New System.Drawing.Point(8, 312)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowTemplate.Height = 21
-        Me.DataGridView1.Size = New System.Drawing.Size(409, 179)
+        Me.DataGridView1.Size = New System.Drawing.Size(548, 304)
         Me.DataGridView1.TabIndex = 274
         '
         'TextBox3
@@ -315,7 +315,7 @@ Partial Class Form3
         Me.TextBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox7.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.TextBox7.ForeColor = System.Drawing.Color.White
-        Me.TextBox7.Location = New System.Drawing.Point(432, 320)
+        Me.TextBox7.Location = New System.Drawing.Point(644, 492)
         Me.TextBox7.Margin = New System.Windows.Forms.Padding(6)
         Me.TextBox7.Multiline = True
         Me.TextBox7.Name = "TextBox7"
@@ -393,7 +393,7 @@ Partial Class Form3
         '
         'TextBox10
         '
-        Me.TextBox10.Location = New System.Drawing.Point(12, 501)
+        Me.TextBox10.Location = New System.Drawing.Point(8, 624)
         Me.TextBox10.Name = "TextBox10"
         Me.TextBox10.Size = New System.Drawing.Size(549, 19)
         Me.TextBox10.TabIndex = 294
@@ -407,7 +407,7 @@ Partial Class Form3
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Black
-        Me.ClientSize = New System.Drawing.Size(574, 300)
+        Me.ClientSize = New System.Drawing.Size(576, 297)
         Me.Controls.Add(Me.TextBox10)
         Me.Controls.Add(Me.TextBox9)
         Me.Controls.Add(Me.Button12)

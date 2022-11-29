@@ -291,6 +291,8 @@ Partial Class Form1
         Me.Cbox1 = New WindowsApp1.UserControl1()
         Me.Timer7 = New System.Windows.Forms.Timer(Me.components)
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.Button15 = New System.Windows.Forms.Button()
+        Me.Label15 = New System.Windows.Forms.Label()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pa3.SuspendLayout()
         Me.Pa7.SuspendLayout()
@@ -366,7 +368,7 @@ Partial Class Form1
         Me.Label3.BackColor = System.Drawing.Color.Black
         Me.Label3.Font = New System.Drawing.Font("Meiryo UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(12, 80)
+        Me.Label3.Location = New System.Drawing.Point(64, 80)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(88, 20)
         Me.Label3.TabIndex = 106
@@ -848,7 +850,7 @@ Partial Class Form1
         Me.tip.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.tip.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.tip.ForeColor = System.Drawing.Color.White
-        Me.tip.Location = New System.Drawing.Point(14, 390)
+        Me.tip.Location = New System.Drawing.Point(12, 728)
         Me.tip.Multiline = True
         Me.tip.Name = "tip"
         Me.tip.Size = New System.Drawing.Size(470, 46)
@@ -861,7 +863,7 @@ Partial Class Form1
         Me.tit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.tit.Font = New System.Drawing.Font("MS UI Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.tit.ForeColor = System.Drawing.Color.White
-        Me.tit.Location = New System.Drawing.Point(14, 358)
+        Me.tit.Location = New System.Drawing.Point(12, 696)
         Me.tit.Name = "tit"
         Me.tit.Size = New System.Drawing.Size(468, 28)
         Me.tit.TabIndex = 69
@@ -946,7 +948,7 @@ Partial Class Form1
         '
         Me.ps1.BackColor = System.Drawing.Color.Black
         Me.ps1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.ps1.Location = New System.Drawing.Point(120, 204)
+        Me.ps1.Location = New System.Drawing.Point(80, 308)
         Me.ps1.Name = "ps1"
         Me.ps1.Size = New System.Drawing.Size(24, 24)
         Me.ps1.TabIndex = 78
@@ -955,7 +957,7 @@ Partial Class Form1
         '
         Me.ps2.BackColor = System.Drawing.Color.Black
         Me.ps2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.ps2.Location = New System.Drawing.Point(148, 204)
+        Me.ps2.Location = New System.Drawing.Point(108, 308)
         Me.ps2.Name = "ps2"
         Me.ps2.Size = New System.Drawing.Size(24, 24)
         Me.ps2.TabIndex = 79
@@ -1113,7 +1115,7 @@ Partial Class Form1
         Me.pa1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pa1.Location = New System.Drawing.Point(12, 100)
         Me.pa1.Name = "pa1"
-        Me.pa1.Size = New System.Drawing.Size(88, 144)
+        Me.pa1.Size = New System.Drawing.Size(190, 190)
         Me.pa1.TabIndex = 103
         '
         'Label2
@@ -1121,7 +1123,7 @@ Partial Class Form1
         Me.Label2.BackColor = System.Drawing.Color.Black
         Me.Label2.Font = New System.Drawing.Font("Meiryo UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(12, 244)
+        Me.Label2.Location = New System.Drawing.Point(64, 292)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(88, 16)
         Me.Label2.TabIndex = 104
@@ -1202,7 +1204,7 @@ Partial Class Form1
         'Button10
         '
         Me.Button10.Font = New System.Drawing.Font("Meiryo UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button10.Location = New System.Drawing.Point(242, 26)
+        Me.Button10.Location = New System.Drawing.Point(240, 24)
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(61, 29)
         Me.Button10.TabIndex = 116
@@ -1215,7 +1217,7 @@ Partial Class Form1
         Me.his0.BackColor = System.Drawing.Color.Black
         Me.his0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.his0.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.his0.Location = New System.Drawing.Point(185, 239)
+        Me.his0.Location = New System.Drawing.Point(88, 347)
         Me.his0.Margin = New System.Windows.Forms.Padding(6)
         Me.his0.Name = "his0"
         Me.his0.Size = New System.Drawing.Size(24, 24)
@@ -1227,7 +1229,7 @@ Partial Class Form1
         Me.his1.BackColor = System.Drawing.Color.Black
         Me.his1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.his1.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.his1.Location = New System.Drawing.Point(210, 239)
+        Me.his1.Location = New System.Drawing.Point(113, 347)
         Me.his1.Margin = New System.Windows.Forms.Padding(6)
         Me.his1.Name = "his1"
         Me.his1.Size = New System.Drawing.Size(24, 24)
@@ -1239,7 +1241,7 @@ Partial Class Form1
         Me.his3.BackColor = System.Drawing.Color.Black
         Me.his3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.his3.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.his3.Location = New System.Drawing.Point(260, 239)
+        Me.his3.Location = New System.Drawing.Point(163, 347)
         Me.his3.Margin = New System.Windows.Forms.Padding(6)
         Me.his3.Name = "his3"
         Me.his3.Size = New System.Drawing.Size(24, 24)
@@ -1251,7 +1253,7 @@ Partial Class Form1
         Me.his2.BackColor = System.Drawing.Color.Black
         Me.his2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.his2.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.his2.Location = New System.Drawing.Point(235, 239)
+        Me.his2.Location = New System.Drawing.Point(138, 347)
         Me.his2.Margin = New System.Windows.Forms.Padding(6)
         Me.his2.Name = "his2"
         Me.his2.Size = New System.Drawing.Size(24, 24)
@@ -1263,7 +1265,7 @@ Partial Class Form1
         Me.his4.BackColor = System.Drawing.Color.Black
         Me.his4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.his4.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.his4.Location = New System.Drawing.Point(285, 239)
+        Me.his4.Location = New System.Drawing.Point(188, 347)
         Me.his4.Margin = New System.Windows.Forms.Padding(6)
         Me.his4.Name = "his4"
         Me.his4.Size = New System.Drawing.Size(24, 24)
@@ -1275,7 +1277,7 @@ Partial Class Form1
         Me.his9.BackColor = System.Drawing.Color.Black
         Me.his9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.his9.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.his9.Location = New System.Drawing.Point(410, 239)
+        Me.his9.Location = New System.Drawing.Point(313, 347)
         Me.his9.Margin = New System.Windows.Forms.Padding(6)
         Me.his9.Name = "his9"
         Me.his9.Size = New System.Drawing.Size(24, 24)
@@ -1287,7 +1289,7 @@ Partial Class Form1
         Me.his8.BackColor = System.Drawing.Color.Black
         Me.his8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.his8.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.his8.Location = New System.Drawing.Point(385, 239)
+        Me.his8.Location = New System.Drawing.Point(288, 347)
         Me.his8.Margin = New System.Windows.Forms.Padding(6)
         Me.his8.Name = "his8"
         Me.his8.Size = New System.Drawing.Size(24, 24)
@@ -1299,7 +1301,7 @@ Partial Class Form1
         Me.his7.BackColor = System.Drawing.Color.Black
         Me.his7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.his7.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.his7.Location = New System.Drawing.Point(360, 239)
+        Me.his7.Location = New System.Drawing.Point(263, 347)
         Me.his7.Margin = New System.Windows.Forms.Padding(6)
         Me.his7.Name = "his7"
         Me.his7.Size = New System.Drawing.Size(24, 24)
@@ -1311,7 +1313,7 @@ Partial Class Form1
         Me.his6.BackColor = System.Drawing.Color.Black
         Me.his6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.his6.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.his6.Location = New System.Drawing.Point(335, 239)
+        Me.his6.Location = New System.Drawing.Point(238, 347)
         Me.his6.Margin = New System.Windows.Forms.Padding(6)
         Me.his6.Name = "his6"
         Me.his6.Size = New System.Drawing.Size(24, 24)
@@ -1323,7 +1325,7 @@ Partial Class Form1
         Me.his5.BackColor = System.Drawing.Color.Black
         Me.his5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.his5.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.his5.Location = New System.Drawing.Point(310, 239)
+        Me.his5.Location = New System.Drawing.Point(213, 347)
         Me.his5.Margin = New System.Windows.Forms.Padding(6)
         Me.his5.Name = "his5"
         Me.his5.Size = New System.Drawing.Size(24, 24)
@@ -1335,7 +1337,7 @@ Partial Class Form1
         Me.hh9.BackColor = System.Drawing.Color.Black
         Me.hh9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.hh9.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.hh9.Location = New System.Drawing.Point(410, 236)
+        Me.hh9.Location = New System.Drawing.Point(313, 344)
         Me.hh9.Margin = New System.Windows.Forms.Padding(6)
         Me.hh9.Name = "hh9"
         Me.hh9.Size = New System.Drawing.Size(24, 2)
@@ -1347,7 +1349,7 @@ Partial Class Form1
         Me.hh8.BackColor = System.Drawing.Color.Black
         Me.hh8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.hh8.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.hh8.Location = New System.Drawing.Point(385, 236)
+        Me.hh8.Location = New System.Drawing.Point(288, 344)
         Me.hh8.Margin = New System.Windows.Forms.Padding(6)
         Me.hh8.Name = "hh8"
         Me.hh8.Size = New System.Drawing.Size(24, 2)
@@ -1359,7 +1361,7 @@ Partial Class Form1
         Me.hh7.BackColor = System.Drawing.Color.Black
         Me.hh7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.hh7.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.hh7.Location = New System.Drawing.Point(360, 236)
+        Me.hh7.Location = New System.Drawing.Point(263, 344)
         Me.hh7.Margin = New System.Windows.Forms.Padding(6)
         Me.hh7.Name = "hh7"
         Me.hh7.Size = New System.Drawing.Size(24, 2)
@@ -1371,7 +1373,7 @@ Partial Class Form1
         Me.hh6.BackColor = System.Drawing.Color.Black
         Me.hh6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.hh6.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.hh6.Location = New System.Drawing.Point(335, 236)
+        Me.hh6.Location = New System.Drawing.Point(238, 344)
         Me.hh6.Margin = New System.Windows.Forms.Padding(6)
         Me.hh6.Name = "hh6"
         Me.hh6.Size = New System.Drawing.Size(24, 2)
@@ -1383,7 +1385,7 @@ Partial Class Form1
         Me.hh5.BackColor = System.Drawing.Color.Black
         Me.hh5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.hh5.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.hh5.Location = New System.Drawing.Point(310, 236)
+        Me.hh5.Location = New System.Drawing.Point(213, 344)
         Me.hh5.Margin = New System.Windows.Forms.Padding(6)
         Me.hh5.Name = "hh5"
         Me.hh5.Size = New System.Drawing.Size(24, 2)
@@ -1395,7 +1397,7 @@ Partial Class Form1
         Me.hh4.BackColor = System.Drawing.Color.Black
         Me.hh4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.hh4.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.hh4.Location = New System.Drawing.Point(285, 236)
+        Me.hh4.Location = New System.Drawing.Point(188, 344)
         Me.hh4.Margin = New System.Windows.Forms.Padding(6)
         Me.hh4.Name = "hh4"
         Me.hh4.Size = New System.Drawing.Size(24, 2)
@@ -1407,7 +1409,7 @@ Partial Class Form1
         Me.hh3.BackColor = System.Drawing.Color.Black
         Me.hh3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.hh3.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.hh3.Location = New System.Drawing.Point(260, 236)
+        Me.hh3.Location = New System.Drawing.Point(163, 344)
         Me.hh3.Margin = New System.Windows.Forms.Padding(6)
         Me.hh3.Name = "hh3"
         Me.hh3.Size = New System.Drawing.Size(24, 2)
@@ -1419,7 +1421,7 @@ Partial Class Form1
         Me.hh2.BackColor = System.Drawing.Color.Black
         Me.hh2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.hh2.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.hh2.Location = New System.Drawing.Point(235, 236)
+        Me.hh2.Location = New System.Drawing.Point(138, 344)
         Me.hh2.Margin = New System.Windows.Forms.Padding(6)
         Me.hh2.Name = "hh2"
         Me.hh2.Size = New System.Drawing.Size(24, 2)
@@ -1431,7 +1433,7 @@ Partial Class Form1
         Me.hh1.BackColor = System.Drawing.Color.Black
         Me.hh1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.hh1.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.hh1.Location = New System.Drawing.Point(210, 236)
+        Me.hh1.Location = New System.Drawing.Point(113, 344)
         Me.hh1.Margin = New System.Windows.Forms.Padding(6)
         Me.hh1.Name = "hh1"
         Me.hh1.Size = New System.Drawing.Size(24, 2)
@@ -1443,7 +1445,7 @@ Partial Class Form1
         Me.hh0.BackColor = System.Drawing.Color.Black
         Me.hh0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.hh0.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.hh0.Location = New System.Drawing.Point(185, 236)
+        Me.hh0.Location = New System.Drawing.Point(88, 344)
         Me.hh0.Margin = New System.Windows.Forms.Padding(6)
         Me.hh0.Name = "hh0"
         Me.hh0.Size = New System.Drawing.Size(24, 2)
@@ -2497,9 +2499,9 @@ Partial Class Form1
         'Button12
         '
         Me.Button12.Font = New System.Drawing.Font("Meiryo UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button12.Location = New System.Drawing.Point(308, 26)
+        Me.Button12.Location = New System.Drawing.Point(304, 24)
         Me.Button12.Name = "Button12"
-        Me.Button12.Size = New System.Drawing.Size(60, 29)
+        Me.Button12.Size = New System.Drawing.Size(44, 29)
         Me.Button12.TabIndex = 260
         Me.Button12.Text = "clear"
         Me.Button12.UseVisualStyleBackColor = True
@@ -2694,9 +2696,10 @@ Partial Class Form1
         '
         Me.br0.AutoSize = True
         Me.br0.BackColor = System.Drawing.Color.Black
+        Me.br0.BackgroundImage = CType(resources.GetObject("br0.BackgroundImage"), System.Drawing.Image)
         Me.br0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.br0.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.br0.Location = New System.Drawing.Point(120, 104)
+        Me.br0.Location = New System.Drawing.Point(208, 84)
         Me.br0.Margin = New System.Windows.Forms.Padding(6)
         Me.br0.Name = "br0"
         Me.br0.Size = New System.Drawing.Size(36, 36)
@@ -2706,21 +2709,23 @@ Partial Class Form1
         '
         Me.br1.AutoSize = True
         Me.br1.BackColor = System.Drawing.Color.Black
+        Me.br1.BackgroundImage = CType(resources.GetObject("br1.BackgroundImage"), System.Drawing.Image)
         Me.br1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.br1.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.br1.Location = New System.Drawing.Point(176, 104)
+        Me.br1.Location = New System.Drawing.Point(276, 124)
         Me.br1.Margin = New System.Windows.Forms.Padding(6)
         Me.br1.Name = "br1"
-        Me.br1.Size = New System.Drawing.Size(36, 36)
+        Me.br1.Size = New System.Drawing.Size(64, 64)
         Me.br1.TabIndex = 277
         '
         'br2
         '
         Me.br2.AutoSize = True
         Me.br2.BackColor = System.Drawing.Color.Black
+        Me.br2.BackgroundImage = CType(resources.GetObject("br2.BackgroundImage"), System.Drawing.Image)
         Me.br2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.br2.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.br2.Location = New System.Drawing.Point(232, 104)
+        Me.br2.Location = New System.Drawing.Point(244, 196)
         Me.br2.Margin = New System.Windows.Forms.Padding(6)
         Me.br2.Name = "br2"
         Me.br2.Size = New System.Drawing.Size(36, 36)
@@ -2730,9 +2735,10 @@ Partial Class Form1
         '
         Me.br4.AutoSize = True
         Me.br4.BackColor = System.Drawing.Color.Black
+        Me.br4.BackgroundImage = CType(resources.GetObject("br4.BackgroundImage"), System.Drawing.Image)
         Me.br4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.br4.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.br4.Location = New System.Drawing.Point(344, 104)
+        Me.br4.Location = New System.Drawing.Point(332, 196)
         Me.br4.Margin = New System.Windows.Forms.Padding(6)
         Me.br4.Name = "br4"
         Me.br4.Size = New System.Drawing.Size(36, 36)
@@ -2742,9 +2748,10 @@ Partial Class Form1
         '
         Me.br3.AutoSize = True
         Me.br3.BackColor = System.Drawing.Color.Black
+        Me.br3.BackgroundImage = CType(resources.GetObject("br3.BackgroundImage"), System.Drawing.Image)
         Me.br3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.br3.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.br3.Location = New System.Drawing.Point(288, 104)
+        Me.br3.Location = New System.Drawing.Point(288, 196)
         Me.br3.Margin = New System.Windows.Forms.Padding(6)
         Me.br3.Name = "br3"
         Me.br3.Size = New System.Drawing.Size(36, 36)
@@ -2754,9 +2761,10 @@ Partial Class Form1
         '
         Me.br7.AutoSize = True
         Me.br7.BackColor = System.Drawing.Color.Black
+        Me.br7.BackgroundImage = CType(resources.GetObject("br7.BackgroundImage"), System.Drawing.Image)
         Me.br7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.br7.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.br7.Location = New System.Drawing.Point(232, 152)
+        Me.br7.Location = New System.Drawing.Point(312, 244)
         Me.br7.Margin = New System.Windows.Forms.Padding(6)
         Me.br7.Name = "br7"
         Me.br7.Size = New System.Drawing.Size(36, 36)
@@ -2766,9 +2774,10 @@ Partial Class Form1
         '
         Me.br6.AutoSize = True
         Me.br6.BackColor = System.Drawing.Color.Black
+        Me.br6.BackgroundImage = CType(resources.GetObject("br6.BackgroundImage"), System.Drawing.Image)
         Me.br6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.br6.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.br6.Location = New System.Drawing.Point(176, 152)
+        Me.br6.Location = New System.Drawing.Point(264, 244)
         Me.br6.Margin = New System.Windows.Forms.Padding(6)
         Me.br6.Name = "br6"
         Me.br6.Size = New System.Drawing.Size(36, 36)
@@ -2778,9 +2787,10 @@ Partial Class Form1
         '
         Me.br5.AutoSize = True
         Me.br5.BackColor = System.Drawing.Color.Black
+        Me.br5.BackgroundImage = CType(resources.GetObject("br5.BackgroundImage"), System.Drawing.Image)
         Me.br5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.br5.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.br5.Location = New System.Drawing.Point(120, 152)
+        Me.br5.Location = New System.Drawing.Point(244, 84)
         Me.br5.Margin = New System.Windows.Forms.Padding(6)
         Me.br5.Name = "br5"
         Me.br5.Size = New System.Drawing.Size(36, 36)
@@ -2790,36 +2800,39 @@ Partial Class Form1
         '
         Me.br10.AutoSize = True
         Me.br10.BackColor = System.Drawing.Color.Black
+        Me.br10.BackgroundImage = CType(resources.GetObject("br10.BackgroundImage"), System.Drawing.Image)
         Me.br10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.br10.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.br10.Location = New System.Drawing.Point(400, 152)
+        Me.br10.Location = New System.Drawing.Point(328, 300)
         Me.br10.Margin = New System.Windows.Forms.Padding(6)
         Me.br10.Name = "br10"
-        Me.br10.Size = New System.Drawing.Size(36, 36)
+        Me.br10.Size = New System.Drawing.Size(24, 24)
         Me.br10.TabIndex = 286
         '
         'br9
         '
         Me.br9.AutoSize = True
         Me.br9.BackColor = System.Drawing.Color.Black
+        Me.br9.BackgroundImage = CType(resources.GetObject("br9.BackgroundImage"), System.Drawing.Image)
         Me.br9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.br9.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.br9.Location = New System.Drawing.Point(344, 152)
+        Me.br9.Location = New System.Drawing.Point(296, 300)
         Me.br9.Margin = New System.Windows.Forms.Padding(6)
         Me.br9.Name = "br9"
-        Me.br9.Size = New System.Drawing.Size(36, 36)
+        Me.br9.Size = New System.Drawing.Size(24, 24)
         Me.br9.TabIndex = 285
         '
         'br8
         '
         Me.br8.AutoSize = True
         Me.br8.BackColor = System.Drawing.Color.Black
+        Me.br8.BackgroundImage = CType(resources.GetObject("br8.BackgroundImage"), System.Drawing.Image)
         Me.br8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.br8.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.br8.Location = New System.Drawing.Point(288, 152)
+        Me.br8.Location = New System.Drawing.Point(264, 300)
         Me.br8.Margin = New System.Windows.Forms.Padding(6)
         Me.br8.Name = "br8"
-        Me.br8.Size = New System.Drawing.Size(36, 36)
+        Me.br8.Size = New System.Drawing.Size(24, 24)
         Me.br8.TabIndex = 284
         '
         'Panel18
@@ -2828,7 +2841,7 @@ Partial Class Form1
         Me.Panel18.BackColor = System.Drawing.Color.WhiteSmoke
         Me.Panel18.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.Panel18.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Panel18.Location = New System.Drawing.Point(300, 168)
+        Me.Panel18.Location = New System.Drawing.Point(1196, 160)
         Me.Panel18.Margin = New System.Windows.Forms.Padding(6)
         Me.Panel18.Name = "Panel18"
         Me.Panel18.Size = New System.Drawing.Size(120, 2)
@@ -2840,7 +2853,7 @@ Partial Class Form1
         Me.Panel19.BackColor = System.Drawing.Color.WhiteSmoke
         Me.Panel19.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.Panel19.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Panel19.Location = New System.Drawing.Point(136, 168)
+        Me.Panel19.Location = New System.Drawing.Point(1196, 132)
         Me.Panel19.Margin = New System.Windows.Forms.Padding(6)
         Me.Panel19.Name = "Panel19"
         Me.Panel19.Size = New System.Drawing.Size(120, 2)
@@ -2852,7 +2865,7 @@ Partial Class Form1
         Me.Panel27.BackColor = System.Drawing.Color.WhiteSmoke
         Me.Panel27.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.Panel27.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Panel27.Location = New System.Drawing.Point(148, 120)
+        Me.Panel27.Location = New System.Drawing.Point(1128, 184)
         Me.Panel27.Margin = New System.Windows.Forms.Padding(6)
         Me.Panel27.Name = "Panel27"
         Me.Panel27.Size = New System.Drawing.Size(200, 2)
@@ -2898,12 +2911,32 @@ Partial Class Form1
         Me.DataGridView2.Size = New System.Drawing.Size(199, 120)
         Me.DataGridView2.TabIndex = 290
         '
+        'Button15
+        '
+        Me.Button15.Location = New System.Drawing.Point(352, 24)
+        Me.Button15.Name = "Button15"
+        Me.Button15.Size = New System.Drawing.Size(48, 28)
+        Me.Button15.TabIndex = 291
+        Me.Button15.Text = "web"
+        Me.Button15.UseVisualStyleBackColor = True
+        '
+        'Label15
+        '
+        Me.Label15.ForeColor = System.Drawing.Color.White
+        Me.Label15.Location = New System.Drawing.Point(352, 56)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(88, 12)
+        Me.Label15.TabIndex = 292
+        Me.Label15.Text = "Label15"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Black
-        Me.ClientSize = New System.Drawing.Size(1359, 688)
+        Me.ClientSize = New System.Drawing.Size(444, 381)
+        Me.Controls.Add(Me.Label15)
+        Me.Controls.Add(Me.Button15)
         Me.Controls.Add(Me.DataGridView2)
         Me.Controls.Add(Me.br10)
         Me.Controls.Add(Me.br9)
@@ -3374,4 +3407,6 @@ Partial Class Form1
     Friend WithEvents Panel27 As Panel
     Friend WithEvents Timer7 As Timer
     Friend WithEvents DataGridView2 As DataGridView
+    Friend WithEvents Button15 As Button
+    Friend WithEvents Label15 As Label
 End Class

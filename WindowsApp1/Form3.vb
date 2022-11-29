@@ -575,6 +575,8 @@ Public Class Form3
         Else
             Dim r As New System.Random()
             Dim grid = response.DynamicBody
+            'Dim jsonObj As String = JsonConvert.SerializeObject(grid)
+            'TextBox7.Text = jsonObj
             Try
                 If grid.Events(nnn).EventName IsNot Nothing Then
                     Dim mess As String = ""
@@ -657,7 +659,9 @@ Public Class Form3
                                 TextBox2.AppendText(etime & "," & "deadC" & "," & "0" & "," & vicname & "," & Team & "," & 0 & "," & Rnd)
                                 TextsChanged(True)
                             Else
-                                If TextBox3.Lines.Length < 1 Or KillStreak > 2 Or Team = "teemo" Then
+                                '###################################20221113#############################
+                                'If TextBox3.Lines.Length < 1 Or KillStreak > 2 Or Team = "teemo" Then
+                                If KillStreak > 2 Or Team = "teemo" Then
                                     Dim Rnd As Integer = r.Next(1, 4)
                                     If KillStreak < 3 Then
                                         TextBox2.AppendText(etime & "," & ename & "," & killername & "," & vicname & "," & Team & "," & KillStreak & "," & Rnd)
@@ -999,62 +1003,66 @@ Public Class Form3
                     End If
 
                     If ename = "TurretKilled" Then
+
                         Dim turret_bin As String = grid.Events(nnn).TurretKilled
-                        Dim turret As String = turret_bin.Substring(8, 1)
-                        Dim Assisterse As New List(Of String)
-                        Dim assChamp As New List(Of String)
-                        Dim aaa As Integer = 0
-                        For Each Assi In grid.Events(nnn).Assisters
-                            Assisterse.Add(grid.Events(nnn).Assisters(aaa))
-                            Dim d0 As DataRow()
-                            d0 = syain.Select("sumname = '" + Assisterse(aaa) + "'")
-                            For Each d As DataRow In d0
-                                assChamp.Add(d("chmname").ToString)
+                        If turret_bin <> "Obelisk" Then
+                            Dim turret As String = turret_bin.Substring(8, 1)
+                            Dim Assisterse As New List(Of String)
+                            Dim assChamp As New List(Of String)
+                            Dim aaa As Integer = 0
+                            For Each Assi In grid.Events(nnn).Assisters
+                                Assisterse.Add(grid.Events(nnn).Assisters(aaa))
+                                Dim d0 As DataRow()
+                                d0 = syain.Select("sumname = '" + Assisterse(aaa) + "'")
+                                For Each d As DataRow In d0
+                                    assChamp.Add(d("chmname").ToString)
+                                Next
+                                aaa += 1
                             Next
-                            aaa += 1
-                        Next
-                        Dim killername As String = grid.Events(nnn).KillerName
-                        'Dim d1 As DataRow()
-                        'd1 = syain.Select("sumname = '" + killername + "'")
-                        'Dim killerChamp As String = "Minion"
-                        'For Each d As DataRow In d1
-                        '    killerChamp = d("chmname").ToString
-                        'Next
-                        'Dim d3 As DataRow()
-                        'd3 = syain.Select("sumname = '" + killername + "'")
-                        'Dim Team As String = "Minion"
-                        'For Each d As DataRow In d3
-                        '    Team = d("team").ToString
-                        'Next
+                            Dim killername As String = grid.Events(nnn).KillerName
+                            'Dim d1 As DataRow()
+                            'd1 = syain.Select("sumname = '" + killername + "'")
+                            'Dim killerChamp As String = "Minion"
+                            'For Each d As DataRow In d1
+                            '    killerChamp = d("chmname").ToString
+                            'Next
+                            'Dim d3 As DataRow()
+                            'd3 = syain.Select("sumname = '" + killername + "'")
+                            'Dim Team As String = "Minion"
+                            'For Each d As DataRow In d3
+                            '    Team = d("team").ToString
+                            'Next
 
-                        'If turret = "1" Then
-                        '    If myteam = "CHAOS" Then
-                        '        Turret_s = "ORDER"
-                        '    Else
-                        '        Turret_s = "CHAOS"
-                        '    End If
-                        'Else
-                        '    If myteam = "ORDER" Then
-                        '        Turret_s = "CHAOS"
-                        '    Else
-                        '        Turret_s = "ORDER"
-                        '    End If
-                        'End If
+                            'If turret = "1" Then
+                            '    If myteam = "CHAOS" Then
+                            '        Turret_s = "ORDER"
+                            '    Else
+                            '        Turret_s = "CHAOS"
+                            '    End If
+                            'Else
+                            '    If myteam = "ORDER" Then
+                            '        Turret_s = "CHAOS"
+                            '    Else
+                            '        Turret_s = "ORDER"
+                            '    End If
+                            'End If
 
-                        Dim team As String = "ORDER"
-                        If turret = "1" Then
-                            team = "CHAOS"
-                        Else
-                            team = "ORDER"
+                            Dim team As String = "ORDER"
+                            If turret = "1" Then
+                                team = "CHAOS"
+                            Else
+                                team = "ORDER"
+                            End If
+
+
+                            Dim Rnd As Integer = r.Next(1, 4)
+                            TextBox2.AppendText(etime & "," & ename & "," & killername & "," & turret_bin & "," & team & "," & turret & "," & Rnd)
+                            TextsChanged(False)
                         End If
-
-
-                        Dim Rnd As Integer = r.Next(1, 4)
-                        TextBox2.AppendText(etime & "," & ename & "," & killername & "," & turret_bin & "," & team & "," & turret & "," & Rnd)
-                        TextsChanged(False)
                     End If
 
-                    If ename = "FirstBlood" Then
+
+                        If ename = "FirstBlood" Then
                         Dim killername As String = grid.Events(nnn).Recipient
                         Dim d3 As DataRow()
                         d3 = syain.Select("sumname = '" + killername + "'")
@@ -1318,32 +1326,35 @@ Public Class Form3
                 ElseIf ename = "TurretKilled" Then
                     Dim turret_bin As String = jsonObj("Events")(nnn)("TurretKilled")
                     Dim turret As String = turret_bin
-                    Dim Assisterse As New List(Of String)
-                    Dim assChamp As New List(Of String)
-                    Dim aaa As Integer = 0
-                    For Each Assi In jsonObj("Events")(nnn)("Assisters")
-                        Assisterse.Add(jsonObj("Events")(nnn)("Assisters")(aaa))
-                        Dim d0 As DataRow()
-                        d0 = syain.Select("sumname = '" + Assisterse(aaa) + "'")
-                        For Each d As DataRow In d0
-                            assChamp.Add(d("chmname").ToString)
+                    If turret <> "Obelisk" Then
+                        Dim Assisterse As New List(Of String)
+                        Dim assChamp As New List(Of String)
+                        Dim aaa As Integer = 0
+                        For Each Assi In jsonObj("Events")(nnn)("Assisters")
+                            Assisterse.Add(jsonObj("Events")(nnn)("Assisters")(aaa))
+                            Dim d0 As DataRow()
+                            d0 = syain.Select("sumname = '" + Assisterse(aaa) + "'")
+                            For Each d As DataRow In d0
+                                assChamp.Add(d("chmname").ToString)
+                            Next
+                            aaa += 1
                         Next
-                        aaa += 1
-                    Next
-                    Dim killername As String = jsonObj("Events")(nnn)("KillerName")
-                    Dim d1 As DataRow()
-                    d1 = syain.Select("sumname = '" + killername + "'")
-                    Dim killerChamp As String = "Minion"
-                    For Each d As DataRow In d1
-                        killerChamp = d("chmname").ToString
-                    Next
-                    Dim d3 As DataRow()
-                    d3 = syain.Select("sumname = '" + killername + "'")
-                    Dim Team As String = "Minion"
-                    For Each d As DataRow In d3
-                        Team = d("team").ToString
-                    Next
-                    tk(etime, Team, killername, killerChamp, turret, Assisterse, assChamp)
+                        Dim killername As String = jsonObj("Events")(nnn)("KillerName")
+                        Dim d1 As DataRow()
+                        d1 = syain.Select("sumname = '" + killername + "'")
+                        Dim killerChamp As String = "Minion"
+                        For Each d As DataRow In d1
+                            killerChamp = d("chmname").ToString
+                        Next
+                        Dim d3 As DataRow()
+                        d3 = syain.Select("sumname = '" + killername + "'")
+                        Dim Team As String = "Minion"
+                        For Each d As DataRow In d3
+                            Team = d("team").ToString
+                        Next
+                        tk(etime, Team, killername, killerChamp, turret, Assisterse, assChamp)
+                    End If
+
 
                 ElseIf ename = "FirstBrick" Then
 
@@ -2045,7 +2056,7 @@ Public Class Form3
     End Sub
 
     Private Sub Timer4_Tick(sender As Object, e As EventArgs) Handles Timer4.Tick
-        If TextBox3.Lines.Length < 3 Then
+        If TextBox3.Lines.Length < 3 Then ' 20221102
             TextBox3.AppendText(CC & vbCrLf)
             TextBox8.Text = ""
             Timer4.Enabled = False
@@ -3346,9 +3357,10 @@ Public Class Form3
                         If teston Then
                             Rnum = Integer.Parse(TextBox6.Text)
                         End If
-                        Rnd = "enemydestroytowerC1"
-                        leng = 1
-
+                        If team <> myteam Then
+                            Rnd = "enemydestroytowerC1"
+                            leng = 3100
+                        End If
                         theme_end()
                         theme_start("starguardian_jp\StarGuardian_mid", 6000000)
                         'Dim lines As New List(Of String)(TextBox3.Lines)
@@ -4643,6 +4655,7 @@ Public Class Form3
                         'If teston Then
                         '    Rnum = Integer.Parse(TextBox6.Text)
                         'End If
+
                         Rnd = "enemydestroytowerC1"
                         'If team = myteam Then
                         leng = 1
@@ -5958,7 +5971,7 @@ Public Class Form3
                             Rnum = Integer.Parse(TextBox6.Text)
                         End If
                         Rnd = "enemydestroytowerC1"
-                        leng = 1
+                        leng = 2000
 
 
                         theme_end()
@@ -5986,7 +5999,7 @@ Public Class Form3
                 'Lengt = Val(Buffer) - 2000
                 If teston Then
                     leng = Integer.Parse(TextBox4.Text)
-                    teston = False
+                    'teston = False
                 End If
                 mysoundtimer.Interval = leng
                 mysoundtimer.Enabled = True
@@ -6053,15 +6066,15 @@ Public Class Form3
         Dim leng As Integer = 6000000
         If RadioButton1.Checked Then
             mode = 0
-            pat = "butchersbridge\renata"
+            pat = "butchersbridge\renata1"
             leng = 6000000
         ElseIf RadioButton2.Checked Then
             mode = 1
-            pat = "butchersbridge\renata"
+            pat = "butchersbridge\renata1"
             leng = 6000000
         ElseIf RadioButton3.Checked Then
             mode = 2
-            pat = "butchersbridge\renata"
+            pat = "butchersbridge\renata2"
             leng = 6000000
         End If
         theme_end()
@@ -6075,7 +6088,7 @@ Public Class Form3
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
         If TextBox7.Text <> "" Then
-            Clipboard.SetText(TextBox7.Text)
+            'Clipboard.SetText(TextBox7.Text)
         End If
         TextBox2.Clear()
         TextBox7.Clear()
@@ -6089,7 +6102,7 @@ Public Class Form3
 
     Private Sub minion30_Tick(sender As Object, e As EventArgs) Handles minion30.Tick
         Dim r As New System.Random()
-        Dim Rnum As Integer = r.Next(1, 5)
+        Dim Rnum As Integer = r.Next(1, 10)
         TextBox2.AppendText("00:15" & "," & "minion30" & "," & "0" & "," & "0" & "," & "0" & "," & 0 & "," & Rnum)
         TextsChanged(False)
         minion30.Enabled = False
@@ -6132,7 +6145,23 @@ Public Class Form3
     Private Sub Timer5_Tick(sender As Object, e As EventArgs) Handles Timer5.Tick
         Timer5.Enabled = False
         theme_end()
-        theme_start("butchersbridge\renata", 3000000)
+        Dim pat As String = "sounds\Bilgewater"
+        Dim leng As Integer = 6000000
+        If RadioButton1.Checked Then
+            mode = 0
+            pat = "butchersbridge\renata1"
+            leng = 6000000
+        ElseIf RadioButton2.Checked Then
+            mode = 1
+            pat = "butchersbridge\renata1"
+            leng = 6000000
+        ElseIf RadioButton3.Checked Then
+            mode = 2
+            pat = "butchersbridge\renata2"
+            leng = 6000000
+        End If
+        theme_end()
+        theme_start(pat, leng)
     End Sub
 End Class
 
