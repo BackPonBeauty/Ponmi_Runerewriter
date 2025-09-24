@@ -1,29 +1,17 @@
 ﻿Option Strict Off
-Imports System.Text
-Imports System.IO
-Imports System.Net
-Imports System.Runtime.Serialization.Json
-Imports Newtonsoft.Json
-Imports System.Linq
-Imports System.Text.RegularExpressions
-Imports Newtonsoft.Json.Linq
-Imports System.Runtime.InteropServices
-Imports System
-Imports System.Collections.Generic
 Imports System.ComponentModel
-Imports System.Data
-Imports System.Diagnostics
-Imports System.Drawing
-Imports System.Threading.Tasks
-Imports System.Security.Principal
-Imports System.Windows.Forms
-Imports EasyHttp.Http
-Imports System.Management
-Imports JsonFx.Json
-Imports System.Security.Permissions
-Imports System.Threading
 Imports System.Drawing.Imaging
-Imports Microsoft.DirectX.DirectSound
+Imports System.IO
+Imports System.Management
+Imports System.Net
+Imports System.Net.Http
+Imports System.Text
+Imports System.Text.RegularExpressions
+Imports EasyHttp.Http
+Imports JsonFx.Json
+Imports Newtonsoft.Json
+
+Imports System.Drawing
 
 'Partial Public Class RunesReformed
 '    Inherits Form
@@ -63,12 +51,14 @@ Public Class Form1
     Public oredata As New DataTable
     Public champdata As New DataTable
     Public runedata As New DataTable
+    Public runedata2 As New DataTable
     Public sumspedata As New DataTable
     Public runereformdata As New DataTable
     Public LVdata As New DataTable
     Public hisdata As New DataTable
     Public stdata As New DataTable
     Public pagedata As New DataTable
+    Public Itemdata As New DataTable
     Public reg As String = "jp"
     Public api As String = "jp"
     Public vernew As String
@@ -90,12 +80,13 @@ Public Class Form1
     Public runo As Integer
     Public Shared token As String
     Public Shared port As String
-    Public Shared http As HttpClient
+    Public Shared http As EasyHttp.Http.HttpClient
     Public chroma_old As String = "81000"
     Public ccchamp As Integer = 22
     Public onece As Boolean = False
     Public checkacc As String
     Public checkid As String
+    Public checkpuuid As String
     Public checkdn As String
     Public checksl As Integer
     Public aram As String = "aram"
@@ -133,7 +124,7 @@ Public Class Form1
 
     Public Sub New()
         ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls11 Or SecurityProtocolType.Tls12
-        http = New HttpClient()
+        http = New EasyHttp.Http.HttpClient
         InitializeComponent()
     End Sub
 
@@ -144,8 +135,8 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Show(sender As Object, e As EventArgs) Handles MyBase.Shown
-        Application.DoEvents()
-
+        'Application.DoEvents()
+        Console.WriteLine("Show")
         'メッセージボックスを表示する 
         'Dim result As DialogResult = MessageBox.Show("ARAMのデータを読み込みますか？",
         '                                     "質問",
@@ -156,7 +147,7 @@ Public Class Form1
         '何が選択されたか調べる 
         'If result = DialogResult.Yes Then
         Orepages = "orepage.csv"
-            aram = "aram"
+        aram = "aram"
         'ElseIf result = DialogResult.No Then
         'Orepages = "orepage2.csv"
         '    aram = "5v5"
@@ -194,6 +185,13 @@ Public Class Form1
             orespe.Columns.Add("id", GetType(Integer))
             orespe.Columns.Add("s1", GetType(String))
             orespe.Columns.Add("s2", GetType(String))
+            orespe.Columns.Add("i1", GetType(String))
+            orespe.Columns.Add("i2", GetType(String))
+            orespe.Columns.Add("i3", GetType(String))
+            orespe.Columns.Add("i4", GetType(String))
+            orespe.Columns.Add("i5", GetType(String))
+            orespe.Columns.Add("i6", GetType(String))
+            orespe.Columns.Add("i7", GetType(String))
         End If
 
 
@@ -226,6 +224,7 @@ Public Class Form1
 
         End Using
         'TextBox2.Text = al.Item(0)
+        'TextBox5.Text = al.Item(0)
         'TextBox3.Text = al.Item(1)
         'checkid = al.Item(1)
         'TextBox4.Text = al.Item(2)
@@ -237,9 +236,11 @@ Public Class Form1
         DeleteCheck.Checked = True
 
         GetSummonerId()
+        TextBox5.Text = checkdn
         TextBox2.Text = checkdn
         TextBox3.Text = checkid
         TextBox4.Text = checksl
+
         Begin()
 
         AddHandler Me.r0.MouseEnter, AddressOf Me.RuneButtons_MouseHover2
@@ -247,6 +248,18 @@ Public Class Form1
         AddHandler Me.r2.MouseEnter, AddressOf Me.RuneButtons_MouseHover2
         AddHandler Me.r3.MouseEnter, AddressOf Me.RuneButtons_MouseHover2
         AddHandler Me.r4.MouseEnter, AddressOf Me.RuneButtons_MouseHover2
+
+        'AddHandler Me.br0.MouseEnter, AddressOf Me.RuneButtons_MouseHover2
+        'AddHandler Me.br1.MouseEnter, AddressOf Me.RuneButtons_MouseHover2
+        'AddHandler Me.br2.MouseEnter, AddressOf Me.RuneButtons_MouseHover2
+        'AddHandler Me.br3.MouseEnter, AddressOf Me.RuneButtons_MouseHover2
+        'AddHandler Me.br4.MouseEnter, AddressOf Me.RuneButtons_MouseHover2
+        'AddHandler Me.br5.MouseEnter, AddressOf Me.RuneButtons_MouseHover2
+        'AddHandler Me.br6.MouseEnter, AddressOf Me.RuneButtons_MouseHover2
+        'AddHandler Me.br7.MouseEnter, AddressOf Me.RuneButtons_MouseHover2
+        'AddHandler Me.br8.MouseEnter, AddressOf Me.RuneButtons_MouseHover2
+        'AddHandler Me.br9.MouseEnter, AddressOf Me.RuneButtons_MouseHover2
+        'AddHandler Me.br10.MouseEnter, AddressOf Me.RuneButtons_MouseHover2
 
         AddHandler Me.s0.MouseEnter, AddressOf Me.RuneButtons_MouseHover2
         AddHandler Me.s2.MouseEnter, AddressOf Me.RuneButtons_MouseHover2
@@ -327,7 +340,7 @@ Public Class Form1
         runedata.Clear()
         runereformdata.Clear()
 
-        Application.DoEvents()
+        'Application.DoEvents()
 
 
         'Dim line As String = ""
@@ -380,12 +393,12 @@ Public Class Form1
             Call LocalSumspeLoad()
             Call OnlineChampDataLoad(vernew)
             Call LocalRuneReformLoad()
-            'Call LocalLVload()
+            Call OnlineItemDataLoad(vernew)
             TextBox1.AppendText("Updated Version" & vbCrLf)
         End If
         Dim textFile As System.IO.StreamWriter
         textFile = New System.IO.StreamWriter("name.cfg", False, System.Text.Encoding.Default)
-        textFile.WriteLine(TextBox2.Text)
+        textFile.WriteLine(TextBox5.Text)
         textFile.WriteLine(TextBox3.Text)
         textFile.WriteLine(TextBox4.Text)
         textFile.WriteLine(country1)
@@ -423,19 +436,31 @@ Public Class Form1
         'DataGridView1.DataSource = champdata
         Form2.Show()
         Form3.Show()
-        'Form4.Show()
+        'Form6.Show()
         'Form5.Show()
     End Sub
 
     Private Sub Tiles()
 
-        Dim files As String() = System.IO.Directory.GetFiles(".\images\" & vernew & "\tiles\", "*.jpg", System.IO.SearchOption.AllDirectories)
+        Dim files() As String = System.IO.Directory.GetFiles(".\images\" & vernew & "\tiles\", "*.jpg", System.IO.SearchOption.AllDirectories)
         'ListBox1に結果を表示する
-        CBox.Items.AddRange(files)
+        Dim tl As String
+        Dim fl As Integer = files.Length - 1
+        For i As Integer = 0 To fl
+            Dim fe As String = files(i)
+            Dim fs() As String = fe.Split("\")
+            Dim fl1 As Integer = fs.Length - 1
+            tl = fs(fl1)
+            Console.WriteLine(tl)
+            CBox.Items.Add(tl)
+        Next
+
+
+        'CBox.Items.AddRange(files)
     End Sub
 
     Public Shared Function VersionCheck() As String
-        Application.DoEvents()
+        'Application.DoEvents()
         Dim webclient As New System.Net.WebClient()
         Dim sr As System.IO.Stream
         Dim uu As String = ""
@@ -462,7 +487,7 @@ Public Class Form1
 
 
     Private Sub MyRuneSet()
-        Application.DoEvents()
+        'Application.DoEvents()
         Dim rc As Integer = runedata.Rows.Count - 1
 
         Me.pc = New System.Windows.Forms.Button(rc) {}
@@ -538,7 +563,7 @@ Public Class Form1
                     imm = Nothing
                 Else
                     Dim wc As New System.Net.WebClient()
-                    wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/img/" & icon, "images\" & patch & "\runeimage\" & id & ".png")
+                    wc.DownloadFile("https://ddragon.leagueoflegends.com/cdn/img/" & icon, "images\" & patch & "\runeimage\" & id & ".png")
                     wc.Dispose()
 
 
@@ -625,7 +650,7 @@ Public Class Form1
                     imm = Nothing
                 Else
                     Dim wc As New System.Net.WebClient()
-                    wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/img/" & icon, "images\" & patch & "\runeimage\" & id & ".png")
+                    wc.DownloadFile("https://ddragon.leagueoflegends.com/cdn/img/" & icon, "images\" & patch & "\runeimage\" & id & ".png")
                     wc.Dispose()
 
 
@@ -760,7 +785,7 @@ Public Class Form1
                     imm = Nothing
                 Else
                     Dim wc As New System.Net.WebClient()
-                    wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/img/" & icon, "images\" & patch & "\runeimage\" & id & ".png")
+                    wc.DownloadFile("https://ddragon.leagueoflegends.com/cdn/img/" & icon, "images\" & patch & "\runeimage\" & id & ".png")
                     wc.Dispose()
 
 
@@ -1172,7 +1197,7 @@ Public Class Form1
                     imm = Nothing
                 Else
                     Dim wc As New System.Net.WebClient()
-                    wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/img/" & icon, "images\" & patch & "\runeimage\" & id & ".png")
+                    wc.DownloadFile("https://ddragon.leagueoflegends.com/cdn/img/" & icon, "images\" & patch & "\runeimage\" & id & ".png")
                     wc.Dispose()
 
 
@@ -1317,7 +1342,7 @@ Public Class Form1
                     imm = Nothing
                 Else
                     Dim wc As New System.Net.WebClient()
-                    wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/img/" & icon, "images\" & patch & "\runeimage\" & id & ".png")
+                    wc.DownloadFile("https://ddragon.leagueoflegends.com/cdn/img/" & icon, "images\" & patch & "\runeimage\" & id & ".png")
                     wc.Dispose()
 
 
@@ -1384,7 +1409,7 @@ Public Class Form1
 
 
     Private Sub LocalRuneReformLoad()
-        Application.DoEvents()
+        'Application.DoEvents()
         If runereformdata.Columns.Count = 0 Then
             runereformdata.Columns.Add("pn", GetType(String))
             runereformdata.Columns.Add("rp", GetType(Integer))
@@ -1398,6 +1423,13 @@ Public Class Form1
             runereformdata.Columns.Add("id", GetType(Integer))
             runereformdata.Columns.Add("s1", GetType(Integer))
             runereformdata.Columns.Add("s2", GetType(Integer))
+            runereformdata.Columns.Add("i1", GetType(Integer))
+            runereformdata.Columns.Add("i2", GetType(Integer))
+            runereformdata.Columns.Add("i3", GetType(Integer))
+            runereformdata.Columns.Add("i4", GetType(Integer))
+            runereformdata.Columns.Add("i5", GetType(Integer))
+            runereformdata.Columns.Add("i6", GetType(Integer))
+            runereformdata.Columns.Add("i7", GetType(Integer))
         End If
 
         If pagedata.Columns.Count = 0 Then
@@ -1416,12 +1448,19 @@ Public Class Form1
             pagedata.Columns.Add("id", GetType(Integer))
             pagedata.Columns.Add("s1", GetType(Integer))
             pagedata.Columns.Add("s2", GetType(Integer))
+            pagedata.Columns.Add("i1", GetType(Integer))
+            pagedata.Columns.Add("i2", GetType(Integer))
+            pagedata.Columns.Add("i3", GetType(Integer))
+            pagedata.Columns.Add("i4", GetType(Integer))
+            pagedata.Columns.Add("i5", GetType(Integer))
+            pagedata.Columns.Add("i6", GetType(Integer))
+            pagedata.Columns.Add("i7", GetType(Integer))
         End If
 
         Try
             Dim csvDir As String = "." ' "C:\"
             'CSVファイルの名前
-            Dim csvFileName As String = Orepages
+            Dim csvFileName As String = "orepage.csv"
 
             '接続文字列
             Dim conString As String =
@@ -1450,7 +1489,7 @@ Public Class Form1
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error)
 
-            Me.Close()
+            'Me.Close()
         End Try
 
     End Sub
@@ -1546,7 +1585,7 @@ Public Class Form1
         Dim sr As System.IO.Stream
         Dim uu As String = ""
         Try
-            uu = "http://runereformedapi.azurewebsites.net/api/runes/Runepages"
+            uu = "https://runereformedapi.azurewebsites.net/api/runes/Runepages"
             'uu = "runereform.json"
             sr = webclient.OpenRead(uu)
             Dim srRead As New System.IO.StreamReader(sr)
@@ -1581,7 +1620,7 @@ Public Class Form1
     End Sub
 
     Private Sub LocalSumspeLoad()
-        Application.DoEvents()
+        'Application.DoEvents()
         If sumspedata.Columns.Count = 0 Then
             sumspedata.Columns.Add("id", GetType(String))
             sumspedata.Columns.Add("name", GetType(String))
@@ -1642,7 +1681,7 @@ Public Class Form1
             Else
                 Dim wc As New System.Net.WebClient()
                 Dim ke As String = sumspedata.Rows(i).Item("key")
-                wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/" & vernew & "/img/spell/" & imge, "images\" & ke & ".jpg")
+                wc.DownloadFile("https://ddragon.leagueoflegends.com/cdn/" & vernew & "/img/spell/" & imge, "images\" & ke & ".jpg")
                 wc.Dispose()
                 Dim imm As String = "images\" & key & ".jpg"
 
@@ -1678,7 +1717,7 @@ Public Class Form1
         Dim sr As System.IO.Stream
         Dim uu As String = ""
         Try
-            uu = "http://ddragon.leagueoflegends.com/cdn/" & vernew & "/data/" & country1 & "/summoner.json"
+            uu = "https://ddragon.leagueoflegends.com/cdn/" & vernew & "/data/" & country1 & "/summoner.json"
             sr = webclient.OpenRead(uu)
             Dim srRead As New System.IO.StreamReader(sr)
             '内容をすべて読み込む
@@ -1695,7 +1734,7 @@ Public Class Form1
                 'Dim title As String = (jsonObj("data")(id)("title")).ToString
                 Dim image As String = (jsonObj("data")(id)("image")("full")).ToString
 
-                'uu = "http://ddragon.leagueoflegends.com/cdn/" & vernew & "/data/" & country1 & "/champion/" & id & ".json"
+                'uu = "https://ddragon.leagueoflegends.com/cdn/" & vernew & "/data/" & country1 & "/champion/" & id & ".json"
                 'sr = webclient.OpenRead(uu)
                 'Dim serRead As New System.IO.StreamReader(sr)
                 ''内容をすべて読み込む
@@ -1727,7 +1766,7 @@ Public Class Form1
 
     Private Sub LocalRuneDataLoad(vernew As String)
         'TextBox1.AppendText("LocalRuneData tiles" & vbCrLf)
-        Application.DoEvents()
+        'Application.DoEvents()
         If runedata.Columns.Count = 0 Then
             runedata.Columns.Add("id", GetType(String))
             runedata.Columns.Add("key", GetType(String))
@@ -1761,6 +1800,61 @@ Public Class Form1
         But3.Enabled = True
     End Sub
 
+    Private Sub OnlineItemDataLoad(vernew As String)
+        'If sumspedata.Columns.Count = 0 Then
+        '    sumspedata.Columns.Add("id", GetType(String))
+        '    sumspedata.Columns.Add("name", GetType(String))
+        '    sumspedata.Columns.Add("key", GetType(Integer))
+        '    sumspedata.Columns.Add("image", GetType(String))
+
+        'End If
+        If System.IO.Directory.Exists("images\" & vernew & "\Item\") Then
+
+        Else
+            System.IO.Directory.CreateDirectory("images\" & vernew & "\Item\")
+        End If
+
+        Dim webclient As New System.Net.WebClient()
+        Dim sr As System.IO.Stream
+        Dim uu As String = ""
+        Try
+            uu = "https://ddragon.leagueoflegends.com/cdn/" & vernew & "/data/en_US/item.json"
+            'uu = "https://ddragon.leagueoflegends.com/cdn/" & vernew & "/data/" & country1 & "/summoner.json"
+            sr = webclient.OpenRead(uu)
+            Dim srRead As New System.IO.StreamReader(sr)
+            '内容をすべて読み込む
+            Dim se As String = srRead.ReadToEnd()
+            srRead.Close()
+            Dim jsonObj As Object = JsonConvert.DeserializeObject(se)
+            '  TextBox1.Text = (jsonObj("data").ToString)
+            For Each p In TryCast(jsonObj("data"), Newtonsoft.Json.Linq.JContainer).Select(Function(token) TryCast(token, Newtonsoft.Json.Linq.JProperty))
+                Dim id As String = ($"{p.Name}").ToString
+                Dim name As String = (jsonObj("data")(id)("name")).ToString
+                Dim key As Integer = 0
+                'Dim key As Integer = (jsonObj("data")(id)("effectBurn")("key")).ToString
+
+                'Dim title As String = (jsonObj("data")(id)("title")).ToString
+                Dim image As String = (jsonObj("data")(id)("image")("full")).ToString
+                Try
+                    Dim wc As New System.Net.WebClient()
+                    wc.DownloadFile("https://ddragon.leagueoflegends.com/cdn/" & vernew & "/img/item/" & image, "images\" & vernew & "\Item\" & image)
+                    wc.Dispose()
+                    TextBox1.AppendText(image & vbCrLf)
+                Catch
+
+                End Try
+
+
+
+
+            Next
+
+            TextBox1.AppendText("OnlineItem Load Success" & vbCrLf)
+        Catch ex As System.Net.WebException
+            TextBox1.AppendText("OnlineItem Load Error" & vbCrLf)
+        End Try
+
+    End Sub
 
     Private Sub OnlineRuneDataLoad(vernew As String)
 
@@ -1831,15 +1925,19 @@ Public Class Form1
 
                 i = i + 1
             Next
-            runedata.Rows.Add(5008, "Adaptive", "perk-images/StatMods/StatModsAdaptiveForceIcon.png", "アダプティブフォース", "アダプティブフォース+10", 5, 1, 0)
-            runedata.Rows.Add(5005, "AttackSpeed", "perk-images/StatMods/StatModsAdaptiveForceIcon.png", "攻撃速度", "攻撃速度+9%", 5, 1, 1)
-            runedata.Rows.Add(5007, "CDRScaling", "perk-images/StatMods/StatModsAdaptiveForceIcon.png", "クールダウン短縮", "クールダウン短縮+1%-10%(レベルに応じて)", 5, 1, 2)
-            runedata.Rows.Add(5008, "Adaptive", "perk-images/StatMods/StatModsAdaptiveForceIcon.png", "アダプティブフォース", "アダプティブフォース+10", 5, 2, 0)
-            runedata.Rows.Add(5002, "Armor", "perk-images/StatMods/StatModsAdaptiveForceIcon.png", "物理防御", "物理防御+5", 5, 2, 1)
-            runedata.Rows.Add(5003, "MagicRes", "perk-images/StatMods/StatModsAdaptiveForceIcon.png", "魔法防御", "魔法防御+5", 5, 2, 2)
-            runedata.Rows.Add(5001, "HealthScaling", "perk-images/StatMods/StatModsAdaptiveForceIcon.png", "体力", "体力+15-90(レベルに応じて)", 5, 3, 0)
-            runedata.Rows.Add(5002, "Armor", "perk-images/StatMods/StatModsAdaptiveForceIcon.png", "物理防御", "物理防御+5", 5, 3, 1)
-            runedata.Rows.Add(5003, "MagicRes", "perk-images/StatMods/StatModsAdaptiveForceIcon.png", "魔法防御", "魔法防御+5", 5, 3, 2)
+            runedata.Rows.Add(5008, "Adaptive", "perk-images/StatMods/StatModsAdaptiveForceIcon.png", "アダプティブフォース", "アダプティブフォース+9", 5, 1, 0)
+            runedata.Rows.Add(5005, "AttackSpeed", "perk-images/StatMods/StatModsAdaptiveForceIcon.png", "攻撃速度", "攻撃速度+10%", 5, 1, 1)
+            runedata.Rows.Add(5007, "CDRScaling", "perk-images/StatMods/StatModsAdaptiveForceIcon.png", "スキルヘイスト", "スキルヘイスト+8", 5, 1, 2)
+
+            runedata.Rows.Add(5008, "Adaptive", "perk-images/StatMods/StatModsAdaptiveForceIcon.png", "アダプティブフォース", "アダプティブフォース+9", 5, 2, 0)
+            runedata.Rows.Add(5010, "MovementSpeed", "perk-images/StatMods/StatModsAdaptiveForceIcon.png", "移動速度", "移動速度+2", 5, 2, 1)
+            runedata.Rows.Add(5001, "HealthScaling", "perk-images/StatMods/StatModsAdaptiveForceIcon.png", "体力の伸び", "体力+10-180(レベルに応じて)", 5, 2, 2)
+            'runedata.Rows.Add(5001, "MagicRes", "perk-images/StatMods/StatModsAdaptiveForceIcon.png", "魔法防御", "魔法防御+5", 5, 2, 2)
+
+            runedata.Rows.Add(5011, "HealthPlus", "perk-images/StatMods/StatModsAdaptiveForceIcon.png", "体力", "体力+10-180(レベルに応じて)", 5, 3, 0)
+            runedata.Rows.Add(5013, "Tenacity", "perk-images/StatMods/StatModsAdaptiveForceIcon.png", "行動妨害耐性とスロウ耐性", "行動妨害耐性とスロウ耐性+10%", 5, 3, 1)
+            runedata.Rows.Add(5001, "HealthScaling", "perk-images/StatMods/StatModsAdaptiveForceIcon.png", "体力の伸び", "体力+10-180(レベルに応じて)", 5, 3, 2)
+            'runedata.Rows.Add(5003, "MagicRes", "perk-images/StatMods/StatModsAdaptiveForceIcon.png", "魔法防御", "魔法防御+5", 5, 3, 2)
 
 
             ConvertDataTableToCsv(runedata, "runedata.csv", True, False)
@@ -1894,7 +1992,7 @@ Public Class Form1
             'Else
             '    Dim wc As New System.Net.WebClient()
 
-            '    wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" & key & "_0.jpg", "images\" & patch & "\" & key & "_0.jpg")
+            '    wc.DownloadFile("https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" & key & "_0.jpg", "images\" & patch & "\" & key & "_0.jpg")
             '    wc.Dispose()
             'End If
 
@@ -1912,10 +2010,10 @@ Public Class Form1
             Else
                 If id < 5100 Then
                     Try
-                        Dim wc As New System.Net.WebClient()
-                        wc.DownloadFile("http://www1.interq.or.jp/~masaya/img/" & id & ".png", "images\" & patch & "\runeimage\" & id & ".png")
-                        wc.Dispose()
-
+                        'Dim wc As New System.Net.WebClient()
+                        'wc.DownloadFile("https://www1.interq.or.jp/~masaya/img/" & id & ".png", "images\" & patch & "\runeimage\" & id & ".png")
+                        'wc.Dispose()
+                        File.Copy("images\img\" & id & ".png", "images\" & patch & "\runeimage\" & id & ".png", True)
 
                         Dim im As String = "images\" & patch & "\runeimage\" & id & ".png"
                         Dim img As Image = Image.FromFile(im)
@@ -1928,7 +2026,7 @@ Public Class Form1
 
                         im = Nothing
                         TextBox1.AppendText(name & " " & vbCrLf)
-                        Application.DoEvents()
+                        'Application.DoEvents()
                     Catch
                         TextBox1.AppendText("LocalRunePage Failed" & vbCrLf)
 
@@ -1944,7 +2042,7 @@ Public Class Form1
 
                     Try
                         Dim wc As New System.Net.WebClient()
-                        wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/img/" & icon, "images\" & patch & "\runeimage\" & id & ".png")
+                        wc.DownloadFile("https://ddragon.leagueoflegends.com/cdn/img/" & icon, "images\" & patch & "\runeimage\" & id & ".png")
                         wc.Dispose()
 
 
@@ -1959,7 +2057,7 @@ Public Class Form1
 
                         im = Nothing
                         TextBox1.AppendText(name & " " & vbCrLf)
-                        Application.DoEvents()
+                        'Application.DoEvents()
                     Catch
                         TextBox1.AppendText("LocalRunePage Failed" & vbCrLf)
 
@@ -2086,9 +2184,9 @@ Public Class Form1
     End Sub
 
     Private Sub history()
-        Application.DoEvents()
-        If Hisdata.Columns.Count = 0 Then
-            Hisdata.Columns.Add("id", GetType(String))
+        'Application.DoEvents()
+        If hisdata.Columns.Count = 0 Then
+            hisdata.Columns.Add("id", GetType(String))
             hisdata.Columns.Add("win", GetType(String))
         End If
         hisdata.Clear()
@@ -2147,7 +2245,7 @@ Public Class Form1
     End Sub
 
     Public Sub His_Image()
-        Application.DoEvents()
+        'Application.DoEvents()
         Dim hisname As String
         Dim patch As String = vernew
         For j As Integer = 0 To hisdata.Rows.Count - 1
@@ -2175,7 +2273,7 @@ Public Class Form1
     End Sub
 
     Private Sub OnlineChampDataLoad(vernew As String)
-        Application.DoEvents()
+        'Application.DoEvents()
         If champdata.Columns.Count = 0 Then
             champdata.Columns.Add("id", GetType(String))
             champdata.Columns.Add("key", GetType(String))
@@ -2192,7 +2290,7 @@ Public Class Form1
         Dim sr As System.IO.Stream
         Dim uu As String = ""
         Try
-            uu = "http://ddragon.leagueoflegends.com/cdn/" & vernew & "/data/" & country1 & "/champion.json"
+            uu = "https://ddragon.leagueoflegends.com/cdn/" & vernew & "/data/" & country1 & "/champion.json"
             sr = webclient.OpenRead(uu)
             Dim srRead As New System.IO.StreamReader(sr)
             '内容をすべて読み込む
@@ -2211,7 +2309,7 @@ Public Class Form1
                 Dim magic As String = (jsonObj("data")(id)("info")("magic")).ToString
                 Dim difficulty As String = (jsonObj("data")(id)("info")("difficulty")).ToString
 
-                'uu = "http://ddragon.leagueoflegends.com/cdn/" & vernew & "/data/" & country1 & "/champion/" & id & ".json"
+                'uu = "https://ddragon.leagueoflegends.com/cdn/" & vernew & "/data/" & country1 & "/champion/" & id & ".json"
                 'sr = webclient.OpenRead(uu)
                 'Dim serRead As New System.IO.StreamReader(sr)
                 ''内容をすべて読み込む
@@ -2234,10 +2332,10 @@ Public Class Form1
             Next
 
             ConvertDataTableToCsv(champdata, "champdata.csv", True, False)
-            Call Imageload(vernew)
+
         Catch ex As System.Net.WebException
         End Try
-
+        Call Imageload(vernew)
 
     End Sub
 
@@ -2307,7 +2405,7 @@ Public Class Form1
 
 
 
-            '    wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/" & key & "_0.jpg", "images\" & patch & "\" & key & "_0.jpg")
+            '    wc.DownloadFile("https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" & key & "_0.jpg", "images\" & patch & "\" & key & "_0.jpg")
 
 
             ''Dim spellqName As String = "images\" & patch & "\champspellimage\" & q
@@ -2315,7 +2413,7 @@ Public Class Form1
 
             ''Else
             ''    Dim wc As New System.Net.WebClient()
-            ''    wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/" & patch & "/img/spell/" & q, "images\" & patch & "\champspellimage\" & q)
+            ''    wc.DownloadFile("https://ddragon.leagueoflegends.com/cdn/" & patch & "/img/spell/" & q, "images\" & patch & "\champspellimage\" & q)
             ''    wc.Dispose()
             ''End If
 
@@ -2324,7 +2422,7 @@ Public Class Form1
 
             ''Else
             ''    Dim wc As New System.Net.WebClient()
-            ''    wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/" & patch & "/img/spell/" & w, "images\" & patch & "\champspellimage\" & w)
+            ''    wc.DownloadFile("https://ddragon.leagueoflegends.com/cdn/" & patch & "/img/spell/" & w, "images\" & patch & "\champspellimage\" & w)
             ''    wc.Dispose()
             ''End If
 
@@ -2333,7 +2431,7 @@ Public Class Form1
 
             ''Else
             ''    Dim wc As New System.Net.WebClient()
-            ''    wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/" & patch & "/img/spell/" & e, "images\" & patch & "\champspellimage\" & e)
+            ''    wc.DownloadFile("https://ddragon.leagueoflegends.com/cdn/" & patch & "/img/spell/" & e, "images\" & patch & "\champspellimage\" & e)
             ''    wc.Dispose()
             ''End If
 
@@ -2342,7 +2440,7 @@ Public Class Form1
 
             ''Else
             ''    Dim wc As New System.Net.WebClient()
-            ''    wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/" & patch & "/img/spell/" & r, "images\" & patch & "\champspellimage\" & r)
+            ''    wc.DownloadFile("https://ddragon.leagueoflegends.com/cdn/" & patch & "/img/spell/" & r, "images\" & patch & "\champspellimage\" & r)
             ''    wc.Dispose()
             ''End If
 
@@ -2361,7 +2459,7 @@ Public Class Form1
                 imm = Nothing
             Else
                 Dim wc As New System.Net.WebClient()
-                wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/" & patch & "/img/champion/" & id & ".png", "images\" & patch & "\champimage\" & id & ".png")
+                wc.DownloadFile("https://ddragon.leagueoflegends.com/cdn/" & patch & "/img/champion/" & id & ".png", "images\" & patch & "\champimage\" & id & ".png")
                 wc.Dispose()
 
 
@@ -2375,7 +2473,7 @@ Public Class Form1
                 img = Nothing
                 imm = Nothing
                 TextBox1.AppendText(namae & " " & vbCrLf)
-                Application.DoEvents()
+                ''Application.DoEvents()
             End If
 
             Me.pc(i).Top = yy
@@ -2447,109 +2545,135 @@ Public Class Form1
         Cbox1_SelectedIndexChanged2()
     End Sub
 
-    Private Sub Cbox1_SelectedIndexChanged2()
+    Private Async Sub Cbox1_SelectedIndexChanged2()
         dnc = 1
         champbox.SelectedIndex = Cbox1.SelectedIndex
         CkBox.SelectedIndex = Cbox1.SelectedIndex
         PageBox.Items.Clear()
         pagedata.Clear()
-        Dim cc As Integer = Integer.Parse(CkBox.SelectedIndex) 'Integer.Parse(CType(sender, System.Windows.Forms.Button).Name)
+
+        Dim cc As Integer = CkBox.SelectedIndex
         Dim cm As Integer
 
         Dim ra As Integer = runedata.Rows.Count
         Dim rb As Integer = champdata.Rows.Count - 1
-        Dim rc As Integer = cc ' - ra
+        Dim rc As Integer = cc
         Dim rrd As Integer = runereformdata.Rows.Count - 1
 
         cm = Integer.Parse(champdata.Rows(rc).Item("key"))
         Dim namae As String = champdata.Rows(rc).Item("name")
         Dim idi As String = champdata.Rows(rc).Item("id")
-        'Dim cml As String = LVdata.Rows(rc).Item("lvl")
-        'Dim cmp As String = LVdata.Rows(rc).Item("mp")
-        Dim patch As String = vernew
-        'TextBox1.AppendText(cm & vbCrLf)
-        Label15.Text = idi
-        Dim imm As String = "images\" & patch & "\tiles\" & idi & "_0.jpg"
-        'Dim imm As String = "images\" & patch & "\tiles\" & skillno1
 
-        If System.IO.File.Exists(imm) Then
-        Else
-            TextBox1.AppendText("tiles data not found : " & imm & vbCrLf)
-            'imm = "tiles\" & champ1 & "_0.jpg"
-            Dim wc As New System.Net.WebClient()
-            wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/" & idi & "_0.jpg", imm)
-            wc.Dispose()
+        ' 特別な例外処理
+        If idi = "Fiddlesticks" Then
+            idi = "FiddleSticks"
         End If
 
+        Dim patch As String = vernew
+        Dim imm As String = $"images\{patch}\tiles\{idi}_0.jpg"
+        Label15.Text = idi
+        Console.WriteLine(imm)
 
+        ' 画像が存在しない場合のみダウンロード
+        If Not File.Exists(imm) Then
+            TextBox1.AppendText("tiles data not found : " & imm & vbCrLf)
 
+            Try
+                Using httpClient As New Net.Http.HttpClient
+                    Dim response As HttpResponseMessage = Await httpClient.GetAsync($"https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/{idi}_0.jpg")
 
+                    If response.IsSuccessStatusCode Then
+                        Dim imageData As Byte() = Await response.Content.ReadAsByteArrayAsync()
 
-        Dim img As Image = Image.FromFile(imm)
-        pa1.BackgroundImage = New Bitmap(img)
+                        ' 画像データが有効かチェック
+                        Using ms As New MemoryStream(imageData)
+                            Try
+                                Dim img As Image = Image.FromStream(ms)
+                                img.Dispose()
 
-        'Label2.Text = cml
-        'Label3.Text = cmp
-        Dim j As String = 0
+                                ' JPEG 形式なら保存
+                                File.WriteAllBytes(imm, imageData)
+                            Catch ex As Exception
+                                TextBox1.AppendText("Downloaded file is not a valid image!" & vbCrLf)
+                                Return
+                            End Try
+                        End Using
+                    Else
+                        TextBox1.AppendText("Failed to download file: " & response.StatusCode.ToString() & vbCrLf)
+                        Return
+                    End If
+                End Using
+            Catch ex As Exception
+                TextBox1.AppendText("Error downloading file: " & ex.Message & vbCrLf)
+                Return
+            End Try
+        End If
+
+        ' 画像の読み込み（メモリリーク対策）
+        Try
+            Using img As Image = Image.FromFile(imm)
+                pa1.BackgroundImage = New Bitmap(img)
+            End Using
+        Catch ex As Exception
+            TextBox1.AppendText("Error loading image: " & ex.Message & vbCrLf)
+        End Try
+
+        ' PageBox のデータ処理
+        Dim j As Integer = 0
         For i As Integer = 0 To rrd
             Dim id As Integer = runereformdata.Rows(i).Item("id")
             If id = cm Then
                 pagedata.Rows.Add(runereformdata.Rows(i).Item("pn"),
-                                  runereformdata.Rows(i).Item("rp"),
-                                  runereformdata.Rows(i).Item("r1"),
-                                  runereformdata.Rows(i).Item("r2"),
-                                  runereformdata.Rows(i).Item("r3"),
-                                  runereformdata.Rows(i).Item("r4"),
-                                  runereformdata.Rows(i).Item("rs"),
-                                  runereformdata.Rows(i).Item("r5"),
-                                  runereformdata.Rows(i).Item("r6"),
-                                  runereformdata.Rows(i).Item("r7"),
-                                  runereformdata.Rows(i).Item("r8"),
-                                  runereformdata.Rows(i).Item("r9"),
-                                  runereformdata.Rows(i).Item("id"),
-                                  runereformdata.Rows(i).Item("s1"),
-                                  runereformdata.Rows(i).Item("s2"))
+                              runereformdata.Rows(i).Item("rp"),
+                              runereformdata.Rows(i).Item("r1"),
+                              runereformdata.Rows(i).Item("r2"),
+                              runereformdata.Rows(i).Item("r3"),
+                              runereformdata.Rows(i).Item("r4"),
+                              runereformdata.Rows(i).Item("rs"),
+                              runereformdata.Rows(i).Item("r5"),
+                              runereformdata.Rows(i).Item("r6"),
+                              runereformdata.Rows(i).Item("r7"),
+                              runereformdata.Rows(i).Item("r8"),
+                              runereformdata.Rows(i).Item("r9"),
+                              runereformdata.Rows(i).Item("id"),
+                              runereformdata.Rows(i).Item("s1"),
+                              runereformdata.Rows(i).Item("s2"),
+                              runereformdata.Rows(i).Item("i1"),
+                              runereformdata.Rows(i).Item("i2"),
+                              runereformdata.Rows(i).Item("i3"),
+                              runereformdata.Rows(i).Item("i4"),
+                              runereformdata.Rows(i).Item("i5"),
+                              runereformdata.Rows(i).Item("i6"),
+                              runereformdata.Rows(i).Item("i7")
+                )
 
                 PageBox.Items.Add(j.ToString & " : " & namae & " " & runereformdata.Rows(i).Item("pn"))
 
-                j = j + 1
+                j += 1
             End If
         Next
+
+        ' Label の更新
         Label2.Text = "0"
         Label3.Text = "0"
+
         For k As Integer = 0 To LVdata.Rows.Count - 1
             Dim id As Integer = LVdata.Rows(k).Item("key")
             If id = cm Then
-
-
                 Dim nn As Integer = LVdata.Rows(k).Item("lvl")
-                Dim cl As String = ""
-                For ii As Integer = 0 To nn - 1
-                    cl = cl & "★"
-                Next
-                Label2.Text = cl
+                Label2.Text = nn
                 Label3.Text = String.Format("{0:#,0} Bytes", LVdata.Rows(k).Item("mp"))
-
             End If
-
         Next
 
-
+        ' データが存在する場合の処理
         If pagedata.Rows.Count > 0 Then
             PageBox.SelectedIndex = pagedata.Rows.Count - 1
             DataGridView1.DataSource = pagedata
             But3.Enabled = True
-
         Else
             orespe.Clear()
-            'pagedata.Rows.Add(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-            'Pagedataload(0)
             TextBox1.AppendText(idi & "'s Data not found" & vbCrLf)
-            'orespe.Rows.Add("SampleData", "8400", "8437", "8446", "8429", "8451", "8000", "8014", "9111", "5008", "5008", "5001", cm, "4", "32")
-            'ConvertDataTableToCsv(orespe, "orepage.csv", False, True)
-            'LocalRuneReformLoad()
-            'Pagedataload2()
-            'TextBox1.AppendText("ReBuild Rune for " & cm & vbCrLf)
         End If
     End Sub
 
@@ -2608,7 +2732,27 @@ Public Class Form1
             img0 = Image.FromFile(imm0)
             br10.BackgroundImage = New Bitmap(img0, br10.Width, br10.Height)
 
-
+            Dim item1 As Integer = pagedata.Rows(nn).Item("i1")
+            Dim item2 As Integer = pagedata.Rows(nn).Item("i2")
+            Dim item3 As Integer = pagedata.Rows(nn).Item("i3")
+            Dim item4 As Integer = pagedata.Rows(nn).Item("i4")
+            Dim item5 As Integer = pagedata.Rows(nn).Item("i5")
+            Dim item6 As Integer = pagedata.Rows(nn).Item("i6")
+            Dim item7 As Integer = pagedata.Rows(nn).Item("i7")
+            Dim item01 As String = "images\" & patch & "\item\" & item1 & ".png"
+            Dim item02 As String = "images\" & patch & "\item\" & item2 & ".png"
+            Dim item03 As String = "images\" & patch & "\item\" & item3 & ".png"
+            Dim item04 As String = "images\" & patch & "\item\" & item4 & ".png"
+            Dim item05 As String = "images\" & patch & "\item\" & item5 & ".png"
+            Dim item06 As String = "images\" & patch & "\item\" & item6 & ".png"
+            Dim item07 As String = "images\" & patch & "\item\" & item7 & ".png"
+            Panel1.BackgroundImage = New Bitmap(Image.FromFile(item01), 45, 45)
+            Panel2.BackgroundImage = New Bitmap(Image.FromFile(item02), 45, 45)
+            Panel3.BackgroundImage = New Bitmap(Image.FromFile(item03), 45, 45)
+            Panel4.BackgroundImage = New Bitmap(Image.FromFile(item04), 45, 45)
+            Panel5.BackgroundImage = New Bitmap(Image.FromFile(item05), 45, 45)
+            Panel6.BackgroundImage = New Bitmap(Image.FromFile(item06), 45, 45)
+            Panel7.BackgroundImage = New Bitmap(Image.FromFile(item07), 45, 45)
 
             Dim sss1 As Integer
             Dim sss2 As Integer
@@ -2915,6 +3059,7 @@ Public Class Form1
 
         '閉じる
         sr.Close()
+        Console.WriteLine("csvWrited : " & csvPath.ToString)
     End Sub
 
     ''' 必要ならば、文字列をダブルクォートで囲む
@@ -3007,6 +3152,7 @@ Public Class Form1
             'Leagueconnect()
             WritePage(nn, namae)
             WriteSpell(nn)
+            WriteItems(nn, namae)
         Else
             TextBox1.AppendText("Error : No Data" & vbCrLf)
         End If
@@ -3016,7 +3162,7 @@ Public Class Form1
 
     Public Sub DeletePage()
         If DeleteCheck.Checked Then
-            http = New HttpClient()
+            http = New EasyHttp.Http.HttpClient()
             Dim response As HttpResponse = Nothing
 
             Try
@@ -3525,12 +3671,12 @@ Public Class Form1
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         If dai = 0 Then
             Me.Width = 460
-            Me.Height = 420
+            Me.Height = 720
             dai = 1
             Button4.Text = "<"
         Else
             Me.Width = 1062
-            Me.Height = 824
+            Me.Height = 720
             dai = 0
             Button4.Text = ">"
         End If
@@ -3539,8 +3685,9 @@ Public Class Form1
 
     Public oldid As Integer = 0
     Public themestartflag As Boolean = False
+    'Public championselect_f As Boolean = False
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        Application.DoEvents()
+        'Application.DoEvents()
         Dim response As HttpResponse = Nothing
         Try
             Dim password As String = token
@@ -3568,33 +3715,27 @@ Public Class Form1
                 themestartflag = False
                 Timer7.Enabled = True
                 'Timer5.Enabled = False
-                Form3.theme_end()
-                'Form3.theme_start("butchersbridge\renata", 3000000)
-                If Form3.RadioButton1.Checked Then
+                'If championselect_f = True Then
+                '    Form3.theme_end()
+                'End If
 
-                    Form3.theme_start("butchersbridge\renata1", 6000000)
-                End If
-                If Form3.RadioButton2.Checked Then
-                    Form3.theme_start("butchersbridge\renata1", 6000000)
-                End If
-                If Form3.RadioButton3.Checked Then
-                    Form3.theme_start("butchersbridge\renata2", 3000000)
-                End If
             End If
         Else
             If themestartflag = False Then
                 themestartflag = True
                 Form3.theme_end()
+                Form3.Timer5.Enabled = False
                 If Form3.RadioButton1.Checked Then
 
-                    Form3.theme_start("starguardian_jp\championselect", 6000000)
+                    Form3.theme_start("starguardian_jp\championselect", 70000)
                 End If
                 If Form3.RadioButton2.Checked Then
-                    Form3.theme_start("starguardian_en\championselect", 6000000)
+                    Form3.theme_start("starguardian_en\championselect", 70000)
                 End If
                 If Form3.RadioButton3.Checked Then
-                    Form3.theme_start("butchersBridge\butcher's_bridge_1_champion_select", 6000000)
+                    Form3.theme_start("butchersBridge\butcher's_bridge_1_champion_select", 70000)
                 End If
+                'championselect_f = True
             End If
 
 
@@ -3636,6 +3777,7 @@ Public Class Form1
                         If key = Champid Then
                             'chmname = champdata.Rows(i).Item("id")
                             Cbox1.SelectedIndex = i
+                            Label16.Text = champdata.Rows(i).Item("id")
                             'Timer1.Interval = 60000
                             Timer5.Interval = 1000
                             Timer5.Enabled = True
@@ -3664,7 +3806,7 @@ Public Class Form1
 
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
 
-        Application.DoEvents()
+        'Application.DoEvents()
         If Process.GetProcessesByName("League of Legends").Length <> 0 Then
             'If L = False Then
             'Timer4.Enabled = True
@@ -3673,6 +3815,7 @@ Public Class Form1
             'Timer2.Interval = 1000
             '    Timer2.Enabled = True
             '    Form2.onece()
+            'Form3.theme_end()
             Form2.Label1.Text = "on"
             'L = True
             'TextBox1.AppendText("Process Active" & L & vbCrLf)
@@ -3710,7 +3853,221 @@ Public Class Form1
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
         Dim cd As Integer = champdata.Rows.Count - 1
-        Webreq()
+        webreq2()
+    End Sub
+
+    Private Sub webreq2()
+        Dim runedata1 As New DataTable
+
+        Dim csvDir As String = ".\"
+
+        Dim csvFileName As String = "rune.csv"
+
+        Dim conString As String =
+            "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" _
+            + csvDir + ";Extended Properties=""text;HDR=Yes;FMT=Delimited"""
+        Dim con As New System.Data.OleDb.OleDbConnection(conString)
+
+        Dim commText As String = "SELECT * FROM [" + csvFileName + "]"
+        Dim da As New System.Data.OleDb.OleDbDataAdapter(commText, con)
+
+
+        da.Fill(runedata1)
+
+
+        Dim rc As Integer = champdata.Rows.Count - 1
+        Dim ii As String = TextBox7.Text
+        Dim iij As Integer = CInt(ii)
+        For i As Integer = 0 + iij To rc
+
+            orespe.Clear()
+            sumspe.Clear()
+            sumspe_bin.Clear()
+            sumspe1.Clear()
+
+
+            Dim na As String = champdata.Rows(i).Item("id")
+            Dim key As Integer = champdata.Rows(i).Item("key")
+
+            Dim url As String = "https://www.metasrc.com/lol/aram/na/build/" & na
+            'Exit Sub
+            Dim webClient As New System.Net.WebClient()
+            Dim html As String = webClient.DownloadString(url)
+
+            Dim Doc As New HtmlAgilityPack.HtmlDocument()
+            Doc.LoadHtml(html)
+            Dim iu As Integer = 0
+
+            For Each item As HtmlAgilityPack.HtmlNode In Doc.DocumentNode.SelectNodes("//div[@class="" _3goykt _hmag7l tooltipped""]")
+                Dim href As String = item.Attributes("data-tooltip").Value
+                If iu < 11 Then
+                    If (Not String.IsNullOrEmpty(href)) Then
+                        Dim sums As String = href.Replace("perk-", "")
+                        Console.WriteLine(sums)
+                        sumspe1.Rows.Add(sums)
+                    End If
+                Else
+                    Exit For
+                End If
+                iu += 1
+            Next
+            iu = 0
+            For Each item As HtmlAgilityPack.HtmlNode In Doc.DocumentNode.SelectNodes("//img[@class=""lozad""]")
+                Dim href As String = item.Attributes("alt").Value
+                If iu = 31 Or iu = 32 Then
+                    If (Not String.IsNullOrEmpty(href)) Then
+                        Dim sumss As String = href.Replace("perk-", "")
+                        Dim sums As String = ""
+                        Select Case sumss
+                            Case "Cleanse"
+                                sums = "1"
+                            Case "Exhaust"
+                                sums = "3"
+                            Case "Flash"
+                                sums = "4"
+                            Case "Backtrack"
+                                sums = "5"
+                            Case "Ghost"
+                                sums = "6"
+                            Case "Heal"
+                                sums = "7"
+                            Case "Smite"
+                                sums = "11"
+                            Case "Teleport"
+                                sums = "12"
+                            Case "Clarity"
+                                sums = "13"
+                            Case "Ignite"
+                                sums = "14"
+                            Case "Barrier"
+                                sums = "21"
+                            Case "Mark"
+                                sums = "32"
+                            Case Else
+                                sums = "4"
+                        End Select
+                        Console.WriteLine(sums)
+                        sumspe1.Rows.Add(sums)
+                    End If
+                End If
+
+                iu += 1
+            Next
+            iu = 0
+            Dim h3Nodes = Doc.DocumentNode.SelectNodes("//h3")
+
+            If h3Nodes IsNot Nothing Then
+                ' 3つ目以降 (インデックスは 0 始まりなので 2 から)
+
+                Dim h3Node = h3Nodes(3)
+                Dim imgNodes = h3Node.SelectNodes("following::img[@class='lozad']")
+                If imgNodes IsNot Nothing Then
+                    For Each imgNode In imgNodes
+                        Dim src As String = imgNode.GetAttributeValue("data-src", "")
+                        If Not String.IsNullOrEmpty(src) Then
+                            If iu < 7 Then
+                                Dim parts() As String = src.Split("/"c)
+                                Dim fileName As String = parts(parts.Length - 1)
+
+                                ' ".png" を削除 → "6692"
+                                Dim idd As String = fileName.Replace(".png", "")
+                                Console.WriteLine(idd)
+                                ' 必要ならDataTableに追加
+                                sumspe1.Rows.Add(idd)
+                            Else
+                                Exit For
+                            End If
+                        End If
+                        iu += 1
+                    Next
+                End If
+
+            End If
+
+
+            'If iu > 7 And iu < 19 Then
+            '        If (Not String.IsNullOrEmpty(href)) Then
+            '            Dim sum As String() = href.Split("/"c)
+            '            Dim summ As String = sum(sum.Count - 1)
+            '            'Dim summ As String = sumn.Replace(".png", "")
+            '            Dim sums As String = ""
+            '            For j As Integer = 0 To runedata1.Rows.Count - 1
+            '                If summ = runedata1.Rows(j).Item("key").ToLower() Then
+            '                    sums = runedata1.Rows(j).Item("id")
+            '                    sumspe1.Rows.Add(sums)
+            '                    'TextBox1.AppendText(sums & vbCrLf)
+            '                End If
+            '            Next
+            '            If iu > 15 Then
+            '                Select Case summ
+            '                    Case "statmodsadaptiveforceicon.png"
+            '                        sums = "5008"
+            '                    Case "statmodshealthplusicon.png"
+            '                        sums = "5001"
+            '                    Case "statmodsarmoricon.png"
+            '                        sums = "5002"
+            '                    Case "statmodsattackspeedicon.png"
+            '                        sums = "5005"
+            '                    Case "statmodscdrscalingicon.png"
+            '                        sums = "5007"
+            '                    Case "statmodsmagicresicon.png"
+            '                        sums = "5003"
+            '                    Case Else
+            '                        sums = summ
+            '                End Select
+            '                sumspe1.Rows.Add(sums)
+            '                'TextBox1.AppendText(sums & vbCrLf)
+            '            End If
+            '        End If
+            '    End If
+            '    iu += 1
+            'Next
+            'iu = 0
+            'For Each item As HtmlAgilityPack.HtmlNode In Doc.DocumentNode.SelectNodes("//img[@class=""lozad""]")
+            '    Dim href As String = item.Attributes("alt").Value
+            '    If iu = 31 Or iu = 32 Then
+            '        If (Not String.IsNullOrEmpty(href)) Then
+            '            Dim sums As String = ""
+            '            Select Case href
+            '                Case "Cleanse"
+            '                    sums = "1"
+            '                Case "Exhaust"
+            '                    sums = "3"
+            '                Case "Flash"
+            '                    sums = "4"
+            '                Case "Backtrack"
+            '                    sums = "5"
+            '                Case "Ghost"
+            '                    sums = "6"
+            '                Case "Heal"
+            '                    sums = "7"
+            '                Case "Smite"
+            '                    sums = "11"
+            '                Case "Teleport"
+            '                    sums = "12"
+            '                Case "Clarity"
+            '                    sums = "13"
+            '                Case "Ignite"
+            '                    sums = "14"
+            '                Case "Barrier"
+            '                    sums = "21"
+            '                Case "Mark"
+            '                    sums = "32"
+            '                Case Else
+            '                    sums = "4"
+            '            End Select
+            '            sumspe1.Rows.Add(sums)
+            '            'TextBox1.AppendText(sums & vbCrLf)
+            '        End If
+            '    End If
+            '    iu += 1
+            'Next
+            TextBox1.AppendText(na & " : " & key & vbCrLf)
+            orespe.Rows.Add("背中ポン美", sumspe1.Rows(0).Item("id"), sumspe1.Rows(1).Item("id"), sumspe1.Rows(2).Item("id"), sumspe1.Rows(3).Item("id"), sumspe1.Rows(4).Item("id"), sumspe1.Rows(5).Item("id"), sumspe1.Rows(6).Item("id"), sumspe1.Rows(7).Item("id"), sumspe1.Rows(8).Item("id"), sumspe1.Rows(9).Item("id"), sumspe1.Rows(10).Item("id"), key, sumspe1.Rows(11).Item("id"), sumspe1.Rows(12).Item("id"), sumspe1.Rows(13).Item("id"), sumspe1.Rows(14).Item("id"), sumspe1.Rows(15).Item("id"), sumspe1.Rows(16).Item("id"), sumspe1.Rows(17).Item("id"), sumspe1.Rows(18).Item("id"), sumspe1.Rows(19).Item("id"))
+            ConvertDataTableToCsv(orespe, Orepages, False, True)
+            orespe.Clear()
+        Next
+
     End Sub
 
 
@@ -3741,7 +4098,7 @@ Public Class Form1
             'b.NavigateAndWait("https://www.metasrc.com/aram/na/champion/" & na)
             '  Dim doc As HtmlDocument = ndb.Document
             'Dim url As String = "https://www.murderbridge.com/Champion/" & na & "?version=12.20.1&mode=ARAM"
-            'Dim url As String = "http://www.murderbridge.com/Champion/Nilah?version=12.19.1&mode=ARAM"
+            'Dim url As String = "https://www.murderbridge.com/Champion/Nilah?version=12.19.1&mode=ARAM"
 
             'Dim wc As System.Net.WebClient = New System.Net.WebClient
             'Dim st As System.IO.Stream = wc.OpenRead(url)
@@ -4379,7 +4736,7 @@ Public Class Form1
 
     'Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
     Private Sub cmls()
-        Application.DoEvents()
+        'Application.DoEvents()
         If LVdata.Columns.Count = 0 Then
             LVdata.Columns.Add("id", GetType(String))
             LVdata.Columns.Add("key", GetType(Integer))
@@ -4392,8 +4749,8 @@ Public Class Form1
             Dim password As String = token
             http.Request.Accept = HttpContentTypes.ApplicationJson
             http.Request.SetBasicAuthentication("riot", password)
-            response = http.[Get]("https://127.0.0.1:" & port & "/lol-collections/v1/inventories/" & checkid & "/champion-mastery")
-            '  response = http.[Get]("https://127.0.0.1:" & port & "/lol-champ-select/v1/all-grid-champions")
+            'response = http.[Get]("https://127.0.0.1:" & port & "/lol-collections/v1/inventories/" & checkid & "/champion-mastery")
+            response = http.[Get]("https://127.0.0.1:" & port & "/lol-champion-mastery/v1/" & checkpuuid & "/champion-mastery")
             'response = http.[Get]("https://127.0.0.1:" & port & "/lol-champ-select/v1/current-champion") ', inputLCUx, HttpContentTypes.ApplicationJson)
 
         Catch Exception As Exception
@@ -4422,9 +4779,9 @@ Public Class Form1
                 i += 1
                 LVdata.Rows.Add(name, id, masterylevel, masterypoints)
             Next
-            If LVdata.Rows.Count > 0 Then
-                LVdata.Rows.RemoveAt(0)
-            End If
+            'If LVdata.Rows.Count > 0 Then
+            '    LVdata.Rows.RemoveAt(0)
+            'End If
             ConvertDataTableToCsv(LVdata, "lvl.csv", True, False)
         End If
 
@@ -4615,10 +4972,14 @@ Public Class Form1
                         Dim key As Integer = champdata.Rows(i).Item("key")
                         If key = Champid Then
                             champ1 = champdata.Rows(i).Item("id")
+                            If champ1 = "Fiddlesticks" Then
+                                champ1 = "FiddleSticks"
+                            End If
                             chmname = champ1
                             Exit For
                         End If
                     Next
+                    Label15.Text = chmname
                     skillno1 = champ1 & "_" & ret2 & ".jpg"
                     Dim patch As String = vernew
                     'If System.IO.Directory.Exists("images\" & patch & "\tiles\") Then
@@ -4633,23 +4994,20 @@ Public Class Form1
 
                     Dim imm As String = "images\" & patch & "\tiles\" & skillno1
                     If System.IO.File.Exists(imm) Then
-                        Else
+                    Else
                         TextBox1.AppendText("tiles data not found : " & imm & vbCrLf)
                         'imm = "tiles\" & champ1 & "_0.jpg"
                         Dim wc As New System.Net.WebClient()
-                        wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/" & skillno1, imm)
+                        wc.DownloadFile("https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/" & skillno1, imm)
                         wc.Dispose()
-                        End If
-
-                        Dim img As Image = Image.FromFile(imm)
-                        pa1.BackgroundImage = New Bitmap(img)
-
-                        'TextBox1.AppendText(k & " : " & ret0 & " : " & chroma & vbCrLf)
                     End If
 
+                    Dim img As Image = Image.FromFile(imm)
+                    pa1.BackgroundImage = New Bitmap(img)
 
+                    'TextBox1.AppendText(k & " : " & ret0 & " : " & chroma & vbCrLf)
                 End If
-
+            End If
         Else
 
             Dim grid2 = response.DynamicBody
@@ -4748,14 +5106,22 @@ Public Class Form1
                         Dim key As Integer = champdata.Rows(i).Item("key")
                         If key = Champid Then
                             champ = champdata.Rows(i).Item("id")
+                            If champ = "Fiddlesticks" Then
+                                champ = "FiddleSticks"
+                            End If
                             chmname = champ
                             Exit For
                         End If
                     Next
+                    Label14.Text = chmname
                     TextBox1.AppendText("champ : " & champ & ":" & "_" & ret2 & vbCrLf)
                     If champ = "Seraphine" And (ret2 = 1 Or ret2 = 0) Then
                         ret2 = 3
                     End If
+                    If champ = "Ahri" And ret2 = 0 Then
+                        ret2 = 86
+                    End If
+
                     skillno = champ & "_" & ret2 & ".jpg"
                     Dim patch As String = vernew
                     'If System.IO.Directory.Exists("images\" & patch & "\tiles\") Then
@@ -4774,7 +5140,7 @@ Public Class Form1
                         TextBox1.AppendText("tiles data not found : " & imm & vbCrLf)
                         'imm = "tiles\" & champ1 & "_0.jpg"
                         Dim wc As New System.Net.WebClient()
-                        wc.DownloadFile("http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/" & skillno, imm)
+                        wc.DownloadFile("https://ddragon.leagueoflegends.com/cdn/img/champion/tiles/" & skillno, imm)
                         wc.Dispose()
                     End If
 
@@ -4855,15 +5221,19 @@ Public Class Form1
             Dim grid = response.DynamicBody
             checkacc = grid.accountId
             checkid = grid.summonerId
+            checkpuuid = grid.puuid
             checksl = grid.summonerLevel
-            checkdn = grid.displayName
+            checkdn = grid.gameName
+            Console.WriteLine("summonername here" & checkdn)
         End If
 
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Width = 460
-        Me.Height = 420
+        Me.Height = 720
+        'Me.Width = 1062
+        'Me.Height = 650
     End Sub
 
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged, RadioButton2.CheckedChanged
@@ -4903,7 +5273,10 @@ Public Class Form1
     End Sub
 
     Private Sub CBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBox.SelectedIndexChanged
-        Dim dir As String = CBox.SelectedItem
+        Dim appPath As String = System.Windows.Forms.Application.StartupPath & "\images\" & vernew & "\tiles\"
+        Console.WriteLine(appPath)
+        Dim dir0 As String = CBox.SelectedItem
+        Dim dir As String = appPath & dir0
         Dim img As Image = Image.FromFile(dir)
         pa1.BackgroundImage = New Bitmap(img)
     End Sub
@@ -4943,7 +5316,7 @@ Public Class Form1
         'tomtom()
 
 
-        'Application.DoEvents()
+        ''Application.DoEvents()
         'If Process.GetProcessesByName("League of Legends").Length > 0 Then
         '    If L = False Then
         '        Timer1.Enabled = False
@@ -4982,7 +5355,7 @@ Public Class Form1
 
 
     Private Sub stats()
-        Application.DoEvents()
+        'Application.DoEvents()
         'If stdata.Columns.Count = 0 Then
         '    stdata.Columns.Add("kill", GetType(String))
         '    stdata.Columns.Add("death", GetType(String))
@@ -5037,7 +5410,7 @@ Public Class Form1
             'Dim k As Integer = 0
 
             For Each item In grid
-                'Application.DoEvents()
+                ''Application.DoEvents()
                 'Form2.Pa7.Controls("lvl" & i).Text = grid(i).scores.creepScore
                 Form2.Pa7.Controls("lvl" & i).Text = grid(i).level
                 Form2.Pa7.Controls("sc" & i).Text = grid(i).scores.kills & "/" & grid(i).scores.deaths & "/" & grid(i).scores.assists
@@ -5056,9 +5429,9 @@ Public Class Form1
                 i += 1
             Next
             'If grid(i).summonerName = "夜来香" Then
-            '    Application.DoEvents()
+            '    'Application.DoEvents()
             '    If old_k <> grid(i).scores.kills Then
-            '        Application.DoEvents()
+            '        'Application.DoEvents()
             '        'Killとった
             '        Timer10.Enabled = False
             '        'If Tabb = 96 Then
@@ -5090,7 +5463,7 @@ Public Class Form1
             '        old_k = grid(i).scores.kills
             '    End If
             '    If old_d <> grid(i).scores.deaths Then
-            '        Application.DoEvents()
+            '        'Application.DoEvents()
             '        'death
             '        Timer10.Enabled = False
             '        'If Tabb = 96 Then
@@ -5132,7 +5505,7 @@ Public Class Form1
         ''https://127.0.0.1:52174/lol-match-history/v2/matchlist?begIndex=0&endIndex=10
     End Sub
     Private Sub mystats()
-        Application.DoEvents()
+        'Application.DoEvents()
 
         Dim response As HttpResponse = Nothing
         Try
@@ -5218,7 +5591,7 @@ Public Class Form1
 
 
     Private Sub cham()
-        Application.DoEvents()
+        'Application.DoEvents()
         'If stdata.Columns.Count = 0 Then
         '    stdata.Columns.Add("kill", GetType(String))
         '    stdata.Columns.Add("death", GetType(String))
@@ -5263,7 +5636,7 @@ Public Class Form1
             'Dim k As Integer = 0
 
             For Each item In grid
-                Application.DoEvents()
+                'Application.DoEvents()
                 Dim cname As String = grid(i).rawChampionName.ToString
                 Dim len As Integer = cname.Length
                 Dim last_n As Integer = cname.LastIndexOf("_") + 1
@@ -5290,9 +5663,9 @@ Public Class Form1
             Next
 
             'If grid(i).summonerName = "夜来香" Then
-            '    Application.DoEvents()
+            '    'Application.DoEvents()
             '    If old_k <> grid(i).scores.kills Then
-            '        Application.DoEvents()
+            '        'Application.DoEvents()
             '        'Killとった
             '        Timer10.Enabled = False
             '        'If Tabb = 96 Then
@@ -5324,7 +5697,7 @@ Public Class Form1
             '        old_k = grid(i).scores.kills
             '    End If
             '    If old_d <> grid(i).scores.deaths Then
-            '        Application.DoEvents()
+            '        'Application.DoEvents()
             '        'death
             '        Timer10.Enabled = False
             '        'If Tabb = 96 Then
@@ -5510,7 +5883,7 @@ Public Class Form1
             If grid.gameTime > 0 Then
                 'Timer4.Enabled = True
                 Timer1.Enabled = False
-                Form2.onece()
+
                 Timer2.Enabled = True
                 Timer5.Enabled = False
                 msc10.Text = Nothing
@@ -5521,6 +5894,7 @@ Public Class Form1
                 Form3.yy_bin = 0
                 Form3.Timer1.Enabled = True
                 Form3.Label1.Text = "on"
+                Form2.onece()
                 TextBox1.AppendText("Form3 Start" & vbCrLf)
             End If
         End If
@@ -5544,7 +5918,18 @@ Public Class Form1
     Private Sub Timer7_Tick(sender As Object, e As EventArgs) Handles Timer7.Tick
         Timer7.Enabled = False
         history()
+        'Form3.theme_end()
+        ''Form3.theme_start("butchersbridge\renata", 3000000)
+        'If Form3.RadioButton1.Checked Then
 
+        '    Form3.theme_start("butchersbridge\renata1_old", 6000000)
+        'End If
+        'If Form3.RadioButton2.Checked Then
+        '    Form3.theme_start("butchersbridge\renata1_old", 6000000)
+        'End If
+        'If Form3.RadioButton3.Checked Then
+        '    Form3.theme_start("butchersbridge\renata2", 3000000)
+        'End If
     End Sub
 
     Private Sub Button15_Click(sender As Object, e As EventArgs) Handles Button15.Click
@@ -5553,9 +5938,141 @@ Public Class Form1
         System.Diagnostics.Process.Start("https://app.mobalytics.gg/ja_jp/lol/champions/" & na & "/aram-builds")
 
     End Sub
-    'Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick
-    '    Skinb4()
-    'End Sub
+
+    Private Sub Form1_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+
+    End Sub
+
+    Private Sub Button16_Click(sender As Object, e As EventArgs) Handles Button16.Click
+        Timer1.Enabled = False
+        Form2.onece()
+        Timer2.Enabled = True
+        Timer5.Enabled = False
+        msc10.Text = Nothing
+        Form3.nns = 0
+        Form3.RichTextBox1.Clear()
+        Form3.nn = 0
+        Form3.yy = 0
+        Form3.yy_bin = 0
+        Form3.Timer1.Enabled = True
+        Form3.Label1.Text = "on"
+        TextBox1.AppendText("Form3 Start" & vbCrLf)
+    End Sub
+
+    Private Sub Button17_Click(sender As Object, e As EventArgs) Handles Button17.Click
+        Dim runedata1 As New DataTable
+
+        If runedata1.Columns.Count = 0 Then
+            runedata1.Columns.Add("id", GetType(Integer))
+            runedata1.Columns.Add("key", GetType(String))
+
+        End If
+        Dim filePath As String = "runesReforged.json"
+        Dim reader As StreamReader = New StreamReader(filePath)
+        Dim jsonText As String = reader.ReadToEnd()
+        reader.Close()
+        Dim JO As Object = JsonConvert.DeserializeObject(jsonText)
+
+
+        Dim i As Integer = 0
+        For Each p In JO
+            Dim id As Integer = JO(i)("id")
+            Dim name As String = JO(i)("key").ToString
+            'Log.AppendText(name & vbCrLf)
+            runedata1.Rows.Add(id, id & ".png")
+            For j As Integer = 0 To 3
+                Try
+                    For k As Integer = 0 To 3
+                        Try
+                            Dim RuneId As Integer = JO(i)("slots")(j)("runes")(k)("id")
+                            Dim RuneKey As String = JO(i)("slots")(j)("runes")(k)("icon").ToString
+                            Dim sum As String() = RuneKey.Split("/"c)
+                            Dim summ As String = sum(sum.Count - 1).ToLower()
+                            'Log.AppendText(i & ":" & j & ":" & k & ":" & summ & vbCrLf)
+                            runedata1.Rows.Add(RuneId, summ)
+                        Catch
+                            Exit For
+                        End Try
+                    Next
+                Catch
+                End Try
+            Next
+            i += 1
+        Next
+        ConvertDataTableToCsv(runedata, "rune.csv", True, False)
+    End Sub
+
+    Private Sub Button18_Click(sender As Object, e As EventArgs) Handles Button18.Click
+        Dim sumn As String = "背中ポン美#back"
+        Dim snm() As String = sumn.Split("#"c)
+        Dim sname As String = snm(0)
+        TextBox1.Text = snm(0)
+    End Sub
+
+    Private Sub Button19_Click(sender As Object, e As EventArgs) Handles Button19.Click
+        'Form3.theme_start("starguardian_jp\championselect", 7000)
+        OnlineItemDataLoad(vernew)
+    End Sub
+
+    Private Sub Form1_Load_1(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick
+
+    End Sub
+
+
+    Private Sub WriteItems(nn, namae)
+
+        Dim item1 As Integer = pagedata.Rows(nn).Item("i1")
+        Dim item2 As Integer = pagedata.Rows(nn).Item("i2")
+        Dim item3 As Integer = pagedata.Rows(nn).Item("i3")
+        Dim item4 As Integer = pagedata.Rows(nn).Item("i4")
+        Dim item5 As Integer = pagedata.Rows(nn).Item("i5")
+        Dim item6 As Integer = pagedata.Rows(nn).Item("i6")
+        Dim item7 As Integer = pagedata.Rows(nn).Item("i7")
+        'Dim inputLCUx As String = "{""spell1Id"": " & rune1 & ",""spell2Id"":  " & rune2 & "}"
+        'Dim inputLCUx As String = "{""selectedSkinId"": 0" & ",""spell1Id"":" & rune1 & ","" & ""spell2Id & "":" & rune2 & ",""wardSkinId"": 0" & "}"
+        Dim inputLCUx As String =
+"{" &
+"""accountId"":0," &
+"""itemSets"":[" &
+"{" &
+"""associatedChampions"":[]," &
+"""associatedMaps"":[12,11]," &
+"""blocks"":[{" &
+"""type"":""Core Items""," &
+"""items"":[{""id"":""" & item1 & """,""count"":1},{""id"":""" & item2 & """,""count"":1},{""id"":""" & item3 & """,""count"":1},{""id"":""" & item4 & """,""count"":1},{""id"":""" & item5 & """,""count"":1},{""id"":""" & item6 & """,""count"":1},{""id"":""" & item7 & """,""count"":1}]" &
+"}]," &
+"""map"":""SR""," &
+"""mode"":""CLASSIC""," &
+"""preferredItemSlots"":[]," &
+"""sortrank"":0," &
+"""startedFrom"":""""," &
+"""title"":""" & namae & """," &
+"""type"":""custom""," &
+"""uid"":""" & Guid.NewGuid().ToString() & """" &
+"}]," &
+"""timestamp"":0" &
+"}"
+        Dim response As HttpResponse = Nothing
+
+        Try
+            Dim password As String = token
+            http.Request.Accept = HttpContentTypes.ApplicationJson
+            http.Request.SetBasicAuthentication("riot", password)
+
+            response = http.Put("https://127.0.0.1:" & port & "/lol-item-sets/v1/item-sets/" & checkid & "/sets", inputLCUx, HttpContentTypes.ApplicationJson)
+        Catch Exception As Exception
+            TextBox1.AppendText("Error : No Response" & vbCrLf)
+            Exit Sub
+        End Try
+        Console.WriteLine(response.StatusCode)
+        If response.StatusCode <> System.Net.HttpStatusCode.OK Then
+
+        End If
+    End Sub
 End Class
 
 Public Class NonDispBrowser
@@ -5601,7 +6118,7 @@ Public Class NonDispBrowser
 
                 Return False
             End If
-            Application.DoEvents()
+            'Application.DoEvents()
         End While
 
         Return True

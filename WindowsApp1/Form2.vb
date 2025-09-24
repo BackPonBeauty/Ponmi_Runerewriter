@@ -2,29 +2,10 @@
 Imports System.Text
 Imports System.IO
 Imports System.Net
-Imports System.Runtime.Serialization.Json
-Imports Newtonsoft.Json
-Imports System.Linq
-Imports System.Text.RegularExpressions
-Imports Newtonsoft.Json.Linq
-Imports System.Runtime.InteropServices
-Imports System
-Imports System.Collections.Generic
-Imports System.ComponentModel
-Imports System.Data
-Imports System.Diagnostics
-Imports System.Drawing
-Imports System.Threading.Tasks
-Imports System.Security.Principal
-Imports System.Windows.Forms
-Imports EasyHttp.Http
-Imports System.Management
-Imports JsonFx.Json
-Imports System.Security.Permissions
-Imports System.Threading
-Imports System.Drawing.Imaging
-Imports Microsoft.DirectX.DirectSound
 
+Imports Newtonsoft.Json
+
+Imports EasyHttp.Http
 Public Class Form2
 
     Dim one As Boolean = False
@@ -32,10 +13,45 @@ Public Class Form2
     Public blue As String = ""
     'Public syain As New DataTable
     Public Shared http As HttpClient
+
+    Public Shared Function CountChar(ByVal s As String, ByVal c As Char) As Integer
+        Return s.Length - s.Replace(c.ToString(), "").Length
+    End Function
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'syain.Columns.Add("chmname")
         'syain.Columns.Add("sumname")
         'syain.Columns.Add("team")
+        'sumload(0, "背中ポン美")
+    End Sub
+    Public Sub sumload(SumN As Integer, Sumname As String)
+        Dim response As HttpResponse = Nothing
+        Try
+            'Leagueconnect()
+            Dim password As String = Form1.token
+            http.Request.Accept = HttpContentTypes.ApplicationJson
+            http.Request.SetBasicAuthentication("riot", password)
+            response = http.[Get]("https://127.0.0.1:" & Form1.port & "/lol-summoner/v1/summoners?name=" & Sumname)
+            ' " & "20180151")
+        Catch Exception As Exception
+            Form1.TextBox1.AppendText("Error : No Response 03" & vbCrLf)
+            Timer1.Enabled = False
+            'Form3.theme_end()
+            'Form3.theme_start("butchersbridge\renata", 6000000)
+            Me.Label1.Text = "off"
+            blue = ""
+            one = False
+            Exit Sub
+        End Try
+        If response.StatusCode <> System.Net.HttpStatusCode.OK Then
+            '   oldid = 0
+            'Me.TextBox10.Text = "xxxxxxxxxxxxxxxxxx"
+        Else
+            Dim grid = response.DynamicBody
+            Dim jsonObj As String = JsonConvert.SerializeObject(grid)
+            Dim SumLev As Integer = grid.summonerLevel
+            'Me.TextBox10.Text = jsonObj
+            Form6.Panel1.Controls("Label" & SumN + 3).Text = SumLev
+        End If
     End Sub
 
     Public Sub New()
@@ -86,8 +102,9 @@ Public Class Form2
             Dim k As Integer = 0
 
             For Each item In grid
-                'Application.DoEvents()
+                Application.DoEvents()
                 'Me.Controls("sc" & i).Text = grid(i).scores.kills & "/" & grid(i).scores.deaths & "/" & grid(i).scores.assists
+                'Me.Controls("lvl" & i).Text = grid(i).level
                 'For jj As Integer = 0 To 6
                 '    Me.Pa7.Controls("Panel" & i & jj).BackgroundImage = Nothing
                 '    'Me.Controls("TextBox" & jj).Text = Nothing
@@ -98,18 +115,62 @@ Public Class Form2
                     sok(ii) = False
                 Next
                 Dim cname As String = grid(i).rawChampionName.ToString
-                Dim len As Integer = cname.Length
-                Dim last_n As Integer = cname.LastIndexOf("_") + 1
-                Dim nn As Integer = len - last_n
-                Dim chn As String = cname.Substring(last_n, nn)
+                'Dim chn As String = grid(i).ChampionName.ToString
+                Dim sumn As String = grid(i).riotIdGameName
+                'Dim len As Integer = cname.Length
+                Dim count As Integer = CountChar(cname, "_")
+                Dim chn As String
+                Dim parts As String()
+                parts = Split(cname, "_", -1, CompareMethod.Text)
+                If count > 2 Then
+                    chn = parts(3)
+                Else
+                    chn = parts(1)
+                End If
+
                 'Dim ss As String = grid(i).
-                Me.Pa7.Controls("ch" & i).BackgroundImage = New Bitmap(Image.FromFile("images\" & Form1.vernew & "\champimage\" & chn & ".png"), 24, 24)
+                If chn = "Name" Then
+                    chn = "Teemo"
+                End If
+                If chn = "Wizard" Then
+                    chn = "Neeko"
+                End If
+                Try
+                    Me.Pa7.Controls("ch" & i).BackgroundImage = New Bitmap(Image.FromFile("images\" & Form1.vernew & "\champimage\" & chn & ".png"), 24, 24)
+                Catch ex As Exception
+                    Me.Pa7.Controls("ch" & i).BackgroundImage = New Bitmap(Image.FromFile("images\" & Form1.vernew & "\champimage\Neeko.png"), 24, 24)
+                    System.IO.File.Copy("images\" & Form1.vernew & "\champimage\Neeko.png", "images\" & Form1.vernew & "\champimage\" & chn & ".png")
+                End Try
+
+                'Me.Controls("sumn" & i + 1).Text = sumn
 
                 For Each items In grid(i).items
                     'TextBox1.AppendText(k & ":::" & (grid(i).items(j).slot) & vbCrLf)
                     Dim slot As Integer = grid(i).items(k).slot
                     sok(slot) = True
-                    Me.Pa7.Controls("Panel" & i & slot).BackgroundImage = New Bitmap(Image.FromFile("item\" & grid(i).items(k).itemID & ".png"), 24, 24)
+                    Dim item_bin As String = "images\" & Form1.vernew & "\item\" & grid(i).items(k).itemID & ".png"
+                    Try
+                        If System.IO.File.Exists(item_bin) Then
+
+                        Else
+                            Dim wc As New System.Net.WebClient()
+                            wc.DownloadFile("https://ddragon.leagueoflegends.com/cdn/" & Form1.vernew & "/img/item/" & grid(i).items(k).itemID & ".png", "images\" & Form1.vernew & "\runeimage\" & grid(i).items(k).itemID & ".png")
+                            wc.Dispose()
+                        End If
+                    Catch ex As Exception
+
+                    End Try
+                    Dim bmp As Bitmap = Nothing
+                    Try
+                        Using fs As New System.IO.FileStream(item_bin, IO.FileMode.Open, IO.FileAccess.Read)
+                            bmp = New Bitmap(Image.FromStream(fs), 24, 24)
+                        End Using
+                    Catch ex As Exception
+                        ' 読み込み失敗時は代替処理（例: 透明の24x24画像）
+                        bmp = New Bitmap(24, 24)
+                    End Try
+                    Me.Pa7.Controls("Panel" & i & slot).BackgroundImage = bmp
+                    'Me.Pa7.Controls("Panel" & i & slot).BackgroundImage = New Bitmap(Image.FromFile(item_bin), 24, 24)
                     If nono = chn Then
                         Me.Controls("TextBox" & slot).Text = grid(i).items(k).itemID
 
@@ -170,7 +231,7 @@ Public Class Form2
                 k = 0
                 i += 1
             Next
-            'If grid(i).summonerName = "夜来香" Then
+            'If grid(i).riotIdGameName = "夜来香" Then
             '    Application.DoEvents()
             '    If old_k <> grid(i).scores.kills Then
             '        Application.DoEvents()
@@ -254,6 +315,8 @@ Public Class Form2
     End Sub
 
     Public Sub onece()
+        Timer1.Enabled = True
+        Exit Sub
         nono = Form1.chmname
         Application.DoEvents()
         'If stdata.Columns.Count = 0 Then
@@ -293,14 +356,27 @@ Public Class Form2
             Dim bscore As Integer = 0
             Dim rscore As Integer = 0
             Dim i As Integer = 0
+            Dim jsonObj As String = JsonConvert.SerializeObject(grid)
+            'TextBox7.Text = jsonObj
+            Console.WriteLine("::::::::::" & jsonObj)
             For Each item In grid
                 Dim cname As String = grid(i).rawChampionName.ToString
+                'Console.WriteLine(Form1.vernew & cname)
                 Dim len As Integer = cname.Length
                 Dim last_n As Integer = cname.LastIndexOf("_") + 1
                 Dim nn As Integer = len - last_n
                 Dim chn As String = cname.Substring(last_n, nn)
-                Dim sname As String = grid(i).summonerName.ToString
-                Dim team As String = (grid(i).Team.ToString).Trim()
+                Dim sumn As String = grid(i).riotIdGameName
+                Dim snm() As String = sumn.Split("#")
+                'Dim sname As String =
+                Dim team As String = (grid(i).team.ToString).Trim()
+                Form3.syain.Rows.Add(chn, snm(0), team)
+
+                Console.WriteLine("2 " & grid(i).rawChampionName.ToString)
+                Console.WriteLine("2 " & grid(i).ChampionName.ToString)
+                'sumload(i, sumn)
+
+
                 If nono = chn Then
                     Dim sc1 As String = grid(i).summonerSpells.summonerSpellOne.rawDisplayName.ToString
                     Dim sns1 As Integer = 0
@@ -372,9 +448,13 @@ Public Class Form2
                 Dim mag As Integer
                 Dim dif As Integer
 
-                Form3.syain.Rows.Add(chn, sname, team)
+                'chn = "Ezreal"
+
+
                 Me.Pa7.Controls("ch" & i).BackgroundImage = New Bitmap(Image.FromFile("images\" & Form1.vernew & "\champimage\" & chn & ".png"), 24, 24)
 
+                'ch0.BackgroundImage = New Bitmap(Image.FromFile("images\14.8.1\champimage\Ahri.png"), 24, 24)
+                'Me.Controls("sumn" & i + 1).Text = sumn
                 For ii As Integer = 0 To Form1.champdata.Rows.Count - 1
                     Dim id As String = Form1.champdata.Rows(ii).Item("id")
                     If chn = id Then
@@ -422,6 +502,7 @@ Public Class Form2
         Else
             Timer1.Enabled = True
             Label1.Text = "on"
+            'onece()
         End If
     End Sub
 

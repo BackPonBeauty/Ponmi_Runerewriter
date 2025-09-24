@@ -1,0 +1,339 @@
+00:00,GameStart,0,0,0,0,6
+00:15,minion30,0,0,0,0,3
+00:30,welcome,0,0,0,0,1
+00:45,MinionsSpawning,0,0,0,0,1
+01:49,ChampionKill,moquu,kiristar86,ORDER,1,3
+01:49,enemyslayally1C,moquu,kiristar86,ORDER,1,2
+01:49,FirstBlood,0,0,ORDER,0,1
+01:51,ChampionKill,77ー57mmHg,moquu,CHAOS,1,1
+01:51,youslayenemy1C,77ー57mmHgmoquu,,CHAOS,1,4
+01:51,ChampionKill,77ー57mmHg,ダルシャカール,CHAOS,2,3
+01:51,youslayenemy1C,77ー57mmHgダルシャカール,,CHAOS,2,2
+01:51,Multikill,77ー57mmHg,0,CHAOS,2,1
+01:51,MultikillC,77ー57mmHg,0,CHAOS,2,3
+02:38,ChampionKill,moquu,ich3rei,ORDER,1,3
+02:38,enemyslayally1C,moquu,ich3rei,ORDER,1,1
+02:56,ChampionKill,ダルシャカール,terutana,ORDER,1,3
+02:56,enemyslayally1C,ダルシャカール,terutana,ORDER,1,1
+03:13,ChampionKill,kakoooo,77ー57mmHg,ORDER,1,3
+03:13,enemyslayally1C,kakoooo,77ー57mmHg,ORDER,1,3
+03:13,shutdown,0,0,ORDER,0,2
+03:25,ChampionKill,ich3rei,moquu,CHAOS,1,1
+03:25,youslayenemy1C,ich3reimoquu,,CHAOS,1,1
+03:29,ChampionKill,ich3rei,ダルシャカール,CHAOS,2,3
+03:29,youslayenemy1C,ich3reiダルシャカール,,CHAOS,2,4
+03:29,Multikill,ich3rei,0,CHAOS,2,2
+03:29,MultikillC,ich3rei,0,CHAOS,2,1
+03:32,ChampionKill,kiristar86,Cibomatto,CHAOS,1,1
+03:32,youslayenemy1C,kiristar86Cibomatto,,CHAOS,1,1
+03:37,ChampionKill,kiristar86,Moron maroN,CHAOS,2,2
+03:37,youslayenemy1C,kiristar86Moron maroN,,CHAOS,2,1
+03:37,Multikill,kiristar86,0,CHAOS,2,4
+03:37,MultikillC,kiristar86,0,CHAOS,2,2
+03:39,dead,0,背中ポン美,ORDER,0,1
+03:39,deadC,0,背中ポン美,ORDER,0,1
+03:43,allyslayenemy,kiristar86,kakoooo,CHAOS,3,2
+03:43,allyslayenemyC,kiristar86,kakoooo,CHAOS,3,2
+03:43,shutdown,0,0,CHAOS,0,1
+03:43,shutdownC,0,0,CHAOS,0,2
+03:43,Multikill,kiristar86,0,CHAOS,3,1
+03:43,MultikillC,kiristar86,0,CHAOS,3,1
+04:41,ChampionKill,背中ポン美,ダルシャカール,CHAOS,1,2
+04:41,youhaveslayenemy1C,背中ポン美ダルシャカール,,CHAOS,1,1
+04:44,ChampionKill,moquu,ich3rei,ORDER,1,3
+04:44,enemyslayally1C,moquu,ich3rei,ORDER,1,1
+04:44,shutdown,0,0,ORDER,0,2
+04:48,ChampionKill,77ー57mmHg,Moron maroN,CHAOS,1,2
+04:48,youslayenemy1C,77ー57mmHgMoron maroN,,CHAOS,1,4
+04:54,ChampionKill,背中ポン美,moquu,CHAOS,2,1
+04:54,youhaveslayenemy1C,背中ポン美moquu,,CHAOS,2,4
+05:21,ChampionKill,ダルシャカール,terutana,ORDER,1,3
+05:21,enemyslayally1C,ダルシャカール,terutana,ORDER,1,2
+05:33,youkillstreak,背中ポン美ダルシャカール,,CHAOS,3,1
+05:33,youslayenemy3C,背中ポン美ダルシャカール,,CHAOS,3,1
+05:56,ChampionKill,moquu,77ー57mmHg,ORDER,1,3
+05:56,enemyslayally1C,moquu,77ー57mmHg,ORDER,1,1
+06:17,dead,0,背中ポン美,ORDER,0,2
+06:17,deadC,0,背中ポン美,ORDER,0,7
+06:31,ChampionKill,ダルシャカール,kiristar86,ORDER,2,3
+06:31,enemyslayally1C,ダルシャカール,kiristar86,ORDER,2,3
+06:31,shutdown,0,0,ORDER,0,1
+07:01,ChampionKill,kiristar86,Moron maroN,CHAOS,1,2
+07:01,youslayenemy1C,kiristar86Moron maroN,,CHAOS,1,2
+07:01,ChampionKill,背中ポン美,Cibomatto,CHAOS,1,3
+07:01,youhaveslayenemy1C,背中ポン美Cibomatto,,CHAOS,1,6
+07:02,ChampionKill,背中ポン美,moquu,CHAOS,2,1
+07:02,youhaveslayenemy1C,背中ポン美moquu,,CHAOS,2,2
+07:02,Multikill,背中ポン美,0,CHAOS,2,3
+07:02,MultikillC,背中ポン美,0,CHAOS,2,3
+07:09,ChampionKill,77ー57mmHg,ダルシャカール,CHAOS,1,3
+07:09,youslayenemy1C,77ー57mmHgダルシャカール,,CHAOS,1,3
+07:09,shutdown,0,0,CHAOS,0,1
+07:09,shutdownC,0,0,CHAOS,0,1
+07:28,dead,0,背中ポン美,ORDER,0,2
+07:28,deadC,0,背中ポン美,ORDER,0,5
+07:28,ChampionKill,Moron maroN,ich3rei,ORDER,2,2
+07:28,enemyslayally1C,Moron maroN,ich3rei,ORDER,2,1
+07:28,Multikill,Moron maroN,0,ORDER,2,3
+07:28,MultikillC,Moron maroN,0,ORDER,2,1
+07:35,ChampionKill,moquu,77ー57mmHg,ORDER,1,3
+07:35,enemyslayally1C,moquu,77ー57mmHg,ORDER,1,2
+07:35,ChampionKill,terutana,kakoooo,CHAOS,1,2
+07:35,youslayenemy1C,terutanakakoooo,,CHAOS,1,4
+07:38,ChampionKill,Cibomatto,terutana,ORDER,1,3
+07:38,enemyslayally1C,Cibomatto,terutana,ORDER,1,2
+07:58,TurretKilled,moquu,Turret_T2_L_01_A,ORDER,2,1
+07:58,FirstBrick,0,0,ORDER,0,1
+07:60,ChampionKill,moquu,ich3rei,ORDER,2,2
+07:60,enemyslayally1C,moquu,ich3rei,ORDER,2,1
+08:15,ChampionKill,背中ポン美,Cibomatto,CHAOS,1,3
+08:15,youhaveslayenemy1C,背中ポン美Cibomatto,,CHAOS,1,3
+08:19,ChampionKill,77ー57mmHg,ダルシャカール,CHAOS,1,2
+08:19,youslayenemy1C,77ー57mmHgダルシャカール,,CHAOS,1,4
+08:20,ChampionKill,ダルシャカール,77ー57mmHg,ORDER,1,1
+08:20,enemyslayally1C,ダルシャカール,77ー57mmHg,ORDER,1,2
+08:27,ChampionKill,kiristar86,Moron maroN,CHAOS,2,1
+08:27,youslayenemy1C,kiristar86Moron maroN,,CHAOS,2,2
+08:27,shutdown,0,0,CHAOS,0,1
+08:27,shutdownC,0,0,CHAOS,0,3
+08:40,dead,0,背中ポン美,ORDER,0,2
+08:40,deadC,0,背中ポン美,ORDER,0,6
+08:41,ChampionKill,ich3rei,kakoooo,CHAOS,1,3
+08:41,youslayenemy1C,ich3reikakoooo,,CHAOS,1,1
+09:04,ChampionKill,ich3rei,ダルシャカール,CHAOS,2,3
+09:04,youslayenemy1C,ich3reiダルシャカール,,CHAOS,2,4
+09:35,allyslayenemy,kiristar86,moquu,CHAOS,3,2
+09:35,allyslayenemyC,kiristar86,moquu,CHAOS,3,2
+09:35,shutdown,0,0,CHAOS,0,1
+09:35,shutdownC,0,0,CHAOS,0,3
+09:35,ChampionKill,Cibomatto,terutana,ORDER,1,2
+09:35,enemyslayally1C,Cibomatto,terutana,ORDER,1,1
+09:36,allyslayenemy,ich3rei,Cibomatto,CHAOS,3,1
+09:36,allyslayenemyC,ich3rei,Cibomatto,CHAOS,3,1
+09:42,ChampionKill,ダルシャカール,ich3rei,ORDER,1,3
+09:42,enemyslayally1C,ダルシャカール,ich3rei,ORDER,1,3
+09:42,shutdown,0,0,ORDER,0,1
+09:44,ChampionKill,背中ポン美,ダルシャカール,CHAOS,1,1
+09:44,youhaveslayenemy1C,背中ポン美ダルシャカール,,CHAOS,1,4
+09:45,ChampionKill,kakoooo,77ー57mmHg,ORDER,1,1
+09:45,enemyslayally1C,kakoooo,77ー57mmHg,ORDER,1,3
+09:45,ChampionKill,背中ポン美,Moron maroN,CHAOS,2,2
+09:45,youhaveslayenemy1C,背中ポン美Moron maroN,,CHAOS,2,3
+09:45,Multikill,背中ポン美,0,CHAOS,2,1
+09:45,MultikillC,背中ポン美,0,CHAOS,2,3
+09:48,dead,0,背中ポン美,ORDER,0,1
+09:48,deadC,0,背中ポン美,ORDER,0,2
+09:48,Multikill,kakoooo,0,ORDER,2,3
+09:48,MultikillC,kakoooo,0,ORDER,2,2
+09:54,ChampionKill,kakoooo,kiristar86,ORDER,3,3
+09:54,enemyslayally3C,kakoooo,kiristar86,ORDER,3,1
+09:54,shutdown,0,0,ORDER,0,1
+09:54,Multikill,kakoooo,0,ORDER,3,2
+09:54,MultikillC,kakoooo,0,ORDER,3,1
+09:54,Ace,0,0,ORDER,0,3
+10:16,ChampionKill,Cibomatto,terutana,ORDER,1,2
+10:16,enemyslayally1C,Cibomatto,terutana,ORDER,1,3
+10:34,ChampionKill,kiristar86,kakoooo,CHAOS,1,1
+10:34,youslayenemy1C,kiristar86kakoooo,,CHAOS,1,3
+10:34,shutdown,0,0,CHAOS,0,2
+10:34,shutdownC,0,0,CHAOS,0,3
+10:40,ChampionKill,背中ポン美,moquu,CHAOS,1,1
+10:40,youhaveslayenemy1C,背中ポン美moquu,,CHAOS,1,7
+11:08,ChampionKill,ダルシャカール,terutana,ORDER,1,1
+11:08,enemyslayally1C,ダルシャカール,terutana,ORDER,1,1
+11:09,ChampionKill,kiristar86,ダルシャカール,CHAOS,2,2
+11:09,youslayenemy1C,kiristar86ダルシャカール,,CHAOS,2,3
+11:09,allyslayenemy,kiristar86,Cibomatto,CHAOS,3,2
+11:09,allyslayenemyC,kiristar86,Cibomatto,CHAOS,3,2
+11:09,Multikill,kiristar86,0,CHAOS,2,2
+11:09,MultikillC,kiristar86,0,CHAOS,2,2
+11:53,ChampionKill,背中ポン美,ダルシャカール,CHAOS,2,1
+11:53,youhaveslayenemy1C,背中ポン美ダルシャカール,,CHAOS,2,2
+11:53,ChampionKill,moquu,ich3rei,ORDER,1,2
+11:53,enemyslayally1C,moquu,ich3rei,ORDER,1,2
+11:60,ChampionKill,terutana,Cibomatto,CHAOS,1,2
+11:60,youslayenemy1C,terutanaCibomatto,,CHAOS,1,3
+12:02,ChampionKill,terutana,Moron maroN,CHAOS,2,2
+12:02,youslayenemy1C,terutanaMoron maroN,,CHAOS,2,2
+12:02,Multikill,terutana,0,CHAOS,2,5
+12:02,MultikillC,terutana,0,CHAOS,2,3
+12:02,youkillstreak,背中ポン美kakoooo,,CHAOS,3,1
+12:02,youslayenemy3C,背中ポン美kakoooo,,CHAOS,3,1
+12:02,Multikill,背中ポン美,0,CHAOS,2,4
+12:02,MultikillC,背中ポン美,0,CHAOS,2,2
+12:03,ChampionKill,moquu,terutana,ORDER,2,1
+12:03,enemyslayally1C,moquu,terutana,ORDER,2,1
+12:03,shutdown,0,0,ORDER,0,1
+12:03,Multikill,moquu,0,ORDER,2,2
+12:03,MultikillC,moquu,0,ORDER,2,2
+12:14,ChampionKill,moquu,77ー57mmHg,ORDER,3,2
+12:14,enemyslayally3C,moquu,77ー57mmHg,ORDER,3,2
+12:27,allyslayenemy,kiristar86,moquu,CHAOS,4,1
+12:27,allyslayenemyC,kiristar86,moquu,CHAOS,4,1
+12:27,shutdown,0,0,CHAOS,0,1
+12:27,shutdownC,0,0,CHAOS,0,2
+13:20,youkillstreak,背中ポン美Cibomatto,,CHAOS,4,1
+13:20,youslayenemy4C,背中ポン美Cibomatto,,CHAOS,4,2
+13:24,youkillstreak,背中ポン美ダルシャカール,,CHAOS,5,1
+13:24,youslayenemy5C,背中ポン美ダルシャカール,,CHAOS,5,2
+13:24,Multikill,背中ポン美,0,CHAOS,2,4
+13:24,MultikillC,背中ポン美,0,CHAOS,2,1
+13:28,ChampionKill,77ー57mmHg,Moron maroN,CHAOS,1,1
+13:28,youslayenemy1C,77ー57mmHgMoron maroN,,CHAOS,1,2
+13:31,ChampionKill,ich3rei,kakoooo,CHAOS,1,1
+13:31,youslayenemy1C,ich3reikakoooo,,CHAOS,1,3
+13:34,dead,0,背中ポン美,ORDER,0,2
+13:34,deadC,0,背中ポン美,ORDER,0,6
+14:26,ChampionKill,ダルシャカール,ich3rei,ORDER,1,1
+14:26,enemyslayally1C,ダルシャカール,ich3rei,ORDER,1,1
+14:28,ChampionKill,背中ポン美,ダルシャカール,CHAOS,1,2
+14:28,youhaveslayenemy1C,背中ポン美ダルシャカール,,CHAOS,1,4
+14:31,dead,0,背中ポン美,ORDER,0,2
+14:31,deadC,0,背中ポン美,ORDER,0,5
+14:37,ChampionKill,moquu,77ー57mmHg,ORDER,2,3
+14:37,enemyslayally1C,moquu,77ー57mmHg,ORDER,2,3
+14:39,ChampionKill,Moron maroN,terutana,ORDER,2,1
+14:39,enemyslayally1C,Moron maroN,terutana,ORDER,2,1
+14:39,Multikill,Moron maroN,0,ORDER,2,3
+14:39,MultikillC,Moron maroN,0,ORDER,2,1
+15:03,allyslayenemy,kiristar86,Moron maroN,CHAOS,5,2
+15:03,allyslayenemyC,kiristar86,Moron maroN,CHAOS,5,2
+15:03,shutdown,0,0,CHAOS,0,1
+15:03,shutdownC,0,0,CHAOS,0,3
+15:28,allyslayenemy,kiristar86,ダルシャカール,CHAOS,6,2
+15:28,allyslayenemyC,kiristar86,ダルシャカール,CHAOS,6,2
+15:47,ChampionKill,背中ポン美,moquu,CHAOS,1,1
+15:47,youhaveslayenemy1C,背中ポン美moquu,,CHAOS,1,4
+15:47,shutdown,0,0,CHAOS,0,2
+15:47,shutdownC,0,0,CHAOS,0,2
+15:48,ChampionKill,背中ポン美,Cibomatto,CHAOS,2,2
+15:48,youhaveslayenemy1C,背中ポン美Cibomatto,,CHAOS,2,7
+15:48,Multikill,背中ポン美,0,CHAOS,2,5
+15:48,MultikillC,背中ポン美,0,CHAOS,2,3
+15:60,ChampionKill,terutana,kakoooo,CHAOS,1,3
+15:60,youslayenemy1C,terutanakakoooo,,CHAOS,1,4
+16:49,ChampionKill,ich3rei,Moron maroN,CHAOS,1,2
+16:49,youslayenemy1C,ich3reiMoron maroN,,CHAOS,1,2
+17:00,youkillstreak,背中ポン美ダルシャカール,,CHAOS,3,1
+17:00,youslayenemy3C,背中ポン美ダルシャカール,,CHAOS,3,1
+17:01,youkillstreak,背中ポン美Cibomatto,,CHAOS,4,1
+17:01,youslayenemy4C,背中ポン美Cibomatto,,CHAOS,4,2
+17:01,Multikill,背中ポン美,0,CHAOS,2,5
+17:01,MultikillC,背中ポン美,0,CHAOS,2,1
+18:06,ChampionKill,moquu,ich3rei,ORDER,1,1
+18:06,enemyslayally1C,moquu,ich3rei,ORDER,1,3
+18:07,ChampionKill,ダルシャカール,terutana,ORDER,1,3
+18:07,enemyslayally1C,ダルシャカール,terutana,ORDER,1,1
+18:11,allyslayenemy,kiristar86,ダルシャカール,CHAOS,7,1
+18:11,allyslayenemyC,kiristar86,ダルシャカール,CHAOS,7,1
+18:12,ChampionKill,moquu,77ー57mmHg,ORDER,2,3
+18:12,enemyslayally1C,moquu,77ー57mmHg,ORDER,2,1
+18:12,Multikill,moquu,0,ORDER,2,1
+18:12,MultikillC,moquu,0,ORDER,2,2
+18:16,dead,0,背中ポン美,ORDER,0,1
+18:16,deadC,0,背中ポン美,ORDER,0,4
+18:26,allyslayenemy,kiristar86,Moron maroN,CHAOS,8,1
+18:26,allyslayenemyC,kiristar86,Moron maroN,CHAOS,8,1
+18:59,ChampionKill,moquu,terutana,ORDER,3,3
+18:59,enemyslayally3C,moquu,terutana,ORDER,3,2
+18:59,ChampionKill,terutana,moquu,CHAOS,1,1
+18:59,youslayenemy1C,terutanamoquu,,CHAOS,1,2
+18:59,shutdown,0,0,CHAOS,0,2
+18:59,shutdownC,0,0,CHAOS,0,1
+19:01,ChampionKill,ich3rei,Cibomatto,CHAOS,1,3
+19:01,youslayenemy1C,ich3reiCibomatto,,CHAOS,1,3
+19:36,ChampionKill,背中ポン美,ダルシャカール,CHAOS,1,2
+19:36,youhaveslayenemy1C,背中ポン美ダルシャカール,,CHAOS,1,6
+19:43,TurretKilled,背中ポン美,Turret_T1_C_08_A,CHAOS,1,2
+19:47,ChampionKill,Moron maroN,77ー57mmHg,ORDER,1,1
+19:47,enemyslayally1C,Moron maroN,77ー57mmHg,ORDER,1,2
+19:48,ChampionKill,ich3rei,moquu,CHAOS,2,2
+19:48,youslayenemy1C,ich3reimoquu,,CHAOS,2,4
+19:48,allyslayenemy,ich3rei,Moron maroN,CHAOS,3,2
+19:48,allyslayenemyC,ich3rei,Moron maroN,CHAOS,3,2
+19:48,Multikill,ich3rei,0,CHAOS,2,2
+19:48,MultikillC,ich3rei,0,CHAOS,2,2
+19:54,dead,0,背中ポン美,ORDER,0,2
+19:54,deadC,0,背中ポン美,ORDER,0,7
+19:54,ChampionKill,Cibomatto,ich3rei,ORDER,2,1
+19:54,enemyslayally1C,Cibomatto,ich3rei,ORDER,2,1
+19:54,shutdown,0,0,ORDER,0,1
+19:54,Multikill,Cibomatto,0,ORDER,2,2
+19:54,MultikillC,Cibomatto,0,ORDER,2,2
+19:55,ChampionKill,terutana,Cibomatto,CHAOS,2,3
+19:55,youslayenemy1C,terutanaCibomatto,,CHAOS,2,1
+19:55,shutdown,0,0,CHAOS,0,1
+19:55,shutdownC,0,0,CHAOS,0,1
+20:57,ChampionKill,moquu,ich3rei,ORDER,1,3
+20:57,enemyslayally1C,moquu,ich3rei,ORDER,1,3
+20:57,ChampionKill,背中ポン美,Cibomatto,CHAOS,1,1
+20:57,youhaveslayenemy1C,背中ポン美Cibomatto,,CHAOS,1,1
+21:03,allyslayenemy,kiristar86,Moron maroN,CHAOS,8,1
+21:03,allyslayenemyC,kiristar86,Moron maroN,CHAOS,8,1
+21:06,ChampionKill,77ー57mmHg,ダルシャカール,CHAOS,1,1
+21:06,youslayenemy1C,77ー57mmHgダルシャカール,,CHAOS,1,1
+21:09,allyslayenemy,terutana,kakoooo,CHAOS,3,1
+21:09,allyslayenemyC,terutana,kakoooo,CHAOS,3,1
+21:22,ChampionKill,背中ポン美,moquu,CHAOS,2,3
+21:22,youhaveslayenemy1C,背中ポン美moquu,,CHAOS,2,7
+21:22,Ace,0,0,CHAOS,0,2
+21:22,Acec,0,0,CHAOS,0,2
+21:35,TurretKilled,77ー57mmHg,Turret_T1_C_07_A,CHAOS,1,2
+21:43,InhibKilled,terutana,0,ORDER,0,4
+22:11,ChampionKill,ich3rei,moquu,CHAOS,1,3
+22:11,youslayenemy1C,ich3reimoquu,,CHAOS,1,2
+22:12,ChampionKill,moquu,77ー57mmHg,ORDER,1,3
+22:12,enemyslayally1C,moquu,77ー57mmHg,ORDER,1,1
+22:21,dead,0,背中ポン美,ORDER,0,2
+22:21,deadC,0,背中ポン美,ORDER,0,7
+22:26,ChampionKill,Cibomatto,ich3rei,ORDER,1,1
+22:26,enemyslayally1C,Cibomatto,ich3rei,ORDER,1,2
+22:29,ChampionKill,ダルシャカール,terutana,ORDER,1,2
+22:29,enemyslayally1C,ダルシャカール,terutana,ORDER,1,3
+22:29,shutdown,0,0,ORDER,0,1
+22:52,TurretKilled,kakoooo,Turret_T2_L_02_A,ORDER,2,2
+23:00,badnews,ダルシャカール,0,CHAOS,0,1
+23:00,InhibKilled,ダルシャカール,0,CHAOS,0,1
+23:11,ChampionKill,背中ポン美,ダルシャカール,CHAOS,1,3
+23:11,youhaveslayenemy1C,背中ポン美ダルシャカール,,CHAOS,1,6
+23:14,ChampionKill,背中ポン美,Cibomatto,CHAOS,2,3
+23:14,youhaveslayenemy1C,背中ポン美Cibomatto,,CHAOS,2,5
+23:14,Multikill,背中ポン美,0,CHAOS,2,1
+23:14,MultikillC,背中ポン美,0,CHAOS,2,1
+23:27,ChampionKill,ich3rei,kakoooo,CHAOS,1,1
+23:27,youslayenemy1C,ich3reikakoooo,,CHAOS,1,1
+24:09,ChampionKill,ich3rei,Cibomatto,CHAOS,2,2
+24:09,youslayenemy1C,ich3reiCibomatto,,CHAOS,2,1
+24:09,dead,0,背中ポン美,ORDER,0,2
+24:09,deadC,0,背中ポン美,ORDER,0,4
+24:22,ChampionKill,ダルシャカール,terutana,ORDER,1,1
+24:22,enemyslayally1C,ダルシャカール,terutana,ORDER,1,2
+24:22,allyslayenemy,ich3rei,ダルシャカール,CHAOS,3,2
+24:22,allyslayenemyC,ich3rei,ダルシャカール,CHAOS,3,2
+24:22,ChampionKill,moquu,ich3rei,ORDER,2,3
+24:22,enemyslayally1C,moquu,ich3rei,ORDER,2,2
+24:22,shutdown,0,0,ORDER,0,1
+25:38,InhibRespawningSoon,0,0,ORDER,0,2
+25:53,badnews,0,0,ORDER,0,1
+25:53,InhibRespawned,0,0,ORDER,0,1
+26:08,ChampionKill,ダルシャカール,77ー57mmHg,ORDER,1,3
+26:08,enemyslayally1C,ダルシャカール,77ー57mmHg,ORDER,1,2
+26:08,ChampionKill,kakoooo,terutana,ORDER,1,1
+26:08,enemyslayally1C,kakoooo,terutana,ORDER,1,3
+26:09,ChampionKill,背中ポン美,Moron maroN,CHAOS,1,2
+26:09,youhaveslayenemy1C,背中ポン美Moron maroN,,CHAOS,1,3
+26:11,ChampionKill,Cibomatto,kiristar86,ORDER,2,1
+26:11,enemyslayally1C,Cibomatto,kiristar86,ORDER,2,3
+26:11,shutdown,0,0,ORDER,0,1
+26:14,dead,0,背中ポン美,ORDER,0,2
+26:14,deadC,0,背中ポン美,ORDER,0,3
+26:14,Multikill,kakoooo,0,ORDER,2,1
+26:14,MultikillC,kakoooo,0,ORDER,2,2
+26:16,ChampionKill,Cibomatto,ich3rei,ORDER,3,1
+26:16,enemyslayally3C,Cibomatto,ich3rei,ORDER,3,3
+26:16,Multikill,Cibomatto,0,ORDER,2,3
+26:16,MultikillC,Cibomatto,0,ORDER,2,2
+26:16,Ace,0,0,ORDER,0,2
+26:41,TurretKilled,ダルシャカール,Turret_T2_L_04_A,ORDER,2,3
+26:44,TurretKilled,Minion_T100L1S65N0424,Turret_T2_L_03_A,ORDER,2,2
+26:53,GameEnd,Lose,0,0,0,4

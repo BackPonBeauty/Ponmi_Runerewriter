@@ -286,13 +286,25 @@ Partial Class Form1
         Me.Panel18 = New System.Windows.Forms.Panel()
         Me.Panel19 = New System.Windows.Forms.Panel()
         Me.Panel27 = New System.Windows.Forms.Panel()
-        Me.smsp2 = New WindowsApp1.UserControl1()
-        Me.smsp1 = New WindowsApp1.UserControl1()
-        Me.Cbox1 = New WindowsApp1.UserControl1()
         Me.Timer7 = New System.Windows.Forms.Timer(Me.components)
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.Button15 = New System.Windows.Forms.Button()
         Me.Label15 = New System.Windows.Forms.Label()
+        Me.Button16 = New System.Windows.Forms.Button()
+        Me.Button17 = New System.Windows.Forms.Button()
+        Me.Button18 = New System.Windows.Forms.Button()
+        Me.Button19 = New System.Windows.Forms.Button()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.smsp2 = New WindowsApp1.UserControl1()
+        Me.smsp1 = New WindowsApp1.UserControl1()
+        Me.Cbox1 = New WindowsApp1.UserControl1()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.Panel6 = New System.Windows.Forms.Panel()
+        Me.Panel7 = New System.Windows.Forms.Panel()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pa3.SuspendLayout()
         Me.Pa7.SuspendLayout()
@@ -368,7 +380,7 @@ Partial Class Form1
         Me.Label3.BackColor = System.Drawing.Color.Black
         Me.Label3.Font = New System.Drawing.Font("Meiryo UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(64, 80)
+        Me.Label3.Location = New System.Drawing.Point(62, 77)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(88, 20)
         Me.Label3.TabIndex = 106
@@ -408,11 +420,12 @@ Partial Class Form1
         Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox2.Enabled = False
         Me.TextBox2.ForeColor = System.Drawing.Color.White
-        Me.TextBox2.Location = New System.Drawing.Point(928, 581)
+        Me.TextBox2.Location = New System.Drawing.Point(766, 584)
         Me.TextBox2.Margin = New System.Windows.Forms.Padding(6)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(106, 12)
         Me.TextBox2.TabIndex = 6
+        Me.TextBox2.Text = "aaaaaaaaaaa"
         '
         'TextBox3
         '
@@ -420,7 +433,7 @@ Partial Class Form1
         Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox3.Enabled = False
         Me.TextBox3.ForeColor = System.Drawing.Color.White
-        Me.TextBox3.Location = New System.Drawing.Point(928, 605)
+        Me.TextBox3.Location = New System.Drawing.Point(764, 604)
         Me.TextBox3.Margin = New System.Windows.Forms.Padding(6)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(106, 12)
@@ -432,7 +445,7 @@ Partial Class Form1
         Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox4.Enabled = False
         Me.TextBox4.ForeColor = System.Drawing.Color.White
-        Me.TextBox4.Location = New System.Drawing.Point(928, 630)
+        Me.TextBox4.Location = New System.Drawing.Point(764, 619)
         Me.TextBox4.Margin = New System.Windows.Forms.Padding(6)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(106, 12)
@@ -811,7 +824,7 @@ Partial Class Form1
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(148, 19)
         Me.TextBox5.TabIndex = 64
-        Me.TextBox5.Text = "背中ポン美"
+        Me.TextBox5.Text = "背中ポン美#back"
         Me.TextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Button1
@@ -850,10 +863,10 @@ Partial Class Form1
         Me.tip.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.tip.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.tip.ForeColor = System.Drawing.Color.White
-        Me.tip.Location = New System.Drawing.Point(12, 728)
+        Me.tip.Location = New System.Drawing.Point(1, 397)
         Me.tip.Multiline = True
         Me.tip.Name = "tip"
-        Me.tip.Size = New System.Drawing.Size(470, 46)
+        Me.tip.Size = New System.Drawing.Size(439, 46)
         Me.tip.TabIndex = 68
         Me.tip.Text = "Tips"
         '
@@ -861,11 +874,11 @@ Partial Class Form1
         '
         Me.tit.BackColor = System.Drawing.Color.Black
         Me.tit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.tit.Font = New System.Drawing.Font("MS UI Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.tit.Font = New System.Drawing.Font("Meiryo UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.tit.ForeColor = System.Drawing.Color.White
-        Me.tit.Location = New System.Drawing.Point(12, 696)
+        Me.tit.Location = New System.Drawing.Point(1, 375)
         Me.tit.Name = "tit"
-        Me.tit.Size = New System.Drawing.Size(468, 28)
+        Me.tit.Size = New System.Drawing.Size(439, 24)
         Me.tit.TabIndex = 69
         Me.tit.Text = "Title"
         Me.tit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -931,7 +944,7 @@ Partial Class Form1
         Me.Button6.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Button6.Location = New System.Drawing.Point(907, 4)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(56, 47)
+        Me.Button6.Size = New System.Drawing.Size(56, 24)
         Me.Button6.TabIndex = 76
         Me.Button6.Text = "update"
         Me.Button6.UseVisualStyleBackColor = True
@@ -948,7 +961,7 @@ Partial Class Form1
         '
         Me.ps1.BackColor = System.Drawing.Color.Black
         Me.ps1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.ps1.Location = New System.Drawing.Point(80, 308)
+        Me.ps1.Location = New System.Drawing.Point(80, 315)
         Me.ps1.Name = "ps1"
         Me.ps1.Size = New System.Drawing.Size(24, 24)
         Me.ps1.TabIndex = 78
@@ -957,7 +970,7 @@ Partial Class Form1
         '
         Me.ps2.BackColor = System.Drawing.Color.Black
         Me.ps2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.ps2.Location = New System.Drawing.Point(108, 308)
+        Me.ps2.Location = New System.Drawing.Point(108, 315)
         Me.ps2.Name = "ps2"
         Me.ps2.Size = New System.Drawing.Size(24, 24)
         Me.ps2.TabIndex = 79
@@ -1035,7 +1048,7 @@ Partial Class Form1
         '
         'TextBox7
         '
-        Me.TextBox7.Location = New System.Drawing.Point(1060, 540)
+        Me.TextBox7.Location = New System.Drawing.Point(1101, 552)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.Size = New System.Drawing.Size(108, 19)
         Me.TextBox7.TabIndex = 92
@@ -1113,9 +1126,9 @@ Partial Class Form1
         '
         Me.pa1.BackColor = System.Drawing.Color.Black
         Me.pa1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.pa1.Location = New System.Drawing.Point(12, 100)
+        Me.pa1.Location = New System.Drawing.Point(10, 100)
         Me.pa1.Name = "pa1"
-        Me.pa1.Size = New System.Drawing.Size(190, 190)
+        Me.pa1.Size = New System.Drawing.Size(192, 192)
         Me.pa1.TabIndex = 103
         '
         'Label2
@@ -1123,9 +1136,9 @@ Partial Class Form1
         Me.Label2.BackColor = System.Drawing.Color.Black
         Me.Label2.Font = New System.Drawing.Font("Meiryo UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(64, 292)
+        Me.Label2.Location = New System.Drawing.Point(11, 293)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(88, 16)
+        Me.Label2.Size = New System.Drawing.Size(190, 16)
         Me.Label2.TabIndex = 104
         Me.Label2.Text = "★"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -2871,33 +2884,6 @@ Partial Class Form1
         Me.Panel27.Size = New System.Drawing.Size(200, 2)
         Me.Panel27.TabIndex = 287
         '
-        'smsp2
-        '
-        Me.smsp2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.smsp2.FormattingEnabled = True
-        Me.smsp2.Location = New System.Drawing.Point(892, 420)
-        Me.smsp2.Name = "smsp2"
-        Me.smsp2.Size = New System.Drawing.Size(83, 20)
-        Me.smsp2.TabIndex = 96
-        '
-        'smsp1
-        '
-        Me.smsp1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.smsp1.FormattingEnabled = True
-        Me.smsp1.Location = New System.Drawing.Point(801, 420)
-        Me.smsp1.Name = "smsp1"
-        Me.smsp1.Size = New System.Drawing.Size(83, 20)
-        Me.smsp1.TabIndex = 95
-        '
-        'Cbox1
-        '
-        Me.Cbox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
-        Me.Cbox1.FormattingEnabled = True
-        Me.Cbox1.Location = New System.Drawing.Point(13, 26)
-        Me.Cbox1.Name = "Cbox1"
-        Me.Cbox1.Size = New System.Drawing.Size(162, 20)
-        Me.Cbox1.TabIndex = 94
-        '
         'Timer7
         '
         Me.Timer7.Interval = 30000
@@ -2929,12 +2915,182 @@ Partial Class Form1
         Me.Label15.TabIndex = 292
         Me.Label15.Text = "Label15"
         '
+        'Button16
+        '
+        Me.Button16.Location = New System.Drawing.Point(251, 56)
+        Me.Button16.Name = "Button16"
+        Me.Button16.Size = New System.Drawing.Size(11, 11)
+        Me.Button16.TabIndex = 293
+        Me.Button16.Text = ">"
+        Me.Button16.UseVisualStyleBackColor = True
+        '
+        'Button17
+        '
+        Me.Button17.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button17.Location = New System.Drawing.Point(907, 34)
+        Me.Button17.Name = "Button17"
+        Me.Button17.Size = New System.Drawing.Size(56, 19)
+        Me.Button17.TabIndex = 294
+        Me.Button17.Text = "rune.csv"
+        Me.Button17.UseVisualStyleBackColor = True
+        '
+        'Button18
+        '
+        Me.Button18.Location = New System.Drawing.Point(760, 432)
+        Me.Button18.Name = "Button18"
+        Me.Button18.Size = New System.Drawing.Size(11, 11)
+        Me.Button18.TabIndex = 295
+        Me.Button18.Text = ">"
+        Me.Button18.UseVisualStyleBackColor = True
+        '
+        'Button19
+        '
+        Me.Button19.Location = New System.Drawing.Point(428, 54)
+        Me.Button19.Name = "Button19"
+        Me.Button19.Size = New System.Drawing.Size(11, 11)
+        Me.Button19.TabIndex = 296
+        Me.Button19.Text = ">"
+        Me.Button19.UseVisualStyleBackColor = True
+        '
+        'Label16
+        '
+        Me.Label16.ForeColor = System.Drawing.Color.White
+        Me.Label16.Location = New System.Drawing.Point(991, 530)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(88, 12)
+        Me.Label16.TabIndex = 297
+        Me.Label16.Text = "Label16"
+        '
+        'smsp2
+        '
+        Me.smsp2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.smsp2.FormattingEnabled = True
+        Me.smsp2.Location = New System.Drawing.Point(892, 420)
+        Me.smsp2.Name = "smsp2"
+        Me.smsp2.Size = New System.Drawing.Size(83, 20)
+        Me.smsp2.TabIndex = 96
+        '
+        'smsp1
+        '
+        Me.smsp1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.smsp1.FormattingEnabled = True
+        Me.smsp1.Location = New System.Drawing.Point(801, 420)
+        Me.smsp1.Name = "smsp1"
+        Me.smsp1.Size = New System.Drawing.Size(83, 20)
+        Me.smsp1.TabIndex = 95
+        '
+        'Cbox1
+        '
+        Me.Cbox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.Cbox1.FormattingEnabled = True
+        Me.Cbox1.Location = New System.Drawing.Point(13, 26)
+        Me.Cbox1.Name = "Cbox1"
+        Me.Cbox1.Size = New System.Drawing.Size(162, 20)
+        Me.Cbox1.TabIndex = 94
+        '
+        'Panel1
+        '
+        Me.Panel1.AutoSize = True
+        Me.Panel1.BackColor = System.Drawing.Color.Black
+        Me.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel1.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Panel1.Location = New System.Drawing.Point(10, 630)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(6)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(45, 45)
+        Me.Panel1.TabIndex = 298
+        '
+        'Panel2
+        '
+        Me.Panel2.AutoSize = True
+        Me.Panel2.BackColor = System.Drawing.Color.Black
+        Me.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel2.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Panel2.Location = New System.Drawing.Point(67, 630)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(6)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(45, 45)
+        Me.Panel2.TabIndex = 299
+        '
+        'Panel3
+        '
+        Me.Panel3.AutoSize = True
+        Me.Panel3.BackColor = System.Drawing.Color.Black
+        Me.Panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel3.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Panel3.Location = New System.Drawing.Point(124, 630)
+        Me.Panel3.Margin = New System.Windows.Forms.Padding(6)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(45, 45)
+        Me.Panel3.TabIndex = 300
+        '
+        'Panel4
+        '
+        Me.Panel4.AutoSize = True
+        Me.Panel4.BackColor = System.Drawing.Color.Black
+        Me.Panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel4.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Panel4.Location = New System.Drawing.Point(181, 630)
+        Me.Panel4.Margin = New System.Windows.Forms.Padding(6)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(45, 45)
+        Me.Panel4.TabIndex = 301
+        '
+        'Panel5
+        '
+        Me.Panel5.AutoSize = True
+        Me.Panel5.BackColor = System.Drawing.Color.Black
+        Me.Panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel5.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Panel5.Location = New System.Drawing.Point(238, 630)
+        Me.Panel5.Margin = New System.Windows.Forms.Padding(6)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(45, 45)
+        Me.Panel5.TabIndex = 302
+        '
+        'Panel6
+        '
+        Me.Panel6.AutoSize = True
+        Me.Panel6.BackColor = System.Drawing.Color.Black
+        Me.Panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel6.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Panel6.Location = New System.Drawing.Point(295, 630)
+        Me.Panel6.Margin = New System.Windows.Forms.Padding(6)
+        Me.Panel6.Name = "Panel6"
+        Me.Panel6.Size = New System.Drawing.Size(45, 45)
+        Me.Panel6.TabIndex = 303
+        '
+        'Panel7
+        '
+        Me.Panel7.AutoSize = True
+        Me.Panel7.BackColor = System.Drawing.Color.Black
+        Me.Panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.Panel7.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Panel7.Location = New System.Drawing.Point(352, 630)
+        Me.Panel7.Margin = New System.Windows.Forms.Padding(6)
+        Me.Panel7.Name = "Panel7"
+        Me.Panel7.Size = New System.Drawing.Size(45, 45)
+        Me.Panel7.TabIndex = 304
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Black
-        Me.ClientSize = New System.Drawing.Size(444, 381)
+        Me.ClientSize = New System.Drawing.Size(1445, 681)
+        Me.Controls.Add(Me.Panel7)
+        Me.Controls.Add(Me.Panel6)
+        Me.Controls.Add(Me.Panel5)
+        Me.Controls.Add(Me.Panel4)
+        Me.Controls.Add(Me.Panel3)
+        Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.Label16)
+        Me.Controls.Add(Me.Button19)
+        Me.Controls.Add(Me.Button18)
+        Me.Controls.Add(Me.Button17)
+        Me.Controls.Add(Me.Button16)
+        Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.Button15)
         Me.Controls.Add(Me.DataGridView2)
@@ -3116,7 +3272,6 @@ Partial Class Form1
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.TextBox4)
         Me.Controls.Add(Me.TextBox3)
-        Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.But1)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Panel18)
@@ -3130,7 +3285,7 @@ Partial Class Form1
         Me.MaximizeBox = False
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Chimamire"
+        Me.Text = "PonMi 20250924"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pa3.ResumeLayout(False)
         Me.Pa7.ResumeLayout(False)
@@ -3409,4 +3564,16 @@ Partial Class Form1
     Friend WithEvents DataGridView2 As DataGridView
     Friend WithEvents Button15 As Button
     Friend WithEvents Label15 As Label
+    Friend WithEvents Button16 As Button
+    Friend WithEvents Button17 As Button
+    Friend WithEvents Button18 As Button
+    Friend WithEvents Button19 As Button
+    Friend WithEvents Label16 As Label
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents Panel5 As Panel
+    Friend WithEvents Panel6 As Panel
+    Friend WithEvents Panel7 As Panel
 End Class

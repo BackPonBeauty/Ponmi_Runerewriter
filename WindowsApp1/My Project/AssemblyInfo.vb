@@ -8,14 +8,14 @@ Imports System.Runtime.InteropServices
 
 ' アセンブリ属性の値を確認します
 
-<Assembly: AssemblyTitle("WindowsApp1")>
-<Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("WindowsApp1")>
-<Assembly: AssemblyCopyright("Copyright ©  2018")>
-<Assembly: AssemblyTrademark("")>
+<Assembly: AssemblyTitle("PonMiRuneReWritter")>
+<Assembly: AssemblyDescription("ReWrite RunePages When Champion selected")>
+<Assembly: AssemblyCompany("PonMi")>
+<Assembly: AssemblyProduct("PonMiRuneReWritter")>
+<Assembly: AssemblyCopyright("Copyright ©  2018 - 2022")>
+<Assembly: AssemblyTrademark("PonMi")>
 
-<Assembly: ComVisible(False)>
+<Assembly: ComVisible(True)>
 
 'このプロジェクトが COM に公開される場合、次の GUID が typelib の ID になります
 <Assembly: Guid("b8488979-7b35-42ec-a53d-e6e6a991e982")>

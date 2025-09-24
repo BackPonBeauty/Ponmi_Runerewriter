@@ -60,20 +60,25 @@ Partial Class Form3
         Me.TextBox9 = New System.Windows.Forms.TextBox()
         Me.TextBox10 = New System.Windows.Forms.TextBox()
         Me.Timer5 = New System.Windows.Forms.Timer(Me.components)
+        Me.Button13 = New System.Windows.Forms.Button()
+        Me.end_timer = New System.Windows.Forms.Timer(Me.components)
+        Me.Button14 = New System.Windows.Forms.Button()
+        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Timer1
         '
-        Me.Timer1.Interval = 500
+        Me.Timer1.Interval = 1000
         '
         'Label1
         '
         Me.Label1.BackColor = System.Drawing.Color.Black
         Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(379, 1)
+        Me.Label1.Location = New System.Drawing.Point(472, 2)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(41, 25)
+        Me.Label1.Size = New System.Drawing.Size(33, 25)
         Me.Label1.TabIndex = 239
         Me.Label1.Text = "off"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -155,9 +160,9 @@ Partial Class Form3
         Me.scp.BackColor = System.Drawing.Color.Black
         Me.scp.Font = New System.Drawing.Font("Meiryo UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.scp.ForeColor = System.Drawing.Color.White
-        Me.scp.Location = New System.Drawing.Point(478, 4)
+        Me.scp.Location = New System.Drawing.Point(508, 2)
         Me.scp.Name = "scp"
-        Me.scp.Size = New System.Drawing.Size(62, 21)
+        Me.scp.Size = New System.Drawing.Size(38, 21)
         Me.scp.TabIndex = 272
         Me.scp.Text = "0"
         Me.scp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -189,10 +194,10 @@ Partial Class Form3
         Me.DataGridView1.BackgroundColor = System.Drawing.Color.Black
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.GridColor = System.Drawing.Color.Gray
-        Me.DataGridView1.Location = New System.Drawing.Point(8, 312)
+        Me.DataGridView1.Location = New System.Drawing.Point(16, 304)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowTemplate.Height = 21
-        Me.DataGridView1.Size = New System.Drawing.Size(548, 304)
+        Me.DataGridView1.Size = New System.Drawing.Size(264, 304)
         Me.DataGridView1.TabIndex = 274
         '
         'TextBox3
@@ -358,7 +363,7 @@ Partial Class Form3
         '
         'Button10
         '
-        Me.Button10.Location = New System.Drawing.Point(420, 2)
+        Me.Button10.Location = New System.Drawing.Point(420, -31)
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(24, 23)
         Me.Button10.TabIndex = 290
@@ -402,12 +407,49 @@ Partial Class Form3
         '
         Me.Timer5.Interval = 15000
         '
+        'Button13
+        '
+        Me.Button13.ForeColor = System.Drawing.Color.Black
+        Me.Button13.Location = New System.Drawing.Point(414, 0)
+        Me.Button13.Name = "Button13"
+        Me.Button13.Size = New System.Drawing.Size(58, 24)
+        Me.Button13.TabIndex = 295
+        Me.Button13.Text = "CLEAR"
+        Me.Button13.UseVisualStyleBackColor = True
+        '
+        'end_timer
+        '
+        Me.end_timer.Interval = 15000
+        '
+        'Button14
+        '
+        Me.Button14.ForeColor = System.Drawing.Color.Black
+        Me.Button14.Location = New System.Drawing.Point(381, 2)
+        Me.Button14.Name = "Button14"
+        Me.Button14.Size = New System.Drawing.Size(21, 24)
+        Me.Button14.TabIndex = 296
+        Me.Button14.UseVisualStyleBackColor = True
+        '
+        'DataGridView2
+        '
+        Me.DataGridView2.BackgroundColor = System.Drawing.Color.Black
+        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView2.GridColor = System.Drawing.Color.Gray
+        Me.DataGridView2.Location = New System.Drawing.Point(304, 304)
+        Me.DataGridView2.Name = "DataGridView2"
+        Me.DataGridView2.RowTemplate.Height = 21
+        Me.DataGridView2.Size = New System.Drawing.Size(264, 304)
+        Me.DataGridView2.TabIndex = 297
+        '
         'Form3
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Black
-        Me.ClientSize = New System.Drawing.Size(576, 297)
+        Me.ClientSize = New System.Drawing.Size(579, 297)
+        Me.Controls.Add(Me.DataGridView2)
+        Me.Controls.Add(Me.Button14)
+        Me.Controls.Add(Me.Button13)
         Me.Controls.Add(Me.TextBox10)
         Me.Controls.Add(Me.TextBox9)
         Me.Controls.Add(Me.Button12)
@@ -442,8 +484,9 @@ Partial Class Form3
         Me.Location = Global.WindowsApp1.My.MySettings.Default.meloc
         Me.Name = "Form3"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Form3"
+        Me.Text = "Announcer"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -486,4 +529,8 @@ Partial Class Form3
     Friend WithEvents TextBox9 As TextBox
     Friend WithEvents TextBox10 As TextBox
     Friend WithEvents Timer5 As Timer
+    Friend WithEvents Button13 As Button
+    Friend WithEvents end_timer As Timer
+    Friend WithEvents Button14 As Button
+    Friend WithEvents DataGridView2 As DataGridView
 End Class

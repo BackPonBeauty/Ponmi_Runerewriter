@@ -61,32 +61,12 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        '''</summary>
-        Friend ReadOnly Property gazou() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("gazou", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  (アイコン) に類似した型 System.Drawing.Icon のローカライズされたリソースを検索します。
         '''</summary>
         Friend ReadOnly Property icon() As System.Drawing.Icon
             Get
                 Dim obj As Object = ResourceManager.GetObject("icon", resourceCulture)
                 Return CType(obj,System.Drawing.Icon)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
-        '''</summary>
-        Friend ReadOnly Property Image1() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("Image1", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
     End Module

@@ -138,23 +138,12 @@ Partial Class Form2
         Me.Button1 = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.chm9 = New System.Windows.Forms.Panel()
-        Me.chm8 = New System.Windows.Forms.Panel()
-        Me.chm7 = New System.Windows.Forms.Panel()
-        Me.chm6 = New System.Windows.Forms.Panel()
-        Me.chm5 = New System.Windows.Forms.Panel()
-        Me.chm4 = New System.Windows.Forms.Panel()
-        Me.chm3 = New System.Windows.Forms.Panel()
-        Me.chm2 = New System.Windows.Forms.Panel()
-        Me.chm1 = New System.Windows.Forms.Panel()
-        Me.chm0 = New System.Windows.Forms.Panel()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.TextBox8 = New System.Windows.Forms.TextBox()
         Me.TextBox9 = New System.Windows.Forms.TextBox()
+        Me.TextBox10 = New System.Windows.Forms.TextBox()
         Me.Pa7.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Pa7
@@ -1242,59 +1231,59 @@ Partial Class Form2
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(254, 317)
+        Me.TextBox1.Location = New System.Drawing.Point(126, 289)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(100, 19)
         Me.TextBox1.TabIndex = 7
-        Me.TextBox1.Text = "1052"
+        Me.TextBox1.Text = "3137"
         '
         'TextBox2
         '
-        Me.TextBox2.Location = New System.Drawing.Point(148, 317)
+        Me.TextBox2.Location = New System.Drawing.Point(232, 289)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(100, 19)
         Me.TextBox2.TabIndex = 6
-        Me.TextBox2.Text = "1026"
+        Me.TextBox2.Text = "3040"
         '
         'TextBox3
         '
-        Me.TextBox3.Location = New System.Drawing.Point(42, 317)
+        Me.TextBox3.Location = New System.Drawing.Point(20, 314)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(100, 19)
         Me.TextBox3.TabIndex = 5
-        Me.TextBox3.Text = "1018"
+        Me.TextBox3.Text = "6653"
         '
         'TextBox4
         '
-        Me.TextBox4.Location = New System.Drawing.Point(360, 292)
+        Me.TextBox4.Location = New System.Drawing.Point(126, 314)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(100, 19)
         Me.TextBox4.TabIndex = 4
-        Me.TextBox4.Text = "2052"
+        Me.TextBox4.Text = "3158"
         '
         'TextBox5
         '
-        Me.TextBox5.Location = New System.Drawing.Point(254, 292)
+        Me.TextBox5.Location = New System.Drawing.Point(232, 314)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(100, 19)
         Me.TextBox5.TabIndex = 3
-        Me.TextBox5.Text = "3802"
+        Me.TextBox5.Text = "4646"
         '
         'TextBox6
         '
-        Me.TextBox6.Location = New System.Drawing.Point(148, 292)
+        Me.TextBox6.Location = New System.Drawing.Point(338, 289)
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.Size = New System.Drawing.Size(100, 19)
         Me.TextBox6.TabIndex = 2
-        Me.TextBox6.Text = "1004"
+        Me.TextBox6.Text = "2052"
         '
         'TextBox0
         '
-        Me.TextBox0.Location = New System.Drawing.Point(42, 292)
+        Me.TextBox0.Location = New System.Drawing.Point(20, 289)
         Me.TextBox0.Name = "TextBox0"
         Me.TextBox0.Size = New System.Drawing.Size(100, 19)
         Me.TextBox0.TabIndex = 1
-        Me.TextBox0.Text = "3070"
+        Me.TextBox0.Text = "3118"
         '
         'TextBox7
         '
@@ -1316,132 +1305,25 @@ Partial Class Form2
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(1348, 457)
+        Me.DataGridView1.Location = New System.Drawing.Point(840, 200)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowTemplate.Height = 21
-        Me.DataGridView1.Size = New System.Drawing.Size(240, 150)
+        Me.DataGridView1.Size = New System.Drawing.Size(384, 175)
         Me.DataGridView1.TabIndex = 242
         '
         'Label2
         '
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(919, 119)
+        Me.Label2.Location = New System.Drawing.Point(918, 537)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(120, 26)
         Me.Label2.TabIndex = 243
         Me.Label2.Text = "0"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Panel1
-        '
-        Me.Panel1.Controls.Add(Me.chm9)
-        Me.Panel1.Controls.Add(Me.chm8)
-        Me.Panel1.Controls.Add(Me.chm7)
-        Me.Panel1.Controls.Add(Me.chm6)
-        Me.Panel1.Controls.Add(Me.chm5)
-        Me.Panel1.Controls.Add(Me.chm4)
-        Me.Panel1.Controls.Add(Me.chm3)
-        Me.Panel1.Controls.Add(Me.chm2)
-        Me.Panel1.Controls.Add(Me.chm1)
-        Me.Panel1.Controls.Add(Me.chm0)
-        Me.Panel1.Location = New System.Drawing.Point(118, 421)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1197, 366)
-        Me.Panel1.TabIndex = 244
-        '
-        'chm9
-        '
-        Me.chm9.BackgroundImage = CType(resources.GetObject("chm9.BackgroundImage"), System.Drawing.Image)
-        Me.chm9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.chm9.Location = New System.Drawing.Point(1083, 3)
-        Me.chm9.Name = "chm9"
-        Me.chm9.Size = New System.Drawing.Size(100, 200)
-        Me.chm9.TabIndex = 284
-        '
-        'chm8
-        '
-        Me.chm8.BackgroundImage = CType(resources.GetObject("chm8.BackgroundImage"), System.Drawing.Image)
-        Me.chm8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.chm8.Location = New System.Drawing.Point(977, 3)
-        Me.chm8.Name = "chm8"
-        Me.chm8.Size = New System.Drawing.Size(100, 200)
-        Me.chm8.TabIndex = 283
-        '
-        'chm7
-        '
-        Me.chm7.BackgroundImage = CType(resources.GetObject("chm7.BackgroundImage"), System.Drawing.Image)
-        Me.chm7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.chm7.Location = New System.Drawing.Point(871, 3)
-        Me.chm7.Name = "chm7"
-        Me.chm7.Size = New System.Drawing.Size(100, 200)
-        Me.chm7.TabIndex = 282
-        '
-        'chm6
-        '
-        Me.chm6.BackgroundImage = CType(resources.GetObject("chm6.BackgroundImage"), System.Drawing.Image)
-        Me.chm6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.chm6.Location = New System.Drawing.Point(765, 3)
-        Me.chm6.Name = "chm6"
-        Me.chm6.Size = New System.Drawing.Size(100, 200)
-        Me.chm6.TabIndex = 281
-        '
-        'chm5
-        '
-        Me.chm5.BackgroundImage = CType(resources.GetObject("chm5.BackgroundImage"), System.Drawing.Image)
-        Me.chm5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.chm5.Location = New System.Drawing.Point(659, 3)
-        Me.chm5.Name = "chm5"
-        Me.chm5.Size = New System.Drawing.Size(100, 200)
-        Me.chm5.TabIndex = 280
-        '
-        'chm4
-        '
-        Me.chm4.BackgroundImage = CType(resources.GetObject("chm4.BackgroundImage"), System.Drawing.Image)
-        Me.chm4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.chm4.Location = New System.Drawing.Point(433, 3)
-        Me.chm4.Name = "chm4"
-        Me.chm4.Size = New System.Drawing.Size(100, 200)
-        Me.chm4.TabIndex = 278
-        '
-        'chm3
-        '
-        Me.chm3.BackgroundImage = CType(resources.GetObject("chm3.BackgroundImage"), System.Drawing.Image)
-        Me.chm3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.chm3.Location = New System.Drawing.Point(327, 3)
-        Me.chm3.Name = "chm3"
-        Me.chm3.Size = New System.Drawing.Size(100, 200)
-        Me.chm3.TabIndex = 279
-        '
-        'chm2
-        '
-        Me.chm2.BackgroundImage = CType(resources.GetObject("chm2.BackgroundImage"), System.Drawing.Image)
-        Me.chm2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.chm2.Location = New System.Drawing.Point(221, 3)
-        Me.chm2.Name = "chm2"
-        Me.chm2.Size = New System.Drawing.Size(100, 200)
-        Me.chm2.TabIndex = 278
-        '
-        'chm1
-        '
-        Me.chm1.BackgroundImage = CType(resources.GetObject("chm1.BackgroundImage"), System.Drawing.Image)
-        Me.chm1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.chm1.Location = New System.Drawing.Point(115, 3)
-        Me.chm1.Name = "chm1"
-        Me.chm1.Size = New System.Drawing.Size(100, 200)
-        Me.chm1.TabIndex = 278
-        '
-        'chm0
-        '
-        Me.chm0.BackgroundImage = CType(resources.GetObject("chm0.BackgroundImage"), System.Drawing.Image)
-        Me.chm0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.chm0.Location = New System.Drawing.Point(9, 3)
-        Me.chm0.Name = "chm0"
-        Me.chm0.Size = New System.Drawing.Size(100, 200)
-        Me.chm0.TabIndex = 277
-        '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(850, 250)
+        Me.Button2.Location = New System.Drawing.Point(1050, 551)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 248
@@ -1450,7 +1332,7 @@ Partial Class Form2
         '
         'TextBox8
         '
-        Me.TextBox8.Location = New System.Drawing.Point(393, 338)
+        Me.TextBox8.Location = New System.Drawing.Point(371, 335)
         Me.TextBox8.Name = "TextBox8"
         Me.TextBox8.Size = New System.Drawing.Size(100, 19)
         Me.TextBox8.TabIndex = 249
@@ -1458,22 +1340,30 @@ Partial Class Form2
         '
         'TextBox9
         '
-        Me.TextBox9.Location = New System.Drawing.Point(499, 338)
+        Me.TextBox9.Location = New System.Drawing.Point(477, 335)
         Me.TextBox9.Name = "TextBox9"
         Me.TextBox9.Size = New System.Drawing.Size(100, 19)
         Me.TextBox9.TabIndex = 250
         Me.TextBox9.Text = "32"
+        '
+        'TextBox10
+        '
+        Me.TextBox10.Location = New System.Drawing.Point(843, 31)
+        Me.TextBox10.Multiline = True
+        Me.TextBox10.Name = "TextBox10"
+        Me.TextBox10.Size = New System.Drawing.Size(378, 153)
+        Me.TextBox10.TabIndex = 261
         '
         'Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.Black
-        Me.ClientSize = New System.Drawing.Size(733, 261)
+        Me.ClientSize = New System.Drawing.Size(733, 258)
+        Me.Controls.Add(Me.TextBox10)
         Me.Controls.Add(Me.TextBox9)
         Me.Controls.Add(Me.TextBox8)
         Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Pa7)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.DataGridView1)
@@ -1494,7 +1384,6 @@ Partial Class Form2
         Me.Text = "items"
         Me.Pa7.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1614,18 +1503,8 @@ Partial Class Form2
     Friend WithEvents sc2 As Label
     Friend WithEvents sc1 As Label
     Friend WithEvents sc0 As Label
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents chm9 As Panel
-    Friend WithEvents chm8 As Panel
-    Friend WithEvents chm7 As Panel
-    Friend WithEvents chm6 As Panel
-    Friend WithEvents chm5 As Panel
-    Friend WithEvents chm4 As Panel
-    Friend WithEvents chm3 As Panel
-    Friend WithEvents chm2 As Panel
-    Friend WithEvents chm1 As Panel
-    Friend WithEvents chm0 As Panel
     Friend WithEvents Button2 As Button
     Friend WithEvents TextBox8 As TextBox
     Friend WithEvents TextBox9 As TextBox
+    Friend WithEvents TextBox10 As TextBox
 End Class

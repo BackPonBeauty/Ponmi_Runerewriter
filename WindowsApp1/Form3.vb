@@ -1,29 +1,13 @@
 ﻿Option Strict Off
-Imports System.Text
-Imports System.IO
+
 Imports System.Net
-Imports System.Runtime.Serialization.Json
+
 Imports Newtonsoft.Json
-Imports System.Linq
-Imports System.Text.RegularExpressions
-Imports Newtonsoft.Json.Linq
+
 Imports System.Runtime.InteropServices
-Imports System
-Imports System.Collections.Generic
-Imports System.ComponentModel
-Imports System.Data
-Imports System.Diagnostics
-Imports System.Drawing
-Imports System.Threading.Tasks
-Imports System.Security.Principal
-Imports System.Windows.Forms
+
 Imports EasyHttp.Http
-Imports System.Management
-Imports JsonFx.Json
-Imports System.Security.Permissions
-Imports System.Threading
-Imports System.Drawing.Imaging
-Imports Microsoft.DirectX.DirectSound
+
 
 Public Class Form3
     Dim one As Boolean = False
@@ -34,6 +18,7 @@ Public Class Form3
     Public Shared http As HttpClient
     'Dim blue As String = My.Settings("Blue")
     Public syain As New DataTable
+    Public syain2 As New DataTable
     Dim siz As Integer = 24
     Dim sizz As Integer = 16
     Dim blue As Color = Color.Cyan
@@ -74,13 +59,17 @@ Public Class Form3
         SendMessage(RichTextBox1.Handle, EM_GETSCROLLPOS, 0, pt)
     End Sub
 
-    Dim currentchamp As String = "背中ポン美"
+    Dim currentSummoner As String = "背中ポン美"
 
     Private Sub Form3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         syain.Columns.Add("chmname")
         syain.Columns.Add("sumname")
         syain.Columns.Add("team")
         syain.Columns.Add("killstreak")
+        syain2.Columns.Add("chmname")
+        syain2.Columns.Add("sumname")
+        syain2.Columns.Add("team")
+        syain2.Columns.Add("killstreak")
         'syain.Rows.Add("Ahri", "TheBaconProphet", "ORDER")
         'syain.Rows.Add("Samira", "夜来香", "ORDER")
         'syain.Rows.Add("Kennen", "Humanoid Typhoon", "ORDER")
@@ -91,19 +80,23 @@ Public Class Form3
         'syain.Rows.Add("Akali", "menma0220", "CHOS")
         'syain.Rows.Add("Alistar", "mamezaru", "CHOS")
         'syain.Rows.Add("Rakan", "jubia63", "CHOS")
-        syain.Rows.Add("Ahri", "Arinko", "ORDER", 0)
-        syain.Rows.Add("Samira", "背中ポン美", "ORDER", 0)
-        syain.Rows.Add("Kennen", "Humanoid Typhoon", "ORDER", 0)
-        syain.Rows.Add("Taric", "KIIHR", "ORDER", 0)
-        syain.Rows.Add("Soraka", "masyumaro15", "ORDER", 0)
-        syain.Rows.Add("Ziggs", "くず入れ", "CHAOS", 0)
-        syain.Rows.Add("Vayne", "ritsuko1111", "CHAOS", 0)
-        syain.Rows.Add("Akali", "menma0220", "CHAOS", 0)
-        syain.Rows.Add("Alistar", "mamezaru", "CHAOS", 0)
-        syain.Rows.Add("Rakan", "jubia63", "CHAOS", 0)
+        'syain.Rows.Add("Ahri", "Arinko", "ORDER", 0)
+        'syain.Rows.Add("Samira", "背中ポン美", "ORDER", 0)
+        'syain.Rows.Add("Kennen", "Humanoid Typhoon", "ORDER", 0)
+        'syain.Rows.Add("Taric", "KIIHR", "ORDER", 0)
+        'syain.Rows.Add("Soraka", "masyumaro15", "ORDER", 0)
+        'syain.Rows.Add("Ziggs", "くず入れ", "CHAOS", 0)
+        'syain.Rows.Add("Vayne", "ritsuko1111", "CHAOS", 0)
+        'syain.Rows.Add("Akali", "menma0220", "CHAOS", 0)
+        'syain.Rows.Add("Alistar", "mamezaru", "CHAOS", 0)
+        'syain.Rows.Add("Rakan", "jubia63", "CHAOS", 0)
         DataGridView1.DataSource = syain
         DataGridView1.DefaultCellStyle.BackColor = Color.Black
-        currentchamp = Form1.TextBox2.Text
+        DataGridView2.DataSource = syain2
+        DataGridView2.DefaultCellStyle.BackColor = Color.Black
+        Dim sname5() As String = Form1.TextBox5.Text.Split("#")
+        currentSummoner = sname5(0)
+        'Console.WriteLine("currentSummoner ::::::::::: " & currentSummoner)
         patch = Form1.Label1.Text
     End Sub
 
@@ -145,9 +138,9 @@ Public Class Form3
                         Dim assChamp As New List(Of String)
                         Dim aaa As Integer = 0
                         For Each Assi In grid.Events(nnn).Assisters
-                            Assisterse.Add(grid.Events(nnn).Assisters(aaa))
+                            Assisterse.Add(grid.Events(nnn).Assisters(aaa).Replace(Chr(13), "").Replace(Chr(10), ""))
                             Dim d0 As DataRow()
-                            d0 = syain.Select("sumname = '" + Assisterse(aaa) + "'")
+                            d0 = syain2.Select("sumname = '" + Assisterse(aaa).Replace(Chr(13), "").Replace(Chr(10), "") + "'")
                             For Each d As DataRow In d0
                                 assChamp.Add(d("chmname").ToString)
                             Next
@@ -155,21 +148,23 @@ Public Class Form3
                         Next
 
                         Dim killername As String = grid.Events(nnn).KillerName
+                        killername = killername.Replace(Chr(13), "").Replace(Chr(10), "")
                         Dim d1 As DataRow()
-                        d1 = syain.Select("sumname = '" + killername + "'")
+                        d1 = syain2.Select("sumname = '" + killername + "'")
                         Dim killerChamp As String = "Minion"
                         For Each d As DataRow In d1
                             killerChamp = d("chmname").ToString
                         Next
                         Dim vicname As String = grid.Events(nnn).VictimName
+                        vicname = vicname.Replace(Chr(13), "").Replace(Chr(10), "")
                         Dim d2 As DataRow()
-                        d2 = syain.Select("sumname = '" + vicname + "'")
+                        d2 = syain2.Select("sumname = '" + vicname + "'")
                         Dim VicChamp As String = "Minion"
                         For Each d As DataRow In d2
                             VicChamp = d("chmname").ToString
                         Next
                         Dim d3 As DataRow()
-                        d3 = syain.Select("sumname = '" + killername + "'")
+                        d3 = syain2.Select("sumname = '" + killername + "'")
                         Dim Team As String = "Minion"
                         For Each d As DataRow In d3
                             Team = d("team").ToString
@@ -296,6 +291,7 @@ Public Class Form3
                     ElseIf ename = "Multikill" Then
                         yy -= 1
                         Dim killername As String = grid.Events(nnn).KillerName
+                        killername = killername.Replace(Chr(13), "").Replace(Chr(10), "")
                         Dim KillStreak As String = grid.Events(nnn).KillStreak
                         Dim killstreakM As String = ""
                         Dim cor As Color = Color.Blue
@@ -317,7 +313,7 @@ Public Class Form3
                         End If
 
                         Dim d3 As DataRow()
-                        d3 = syain.Select("sumname = '" + killername + "'")
+                        d3 = syain2.Select("sumname = '" + killername + "'")
                         Dim Team As String = "Minion"
                         For Each d As DataRow In d3
                             Team = d("team").ToString
@@ -341,8 +337,9 @@ Public Class Form3
                     ElseIf ename = "FirstBlood" Then
                         yy -= 1
                         Dim killername As String = grid.Events(nnn).Recipient
+                        killername = killername.Replace(Chr(13), "").Replace(Chr(10), "")
                         Dim d3 As DataRow()
-                        d3 = syain.Select("sumname = '" + killername + "'")
+                        d3 = syain2.Select("sumname = '" + killername + "'")
                         Dim Team As String = "Minion"
                         For Each d As DataRow In d3
                             Team = d("team").ToString
@@ -359,8 +356,9 @@ Public Class Form3
                         yy -= 1
                         score -= 1
                         Dim killername As String = grid.Events(nnn).Acer
+                        killername = killername.Replace(Chr(13), "").Replace(Chr(10), "")
                         Dim d3 As DataRow()
-                        d3 = syain.Select("sumname = '" + killername + "'")
+                        d3 = syain2.Select("sumname = '" + killername + "'")
                         Dim Team As String = "Minion"
                         For Each d As DataRow In d3
                             Team = d("team").ToString
@@ -376,14 +374,15 @@ Public Class Form3
                         End If
                     ElseIf ename = "InhibKilled" Then
                         Dim inhib_bin As String = grid.Events(nnn).InhibKilled
-                        Dim inhib As String = inhib_bin.Substring(10, 1)
+                        'Inhib_TOrder_L1_P1_196971597
+                        Dim inhib As String = inhib_bin.Substring(7, 1)
                         Dim Assisterse As New List(Of String)
                         Dim assChamp As New List(Of String)
                         Dim aaa As Integer = 0
                         For Each Assi In grid.Events(nnn).Assisters
-                            Assisterse.Add(grid.Events(nnn).Assisters(aaa))
+                            Assisterse.Add(grid.Events(nnn).Assisters(aaa).Replace(Chr(13), "").Replace(Chr(10), ""))
                             Dim d0 As DataRow()
-                            d0 = syain.Select("sumname = '" + Assisterse(aaa) + "'")
+                            d0 = syain2.Select("sumname = '" + Assisterse(aaa).Replace(Chr(13), "").Replace(Chr(10), "") + "'")
                             For Each d As DataRow In d0
                                 assChamp.Add(d("chmname").ToString)
                             Next
@@ -398,84 +397,105 @@ Public Class Form3
                         '        inhib = inhib_bin
                         'End Select
                         Dim killername As String = grid.Events(nnn).KillerName
+                        killername = killername.Replace(Chr(13), "").Replace(Chr(10), "")
                         Dim d1 As DataRow()
-                        d1 = syain.Select("sumname = '" + killername + "'")
+                        d1 = syain2.Select("sumname = '" + killername + "'")
                         Dim killerChamp As String = "Minion"
                         For Each d As DataRow In d1
                             killerChamp = d("chmname").ToString
                         Next
                         Dim d3 As DataRow()
-                        d3 = syain.Select("sumname = '" + killername + "'")
+                        d3 = syain2.Select("sumname = '" + killername + "'")
                         Dim Team As String = "Minion"
                         For Each d As DataRow In d3
                             Team = d("team").ToString
                         Next
                         Dim Turret_s As String = "Minion"
 
-                        If inhib = "1" Then
-                            Turret_s = "CHAOS"
-                        Else
+                        'If inhib = "C" Then
+                        '    Turret_s = "CHAOS"
+                        'Else
+                        '    Turret_s = "ORDER"
+                        'End If
+
+                        If inhib = "C" Then
                             Turret_s = "ORDER"
+                        Else
+                            Turret_s = "CHAOS"
                         End If
+
+             
+
                         ik(etime, Team, killername, killerChamp, Turret_s, Assisterse, assChamp)
                         TextBox9.AppendText(etime & "," & inhib & "," & Team & "," & killername & "," & killerChamp & "," & Turret_s)
 
 
                     ElseIf ename = "TurretKilled" Then
                         Dim turret_bin As String = grid.Events(nnn).TurretKilled
-                        Dim turret As String = turret_bin.Substring(8, 1)
-                        Dim Assisterse As New List(Of String)
-                        Dim assChamp As New List(Of String)
-                        Dim aaa As Integer = 0
-                        For Each Assi In grid.Events(nnn).Assisters
-                            Assisterse.Add(grid.Events(nnn).Assisters(aaa))
-                            Dim d0 As DataRow()
-                            d0 = syain.Select("sumname = '" + Assisterse(aaa) + "'")
-                            For Each d As DataRow In d0
-                                assChamp.Add(d("chmname").ToString)
-                            Next
-                            aaa += 1
-                        Next
                         Dim killername As String = grid.Events(nnn).KillerName
-                        Dim d1 As DataRow()
-                        d1 = syain.Select("sumname = '" + killername + "'")
-                        Dim killerChamp As String = "Minion"
-                        For Each d As DataRow In d1
-                            killerChamp = d("chmname").ToString
-                        Next
-                        Dim d3 As DataRow()
-                        d3 = syain.Select("sumname = '" + killername + "'")
-                        Dim Team As String = "Minion"
-                        For Each d As DataRow In d3
-                            Team = d("team").ToString
-                        Next
-                        Dim Turret_s As String = "Minion"
-                        If turret = "1" Then
-                            Turret_s = "CHAOS"
+                        killername = killername.Replace(Chr(13), "").Replace(Chr(10), "")
+                        If turret_bin <> "Obelisk" And killername <> "Obelisk" Then
+                            'Turret_TChaos_L1_P3_671196429
+                            Dim turret As String = turret_bin.Substring(8, 1)
+                            Dim Assisterse As New List(Of String)
+                            Dim assChamp As New List(Of String)
+                            Dim aaa As Integer = 0
+                            For Each Assi In grid.Events(nnn).Assisters
+                                Assisterse.Add(grid.Events(nnn).Assisters(aaa).Replace(Chr(13), "").Replace(Chr(10), ""))
+                                Dim d0 As DataRow()
+                                d0 = syain2.Select("sumname = '" + Assisterse(aaa).Replace(Chr(13), "").Replace(Chr(10), "") + "'")
+                                For Each d As DataRow In d0
+                                    assChamp.Add(d("chmname").ToString)
+                                Next
+                                aaa += 1
+                            Next
+                            'Dim killername As String = grid.Events(nnn).KillerName
+                            Dim d1 As DataRow()
+                            d1 = syain2.Select("sumname = '" + killername + "'")
+                            Dim killerChamp As String = "Minion"
+                            For Each d As DataRow In d1
+                                killerChamp = d("chmname").ToString
+                            Next
+                            Dim d3 As DataRow()
+                            d3 = syain2.Select("sumname = '" + killername + "'")
+                            Dim Team As String = "Minion"
+                            For Each d As DataRow In d3
+                                Team = d("team").ToString
+                            Next
+                            Dim Turret_s As String = "Minion"
+                            If turret = "C" Then
+                                Turret_s = "ORDER"
+                            Else
+                                Turret_s = "CHAOS"
+                            End If
+                            'If turret = "O" Then
+                            '    If myteam = "CHAOS" Then
+                            '        Turret_s = "CHAOS"
+                            '    Else
+                            '        Turret_s = "ORDER"
+                            '    End If
+                            'Else
+                            '    If myteam = "CHAOS" Then
+                            '        Turret_s = "ORDER"
+                            '    Else
+                            '        Turret_s = "CHAOS"
+                            '    End If
+                            'End If
+                            tk(etime, Team, killername, killerChamp, Turret_s, Assisterse, assChamp)
+                            TextBox9.AppendText(etime & "," & turret & "," & Team & "," & killername & "," & killerChamp & "," & Turret_s)
                         Else
-                            Turret_s = "ORDER"
+                            'TextBox9.AppendText("!!!!!!!!!!!!!!!!break")
+                            'nns += 1
+                            yy -= 1
                         End If
-                        'If turret = "1" Then
-                        '    If myteam = "CHAOS" Then
-                        '        Turret_s = "ORDER"
-                        '    Else
-                        '        Turret_s = "CHAOS"
-                        '    End If
-                        'Else
-                        '    If myteam = "ORDER" Then
-                        '        Turret_s = "CHAOS"
-                        '    Else
-                        '        Turret_s = "ORDER"
-                        '    End If
-                        'End If
-                        tk(etime, Team, killername, killerChamp, Turret_s, Assisterse, assChamp)
-                        TextBox9.AppendText(etime & "," & turret & "," & Team & "," & killername & "," & killerChamp & "," & Turret_s)
+
                     ElseIf ename = "FirstBrick" Then
                         yy -= 1
                         score -= 1
                         Dim killername As String = grid.Events(nnn).KillerName
+                        killername = killername.Replace(Chr(13), "").Replace(Chr(10), "")
                         Dim d3 As DataRow()
-                        d3 = syain.Select("sumname = '" + killername + "'")
+                        d3 = syain2.Select("sumname = '" + killername + "'")
                         Dim Team As String = "Minion"
                         For Each d As DataRow In d3
                             Team = d("team").ToString
@@ -598,9 +618,9 @@ Public Class Form3
                         Dim assChamp As New List(Of String)
                         Dim aaa As Integer = 0
                         For Each Assi In grid.Events(nnn).Assisters
-                            Assisterse.Add(grid.Events(nnn).Assisters(aaa))
+                            Assisterse.Add(grid.Events(nnn).Assisters(aaa).Replace(Chr(13), "").Replace(Chr(10), ""))
                             Dim d0 As DataRow()
-                            d0 = syain.Select("sumname = '" + Assisterse(aaa) + "'")
+                            d0 = syain2.Select("sumname = '" + Assisterse(aaa).Replace(Chr(13), "").Replace(Chr(10), "") + "'")
                             For Each d As DataRow In d0
                                 assChamp.Add(d("chmname").ToString)
                             Next
@@ -608,14 +628,14 @@ Public Class Form3
                         Next
                         Dim killername As String = grid.Events(nnn).KillerName
                         Dim d1 As DataRow()
-                        d1 = syain.Select("sumname = '" + killername + "'")
+                        d1 = syain2.Select("sumname = '" + killername + "'")
                         Dim killerChamp As String = "Minion"
                         For Each d As DataRow In d1
                             killerChamp = d("chmname").ToString
                         Next
                         Dim vicname As String = grid.Events(nnn).VictimName
                         Dim d2 As DataRow()
-                        d2 = syain.Select("sumname = '" + vicname + "'")
+                        d2 = syain2.Select("sumname = '" + vicname + "'")
                         Dim VicChamp As String = "Minion"
                         Dim killcount As Integer
                         For Each d As DataRow In d2
@@ -624,7 +644,7 @@ Public Class Form3
                             d("killstreak") = 0
                         Next
                         Dim d3 As DataRow()
-                        d3 = syain.Select("sumname = '" + killername + "'")
+                        d3 = syain2.Select("sumname = '" + killername + "'")
                         Dim Team As String = "Minion"
                         Dim KillStreak As Integer
                         For Each d As DataRow In d3
@@ -633,14 +653,15 @@ Public Class Form3
                             KillStreak = d("killstreak")
                         Next
                         Dim d4 As DataRow()
-                        d4 = syain.Select("sumname = '" + vicname + "'")
+                        d4 = syain2.Select("sumname = '" + vicname + "'")
                         Dim vicTeam As String = "Minion"
                         For Each d As DataRow In d4
                             vicTeam = d("team").ToString
                         Next
+                        'Console.WriteLine(etime & "," & ename & "," & killername & "," & vicname & "," & Team & "," & vicTeam & "," & KillStreak)
                         If Team = "Minion" And Assisterse.Count = 0 Then
                             Dim Rnd As Integer = r.Next(1, 4)
-                            If vicname = currentchamp Then
+                            If vicname = currentSummoner Then
                                 TextBox2.AppendText(etime & "," & "Executed" & "," & "0" & "," & vicname & "," & Team & "," & 0 & "," & Rnd)
                                 TextsChanged(False)
                                 If vicTeam = myteam And Rnd = 2 Then
@@ -651,7 +672,7 @@ Public Class Form3
                             End If
 
                         Else
-                            If vicname = currentchamp Then
+                            If vicname = currentSummoner Then
                                 Dim Rnd As Integer = r.Next(1, 3)
                                 TextBox2.AppendText(etime & "," & "dead" & "," & "0" & "," & vicname & "," & Team & "," & 0 & "," & Rnd)
                                 TextsChanged(False)
@@ -660,8 +681,8 @@ Public Class Form3
                                 TextsChanged(True)
                             Else
                                 '###################################20221113#############################
-                                'If TextBox3.Lines.Length < 1 Or KillStreak > 2 Or Team = "teemo" Then
-                                If KillStreak > 2 Or Team = "teemo" Then
+                                If TextBox3.Lines.Length < 1 Or KillStreak > 2 Or Team = "teemo" Then
+                                    'If KillStreak > 2 Or Team = "teemo" Then
                                     Dim Rnd As Integer = r.Next(1, 4)
                                     If KillStreak < 3 Then
                                         TextBox2.AppendText(etime & "," & ename & "," & killername & "," & vicname & "," & Team & "," & KillStreak & "," & Rnd)
@@ -672,7 +693,7 @@ Public Class Form3
                                             Select Case Team
                                                 Case myteam
                                                     Select Case killername
-                                                        Case currentchamp
+                                                        Case currentSummoner
                                                             Rnd = r.Next(1, 8)
                                                             TextBox2.AppendText(etime & "," & "youhaveslayenemy1C" & "," & killername & vicname & "," & "," & Team & "," & KillStreak & "," & Rnd)
                                                             TextsChanged(True)
@@ -691,7 +712,7 @@ Public Class Form3
                                             Select Case Team
                                                 Case myteam
                                                     Select Case killername
-                                                        Case currentchamp ' me
+                                                        Case currentSummoner ' me
                                                             TextBox2.AppendText(etime & "," & "youkillstreak" & "," & killername & vicname & "," & "," & Team & "," & 3 & "," & 1)
                                                             TextsChanged(False)
                                                             Rnd = r.Next(1, 4)
@@ -717,7 +738,7 @@ Public Class Form3
                                             Select Case Team
                                                 Case myteam
                                                     Select Case killername
-                                                        Case currentchamp ' me
+                                                        Case currentSummoner ' me
                                                             TextBox2.AppendText(etime & "," & "youkillstreak" & "," & killername & vicname & "," & "," & Team & "," & 4 & "," & 1)
                                                             TextsChanged(False)
                                                             Rnd = r.Next(1, 4)
@@ -743,7 +764,7 @@ Public Class Form3
                                             Select Case Team
                                                 Case myteam
                                                     Select Case killername
-                                                        Case currentchamp ' me
+                                                        Case currentSummoner ' me
                                                             TextBox2.AppendText(etime & "," & "youkillstreak" & "," & killername & vicname & "," & "," & Team & "," & 5 & "," & 1)
                                                             TextsChanged(False)
                                                             Rnd = r.Next(1, 4)
@@ -769,7 +790,7 @@ Public Class Form3
                                             Select Case Team
                                                 Case myteam
                                                     Select Case killername
-                                                        Case currentchamp ' me
+                                                        Case currentSummoner ' me
                                                             TextBox2.AppendText(etime & "," & "youkillstreak" & "," & killername & vicname & "," & "," & Team & "," & 6 & "," & 1)
                                                             TextsChanged(False)
                                                             Rnd = r.Next(1, 4)
@@ -795,7 +816,7 @@ Public Class Form3
                                             Select Case Team
                                                 Case myteam
                                                     Select Case killername
-                                                        Case currentchamp ' me
+                                                        Case currentSummoner ' me
                                                             TextBox2.AppendText(etime & "," & "youkillstreak" & "," & killername & vicname & "," & "," & Team & "," & 7 & "," & 1)
                                                             TextsChanged(False)
                                                             Rnd = r.Next(1, 4)
@@ -821,7 +842,7 @@ Public Class Form3
                                             Select Case Team
                                                 Case myteam
                                                     Select Case killername
-                                                        Case currentchamp ' me
+                                                        Case currentSummoner ' me
                                                             TextBox2.AppendText(etime & "," & "youkillstreak" & "," & killername & vicname & "," & "," & Team & "," & 8 & "," & 1)
                                                             TextsChanged(False)
                                                             Rnd = r.Next(1, 9)
@@ -871,7 +892,7 @@ Public Class Form3
                         Dim killstreakM As String = ""
 
                         Dim d3 As DataRow()
-                        d3 = syain.Select("sumname = '" + killername + "'")
+                        d3 = syain2.Select("sumname = '" + killername + "'")
                         Dim Team As String = "Minion"
                         For Each d As DataRow In d3
                             Team = d("team").ToString
@@ -952,12 +973,14 @@ Public Class Form3
                     If ename = "InhibKilled" Then
                         Dim killername As String = grid.Events(nnn).KillerName
                         Dim turret_bin As String = grid.Events(nnn).InhibKilled
-                        Dim turret As String = turret_bin.Substring(10, 1)
+                        Dim turret As String = turret_bin.Substring(7, 1)
                         Dim team As String = "ORDER"
-                        If turret = "1" Then
-                            team = "ORDER"
+                        TextBox2.AppendText("### myteam : " & myteam & " / turret : " & turret_bin & ":" & turret & vbCrLf)
+
+                        If turret = "C" Then
+                            team = "CHAOS" 'ORDER
                         Else
-                            team = "CHAOS"
+                            team = "ORDER"
                         End If
                         Dim Rnd As Integer = r.Next(1, 3)
                         If team = myteam Then
@@ -971,12 +994,13 @@ Public Class Form3
 
                     If ename = "InhibRespawned" Then
                         Dim turret_bin As String = grid.Events(nnn).InhibRespawned
-                        Dim turret As String = turret_bin.Substring(10, 1)
+                        Dim turret As String = turret_bin.Substring(7, 1)
                         Dim team As String = "ORDER"
-                        If turret = "1" Then
-                            team = "ORDER"
-                        Else
+
+                        If turret = "C" Then
                             team = "CHAOS"
+                        Else
+                            team = "ORDER"
                         End If
                         Dim Rnd As Integer = r.Next(1, 3)
                         If team <> myteam Then
@@ -990,12 +1014,14 @@ Public Class Form3
 
                     If ename = "InhibRespawningSoon" Then
                         Dim turret_bin As String = grid.Events(nnn).InhibRespawningSoon
-                        Dim turret As String = turret_bin.Substring(10, 1)
+                        'Inhib_TOrder_L1_P1_196971597
+                        Dim turret As String = turret_bin.Substring(7, 1)
                         Dim team As String = "ORDER"
-                        If turret = "1" Then
-                            team = "ORDER"
-                        Else
+
+                        If turret = "C" Then
                             team = "CHAOS"
+                        Else
+                            team = "ORDER"
                         End If
                         Dim Rnd As Integer = r.Next(1, 3)
                         TextBox2.AppendText(etime & "," & ename & "," & "0" & "," & "0" & "," & team & "," & 0 & "," & Rnd)
@@ -1005,21 +1031,25 @@ Public Class Form3
                     If ename = "TurretKilled" Then
 
                         Dim turret_bin As String = grid.Events(nnn).TurretKilled
-                        If turret_bin <> "Obelisk" Then
+                        Dim killername As String = grid.Events(nnn).KillerName
+                        If turret_bin <> "Obelisk" And killername <> "Obelisk" Then
+                            'If turret_bin <> "Obelisk" Then
+                            'Turret_TChaos_L1_P3_671196429
                             Dim turret As String = turret_bin.Substring(8, 1)
+                            TextBox2.AppendText("### myteam : " & myteam & " / turret : " & turret_bin & ":" & turret & vbCrLf)
                             Dim Assisterse As New List(Of String)
                             Dim assChamp As New List(Of String)
                             Dim aaa As Integer = 0
                             For Each Assi In grid.Events(nnn).Assisters
                                 Assisterse.Add(grid.Events(nnn).Assisters(aaa))
                                 Dim d0 As DataRow()
-                                d0 = syain.Select("sumname = '" + Assisterse(aaa) + "'")
+                                d0 = syain2.Select("sumname = '" + Assisterse(aaa) + "'")
                                 For Each d As DataRow In d0
                                     assChamp.Add(d("chmname").ToString)
                                 Next
                                 aaa += 1
                             Next
-                            Dim killername As String = grid.Events(nnn).KillerName
+                            'Dim killername As String = grid.Events(nnn).KillerName
                             'Dim d1 As DataRow()
                             'd1 = syain.Select("sumname = '" + killername + "'")
                             'Dim killerChamp As String = "Minion"
@@ -1048,24 +1078,42 @@ Public Class Form3
                             'End If
 
                             Dim team As String = "ORDER"
-                            If turret = "1" Then
-                                team = "CHAOS"
-                            Else
+                            If turret = "C" Then
                                 team = "ORDER"
+                            Else
+                                team = "CHAOS"
                             End If
+
+
+                            'If turret = "O" Then
+                            '    If myteam = "CHAOS" Then
+                            '        team = "CHAOS"
+                            '    Else
+                            '        team = "ORDER"
+                            '    End If
+                            'Else
+                            '    If myteam = "CHAOS" Then
+                            '        team = "CHAOS"
+                            '    Else
+                            '        team = "ORDER"
+                            '    End If
+                            'End If
 
 
                             Dim Rnd As Integer = r.Next(1, 4)
                             TextBox2.AppendText(etime & "," & ename & "," & killername & "," & turret_bin & "," & team & "," & turret & "," & Rnd)
                             TextsChanged(False)
+                        Else
+                            'TextBox2.AppendText("!!!!!!!!!!!!!!!!break2")
+                            'nn += 1
                         End If
                     End If
 
 
-                        If ename = "FirstBlood" Then
+                    If ename = "FirstBlood" Then
                         Dim killername As String = grid.Events(nnn).Recipient
                         Dim d3 As DataRow()
-                        d3 = syain.Select("sumname = '" + killername + "'")
+                        d3 = syain2.Select("sumname = '" + killername + "'")
                         Dim Team As String = "Minion"
                         For Each d As DataRow In d3
                             Team = d("team").ToString
@@ -1083,7 +1131,7 @@ Public Class Form3
                     If ename = "FirstBrick" Then
                         Dim killername As String = grid.Events(nnn).KillerName
                         Dim d3 As DataRow()
-                        d3 = syain.Select("sumname = '" + killername + "'")
+                        d3 = syain2.Select("sumname = '" + killername + "'")
                         Dim Team As String = "Minion"
                         For Each d As DataRow In d3
                             Team = d("team").ToString
@@ -1095,13 +1143,14 @@ Public Class Form3
                     If ename = "GameEnd" Then
                         Dim Result As String = grid.Events(nnn).Result
                         Dim Rnd As Integer = r.Next(1, 6)
-                        TextBox2.AppendText(etime & "," & ename & "," & Result & "," & "0" & "," & "0" & "," & 0 & "," & 1)
+                        TextBox2.AppendText(etime & "," & ename & "," & Result & "," & "0" & "," & "0" & "," & 0 & "," & Rnd)
                         TextsChanged(False)
 
 
                         Dim jsonObj As String = JsonConvert.SerializeObject(grid)
                         TextBox7.Text = jsonObj
                         'TextBox4.AppendText(etime & ":" & ename & vbCrLf)
+                        end_timer.Enabled = True
                     End If
 
                     If ename = "GameStart" Then
@@ -1123,33 +1172,58 @@ Public Class Form3
                             http.Request.SetBasicAuthentication("riot", password)
                             response2 = http.[Get]("https://127.0.0.1:2999/liveclientdata/playerlist")
                         Catch Exception As Exception
-                            TextBox2.AppendText("Error : No Response")
+                            'Console.WriteLine("Error : No Response")
                         End Try
                         If response2.StatusCode <> System.Net.HttpStatusCode.OK Then
 
                         Else
                             syain.Rows.Clear()
+                            syain2.Rows.Clear()
+                            currentSummoner = Form1.TextBox5.Text
                             Dim grid2 = response2.DynamicBody
                             Dim teamscore As Integer = 0
                             Dim bscore As Integer = 0
                             Dim rscore As Integer = 0
                             Dim i As Integer = 0
                             For Each item In grid2
+                                'Dim input As String = grid2(i).rawChampionName.ToString
+                                'Dim parts As String() = input.Split("_"c)
+                                'Dim chn As String = parts(parts.Length - 1) ' 最後の要素を取得
                                 Dim cname As String = grid2(i).rawChampionName.ToString
                                 Dim len As Integer = cname.Length
                                 Dim last_n As Integer = cname.LastIndexOf("_") + 1
-                                Dim nn As Integer = len - last_n
-                                Dim chn As String = cname.Substring(last_n, nn)
-                                Dim sname As String = grid2(i).summonerName.ToString
-                                Dim team As String = (grid2(i).Team.ToString).Trim()
-                                syain.Rows.Add(chn, sname, team, 0)
-                                i += 1
-                                If sname = currentchamp Then
+                                Dim nn0 As Integer = len - last_n
+                                Dim chn As String = cname.Substring(last_n, nn0).Trim
+
+                                If chn = "Name" Or chn = "" Then
+                                    chn = "Teemo"
+                                End If
+                                'Console.WriteLine(chn)
+                                'Dim chn As String = cname 'cname.Substring(last_n, nn)
+                                'Dim sname As String = grid2(i).summonerName.ToString
+
+                                Dim sname As String = grid2(i).riotIdGameName.ToString
+                                'Dim snm() As String = sname.Split("#")
+                                'Dim sname2 As String = snm(0).Trim
+                                Dim team As String = (grid2(i).team.ToString).Trim()
+
+                                'Dim team As String = (grid2(i).Team.ToString).Trim()
+                                'syain.Rows.Add(chn, sname, team, 0)
+                                'Form6.Panel1.Controls("chm" & i).BackgroundImage = New Bitmap(Image.FromFile("images\" & Form1.vernew & "\champimage\" & chn & ".png"), 24, 24)
+                                'Form6.Panel1.Controls("Label" & i + 13).Text = sname
+                                'Form2.sumload(i, sname)
+
+                                If sname = currentSummoner Then
                                     myteam = team
                                     Button7.Text = myteam
+                                    chn = Form1.Label16.Text
                                 End If
+                                syain.Rows.Add(chn, sname, team, 0)
+                                syain2.Rows.Add(chn, sname, team, 0)
+                                i += 1
                             Next
                             DataGridView1.DataSource = syain
+                            DataGridView2.DataSource = syain2
                         End If
                         Timer1.Enabled = True
                     End If
@@ -1206,7 +1280,7 @@ Public Class Form3
                     For Each Assi In jsonObj("Events")(nnn)("Assisters")
                         Assisterse.Add(jsonObj("Events")(nnn)("Assisters")(aaa))
                         Dim d0 As DataRow()
-                        d0 = syain.Select("sumname = '" + Assisterse(aaa) + "'")
+                        d0 = syain2.Select("sumname = '" + Assisterse(aaa) + "'")
                         For Each d As DataRow In d0
                             assChamp.Add(d("chmname").ToString)
                         Next
@@ -1215,20 +1289,20 @@ Public Class Form3
 
                     Dim killername As String = jsonObj("Events")(nnn)("KillerName")
                     Dim d1 As DataRow()
-                    d1 = syain.Select("sumname = '" + killername + "'")
+                    d1 = syain2.Select("sumname = '" + killername + "'")
                     Dim killerChamp As String = "Minion"
                     For Each d As DataRow In d1
                         killerChamp = d("chmname").ToString
                     Next
                     Dim vicname As String = jsonObj("Events")(nnn)("VictimName")
                     Dim d2 As DataRow()
-                    d2 = syain.Select("sumname = '" + vicname + "'")
+                    d2 = syain2.Select("sumname = '" + vicname + "'")
                     Dim VicChamp As String = "Minion"
                     For Each d As DataRow In d2
                         VicChamp = d("chmname").ToString
                     Next
                     Dim d3 As DataRow()
-                    d3 = syain.Select("sumname = '" + killername + "'")
+                    d3 = syain2.Select("sumname = '" + killername + "'")
                     Dim Team As String = "Minion"
                     For Each d As DataRow In d3
                         Team = d("team").ToString
@@ -1257,7 +1331,7 @@ Public Class Form3
                     End If
 
                     Dim d3 As DataRow()
-                    d3 = syain.Select("sumname = '" + killername + "'")
+                    d3 = syain2.Select("sumname = '" + killername + "'")
                     Dim Team As String = "Minion"
                     For Each d As DataRow In d3
                         Team = d("team").ToString
@@ -1267,7 +1341,7 @@ Public Class Form3
                 ElseIf ename = "FirstBlood" Then
                     Dim killername As String = jsonObj("Events")(nnn)("Recipient")
                     Dim d3 As DataRow()
-                    d3 = syain.Select("sumname = '" + killername + "'")
+                    d3 = syain2.Select("sumname = '" + killername + "'")
                     Dim Team As String = "Minion"
                     For Each d As DataRow In d3
                         Team = d("team").ToString
@@ -1278,7 +1352,7 @@ Public Class Form3
 
                     Dim killername As String = jsonObj("Events")(nnn)("Acer")
                     Dim d3 As DataRow()
-                    d3 = syain.Select("sumname = '" + killername + "'")
+                    d3 = syain2.Select("sumname = '" + killername + "'")
                     Dim Team As String = "Minion"
                     For Each d As DataRow In d3
                         Team = d("team").ToString
@@ -1301,7 +1375,7 @@ Public Class Form3
                     For Each Assi In jsonObj("Events")(nnn)("Assisters")
                         Assisterse.Add(jsonObj("Events")(nnn)("Assisters")(aaa))
                         Dim d0 As DataRow()
-                        d0 = syain.Select("sumname = '" + Assisterse(aaa) + "'")
+                        d0 = syain2.Select("sumname = '" + Assisterse(aaa) + "'")
                         For Each d As DataRow In d0
                             assChamp.Add(d("chmname").ToString)
                         Next
@@ -1310,13 +1384,13 @@ Public Class Form3
 
                     Dim killername As String = jsonObj("Events")(nnn)("KillerName")
                     Dim d1 As DataRow()
-                    d1 = syain.Select("sumname = '" + killername + "'")
+                    d1 = syain2.Select("sumname = '" + killername + "'")
                     Dim killerChamp As String = "Minion"
                     For Each d As DataRow In d1
                         killerChamp = d("chmname").ToString
                     Next
                     Dim d3 As DataRow()
-                    d3 = syain.Select("sumname = '" + killername + "'")
+                    d3 = syain2.Select("sumname = '" + killername + "'")
                     Dim Team As String = "Minion"
                     For Each d As DataRow In d3
                         Team = d("team").ToString
@@ -1326,33 +1400,37 @@ Public Class Form3
                 ElseIf ename = "TurretKilled" Then
                     Dim turret_bin As String = jsonObj("Events")(nnn)("TurretKilled")
                     Dim turret As String = turret_bin
-                    If turret <> "Obelisk" Then
+                    Dim killername As String = jsonObj("Events")(nnn)("KillerName")
+                    If turret_bin <> "Obelisk" And killername <> "Obelisk" Then
                         Dim Assisterse As New List(Of String)
                         Dim assChamp As New List(Of String)
                         Dim aaa As Integer = 0
                         For Each Assi In jsonObj("Events")(nnn)("Assisters")
                             Assisterse.Add(jsonObj("Events")(nnn)("Assisters")(aaa))
                             Dim d0 As DataRow()
-                            d0 = syain.Select("sumname = '" + Assisterse(aaa) + "'")
+                            d0 = syain2.Select("sumname = '" + Assisterse(aaa) + "'")
                             For Each d As DataRow In d0
                                 assChamp.Add(d("chmname").ToString)
                             Next
                             aaa += 1
                         Next
-                        Dim killername As String = jsonObj("Events")(nnn)("KillerName")
+                        'Dim killername As String = jsonObj("Events")(nnn)("KillerName")
                         Dim d1 As DataRow()
-                        d1 = syain.Select("sumname = '" + killername + "'")
+                        d1 = syain2.Select("sumname = '" + killername + "'")
                         Dim killerChamp As String = "Minion"
                         For Each d As DataRow In d1
                             killerChamp = d("chmname").ToString
                         Next
                         Dim d3 As DataRow()
-                        d3 = syain.Select("sumname = '" + killername + "'")
+                        d3 = syain2.Select("sumname = '" + killername + "'")
                         Dim Team As String = "Minion"
                         For Each d As DataRow In d3
                             Team = d("team").ToString
                         Next
                         tk(etime, Team, killername, killerChamp, turret, Assisterse, assChamp)
+                    Else
+                        'TextBox2.AppendText("!!!!!!!!!!!!!!!!break2")
+                        'nns -= 1
                     End If
 
 
@@ -1360,7 +1438,7 @@ Public Class Form3
 
                     Dim killername As String = jsonObj("Events")(nnn)("KillerName")
                     Dim d3 As DataRow()
-                    d3 = syain.Select("sumname = '" + killername + "'")
+                    d3 = syain2.Select("sumname = '" + killername + "'")
                     Dim Team As String = "Minion"
                     For Each d As DataRow In d3
                         Team = d("team").ToString
@@ -1952,6 +2030,7 @@ Public Class Form3
         'TextBox1.Text = jsonObj
         'Form2.blue = ""
         syain.Rows.Clear()
+        syain2.Rows.Clear()
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
@@ -1982,7 +2061,8 @@ Public Class Form3
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         'RichTextBox1.Text = ""
-        stats2(nns)
+        stats(nns)
+        statsi(nns)
         yy += 1
         'statsi(nns)
         yy_bin = (yy * kan) - kai
@@ -1994,6 +2074,29 @@ Public Class Form3
         Dim pt As Point
         pt.Y = yy_bin
         SendMessage(RichTextBox1.Handle, EM_SETSCROLLPOS, 0, pt)
+
+        'stats2(nn)
+        's_flag = True
+        'If s_flag Then
+        '    nn += 1
+        'End If
+        'yy += 1
+        'statsi(nns)
+        'yy_bin = (yy * kan) - kai
+        ''If yy_bin <= 0 Then
+        ''    yy_bin = 0
+        ''End If
+        'nns += 1
+        ''Label2.Text = nn & ":" & yy & ":" & yy_bin
+        'Dim pt As Point
+        'pt.Y = yy_bin
+        'SendMessage(RichTextBox1.Handle, EM_SETSCROLLPOS, 0, pt)
+
+
+
+
+
+
     End Sub
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
         statsi(nns)
@@ -2042,6 +2145,29 @@ Public Class Form3
         '  閉じる
         cmd = "close " + theme
         mciSendString(cmd, Nothing, 0, IntPtr.Zero)
+        'Console.WriteLine(chst)
+        'If chst = True Then
+        '    chst = False
+        '    Dim cmdd = "play " + theme
+        '    'Dim leng As Integer = 6000000
+        '    'Dim Rnd As String = ""
+        '    Dim sond As String = "starguardian_jp\ambient.mp3"
+        '    If mode = 2 Then
+        '        sond = "butchersbridge\butcher's_bridge_early.mp3"
+        '    End If
+        '    Dim fileName As String = sond
+        '    cmdd = "open """ + fileName + """ type mpegvideo alias " + theme
+        '    If mciSendString(cmdd, Nothing, 0, IntPtr.Zero) <> 0 Then
+        '        Return
+        '    End If
+        '    cmdd = "play " + theme
+        '    mciSendString(cmdd, Nothing, 0, IntPtr.Zero)
+        '    'leng = Integer.Parse(TextBox4.Text)
+        '    themetimer.Interval = 176000
+        '    themetimer.Enabled = True
+        '    'Console.WriteLine(chst)
+        'End If
+
     End Sub
     Dim CC As String
     Private Sub TextsChanged(C As Boolean)
@@ -2232,10 +2358,10 @@ Public Class Form3
                                 leng = 2000
                             Case 2
                                 Rnd = "ally4_C2"
-                                leng = 1300
+                                leng = 1900
                             Case 3
                                 Rnd = "ally4_C3"
-                                leng = 1900
+                                leng = 1300
                         End Select
 
                     Case "enemyslayally4C"
@@ -2457,7 +2583,7 @@ Public Class Form3
                                 Select Case killstreak
                                     Case 0, 1, 2
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "youhaveslayenemy1"
@@ -2484,7 +2610,7 @@ Public Class Form3
                                         End Select
                                     Case 3
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "ally3_1"
@@ -2503,7 +2629,7 @@ Public Class Form3
 
                                     Case 4
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "ally4_1"
@@ -2522,7 +2648,7 @@ Public Class Form3
 
                                     Case 5
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "ally5_1"
@@ -2541,7 +2667,7 @@ Public Class Form3
 
                                     Case 6
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "ally6_1"
@@ -2560,7 +2686,7 @@ Public Class Form3
 
                                     Case 7
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "ally7_1"
@@ -2579,7 +2705,7 @@ Public Class Form3
 
                                     Case Else
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "ally8_1"
@@ -2747,7 +2873,7 @@ Public Class Form3
                                                 leng = 2800
                                             Case 5
                                                 Rnd = "allypenta5"
-                                                leng = 3500
+                                                leng = 1600
                                         End Select
                                     Case Else
                                         Rnd = "allypenta1"
@@ -2936,7 +3062,7 @@ Public Class Form3
                         Select Case team
                             Case myteam
                                 Select Case champ
-                                    Case currentchamp
+                                    Case currentSummoner
                                         Select Case Rnum
                                             Case 1
                                                 Rnd = "allydestroytower1"
@@ -3001,7 +3127,7 @@ Public Class Form3
                                 End Select
                             Case Else
                                 Select Case champ
-                                    Case currentchamp
+                                    Case currentSummoner
                                         Select Case Rnum
                                             Case 1
                                                 Rnd = "youdestroyenemyinhibi1"
@@ -3081,13 +3207,13 @@ Public Class Form3
                         Select Case Rnum
                             Case 1
                                 Rnd = "excecutedc1"
-                                leng = 1000
+                                leng = 800
                             Case 2
                                 Rnd = "excecutedc2"
                                 leng = 1000
                             Case 3
                                 Rnd = "excecutedc3"
-                                leng = 1000
+                                leng = 3000
                         End Select
 
                     Case "Executed"
@@ -3097,13 +3223,13 @@ Public Class Form3
                         Select Case Rnum
                             Case 1
                                 Rnd = "excecuted1"
-                                leng = 1000
+                                leng = 1200
                             Case 2
                                 Rnd = "excecuted2"
-                                leng = 1000
+                                leng = 1200
                             Case 3
                                 Rnd = "excecuted3"
-                                leng = 1000
+                                leng = 1200
                         End Select
 
                     Case "Acec"
@@ -3247,7 +3373,9 @@ Public Class Form3
                                 Rnd = "welcome6"
                                 leng = 1700
                         End Select
+                        Timer5.Enabled = False
                         theme_end()
+                        Timer5.Enabled = False
                         theme_start("starguardian_jp\StarGuardian", 6000000)
 
                     Case "minion30"
@@ -3272,10 +3400,10 @@ Public Class Form3
                                 leng = 2700
                             Case 6
                                 Rnd = "minion30_6"
-                                leng = 3400
+                                leng = 3600
                             Case 7
                                 Rnd = "minion30_7"
-                                leng = 3800
+                                leng = 4500
                             Case 8
                                 Rnd = "minion30_8"
                                 leng = 2200
@@ -3284,7 +3412,7 @@ Public Class Form3
                                 leng = 2600
                             Case 10
                                 Rnd = "minion30_10"
-                                leng = 5100
+                                leng = 5400
                         End Select
 
                     Case "welcome"
@@ -3326,6 +3454,7 @@ Public Class Form3
                                 theme_end()
 
                                 theme_start("starguardian_jp\victory_theme", 13000)
+                                Timer5.Interval = 13000
                                 Timer5.Enabled = True
                             Case Else
                                 Select Case Rnum
@@ -3346,7 +3475,8 @@ Public Class Form3
                                         leng = 5000
                                 End Select
                                 theme_end()
-                                theme_start("starguardian_jp\defeat_theme", 13000)
+                                theme_start("starguardian_jp\defeat_theme", 274000)
+                                Timer5.Interval = 274000
                                 Timer5.Enabled = True
                         End Select
                         s_flag = False
@@ -3763,7 +3893,7 @@ Public Class Form3
                                 Select Case killstreak
                                     Case 0, 1, 2
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "youhaveslayenemy1"
@@ -3790,7 +3920,7 @@ Public Class Form3
                                         End Select
                                     Case 3
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "ally3_1"
@@ -3809,7 +3939,7 @@ Public Class Form3
 
                                     Case 4
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "ally4_1"
@@ -3828,7 +3958,7 @@ Public Class Form3
 
                                     Case 5
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "ally5_1"
@@ -3847,7 +3977,7 @@ Public Class Form3
 
                                     Case 6
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "ally6_1"
@@ -3866,7 +3996,7 @@ Public Class Form3
 
                                     Case 7
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "ally7_1"
@@ -3885,7 +4015,7 @@ Public Class Form3
 
                                     Case Else
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "ally8_1"
@@ -4242,7 +4372,7 @@ Public Class Form3
                         Select Case team
                             Case myteam
                                 Select Case champ
-                                    Case currentchamp
+                                    Case currentSummoner
                                         Select Case Rnum
                                             Case 1
                                                 Rnd = "allydestroytower1"
@@ -4300,7 +4430,7 @@ Public Class Form3
                                 End Select
                             Case Else
                                 Select Case champ
-                                    Case currentchamp
+                                    Case currentSummoner
                                         Select Case Rnum
                                             Case 1
                                                 Rnd = "youdestroyenemyinhibi1"
@@ -4380,13 +4510,13 @@ Public Class Form3
                         Select Case Rnum
                             Case 1
                                 Rnd = "excecutedc1"
-                                leng = 1000
+                                leng = 700
                             Case 2
                                 Rnd = "excecutedc2"
                                 leng = 1000
                             Case 3
                                 Rnd = "excecutedc3"
-                                leng = 1000
+                                leng = 3000
                         End Select
 
                     Case "Executed"
@@ -4396,13 +4526,13 @@ Public Class Form3
                         Select Case Rnum
                             Case 1
                                 Rnd = "excecuted1"
-                                leng = 1000
+                                leng = 1200
                             Case 2
                                 Rnd = "excecuted2"
-                                leng = 1000
+                                leng = 1200
                             Case 3
                                 Rnd = "excecuted3"
-                                leng = 1000
+                                leng = 1200
                         End Select
 
                     Case "Acec"
@@ -4506,7 +4636,7 @@ Public Class Form3
                                 leng = 3500
                             Case 3
                                 Rnd = "shutdownC3"
-                                leng = 1000
+                                leng = 2400
                         End Select
 
                     Case "shutdown"
@@ -4547,6 +4677,7 @@ Public Class Form3
                                 leng = 1700
                         End Select
                         theme_end()
+                        Timer5.Enabled = False
                         theme_start("starguardian_en\StarGuardian", 6000000)
 
                     Case "minion30"
@@ -4624,6 +4755,7 @@ Public Class Form3
                                 End Select
                                 theme_end()
                                 theme_start("starguardian_en\victory_theme", 13000)
+                                Timer5.Interval = 13000
                                 Timer5.Enabled = True
                             Case Else
                                 Select Case Rnum
@@ -4644,7 +4776,8 @@ Public Class Form3
                                         leng = 5000
                                 End Select
                                 theme_end()
-                                theme_start("starguardian_en\defeat_theme", 13000)
+                                theme_start("starguardian_en\defeat_theme", 274000)
+                                Timer5.Interval = 274000
                                 Timer5.Enabled = True
                         End Select
                         s_flag = False
@@ -5067,7 +5200,7 @@ Public Class Form3
                                 Select Case killstreak
                                     Case 0, 1, 2
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "youhaveslayenemy1"
@@ -5094,7 +5227,7 @@ Public Class Form3
                                         End Select
                                     Case 3
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "ally3_1"
@@ -5113,7 +5246,7 @@ Public Class Form3
 
                                     Case 4
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "ally4_1"
@@ -5132,7 +5265,7 @@ Public Class Form3
 
                                     Case 5
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "ally5_1"
@@ -5151,7 +5284,7 @@ Public Class Form3
 
                                     Case 6
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "ally6_1"
@@ -5170,7 +5303,7 @@ Public Class Form3
 
                                     Case 7
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "ally7_1"
@@ -5189,7 +5322,7 @@ Public Class Form3
 
                                     Case Else
                                         Select Case champ
-                                            Case currentchamp
+                                            Case currentSummoner
                                                 Select Case Rnum
                                                     Case 1
                                                         Rnd = "ally8_1"
@@ -5558,7 +5691,7 @@ Public Class Form3
                                 End Select
                             Case Else
                                 'Select Case champ
-                                '    Case currentchamp
+                                '    Case currentSummoner
                                 Select Case Rnum
                                     Case 1
                                         Rnd = "enemydestroytower1"
@@ -5610,7 +5743,7 @@ Public Class Form3
                                 End Select
                             Case Else
                                 'Select Case champ
-                                '    Case currentchamp
+                                '    Case currentSummoner
                                 Select Case Rnum
                                     Case 1
                                         Rnd = "youdestroyenemyinhibi1"
@@ -5859,6 +5992,7 @@ Public Class Form3
                                 leng = 3000
                         End Select
                         theme_end()
+                        Timer5.Enabled = False
                         theme_start("butchersbridge\butcher's_bridge_early", 6000000)
 
                     Case "minion30"
@@ -5935,7 +6069,8 @@ Public Class Form3
                                         leng = 4000
                                 End Select
                                 theme_end()
-                                theme_start("butchersbridge\butcher's_bridge_victory", 13000)
+                                theme_start("butchersbridge\butcher's_bridge_victory", 90000)
+                                Timer5.Interval = 90000
                                 Timer5.Enabled = True
 
 
@@ -5958,7 +6093,8 @@ Public Class Form3
                                         leng = 4000
                                 End Select
                                 theme_end()
-                                theme_start("butchersbridge\butcher's_bridge_defeat", 13000)
+                                theme_start("butchersbridge\butcher's_bridge_defeat", 85000)
+                                Timer5.Interval = 85000
                                 Timer5.Enabled = True
 
                         End Select
@@ -6008,7 +6144,13 @@ Public Class Form3
 
     End Sub
 
+    Dim chst As Boolean = False
+
     Public Sub theme_start(Rnd As String, leng As Integer)
+
+        'If Rnd = "starguardian_jp\championselect" Or Rnd = "starguardian_en\championselect" Or Rnd = "butchersBridge\butcher's_bridge_1_champion_select" Then
+        '    chst = True
+        'End If
         'Dim Rnd As String = "sound\StarGuardian"
         'Select Case mode
         '    Case 0
@@ -6044,6 +6186,7 @@ Public Class Form3
         '  閉じる
         cmd = "close " + theme
         mciSendString(cmd, Nothing, 0, IntPtr.Zero)
+
     End Sub
 
 
@@ -6066,15 +6209,15 @@ Public Class Form3
         Dim leng As Integer = 6000000
         If RadioButton1.Checked Then
             mode = 0
-            pat = "butchersbridge\renata1"
+            pat = "butchersbridge\ambient"
             leng = 6000000
         ElseIf RadioButton2.Checked Then
             mode = 1
-            pat = "butchersbridge\renata1"
+            pat = "butchersbridge\ambient"
             leng = 6000000
         ElseIf RadioButton3.Checked Then
             mode = 2
-            pat = "butchersbridge\renata2"
+            pat = "butchersbridge\butcher's_bridge_early"
             leng = 6000000
         End If
         theme_end()
@@ -6083,6 +6226,8 @@ Public Class Form3
 
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         theme_end()
+        chst = False
+        Timer5.Enabled = False
         inhi = False
     End Sub
 
@@ -6132,6 +6277,7 @@ Public Class Form3
         Else
             Me.TopMost = True
         End If
+        Timer1.Start()
     End Sub
 
     Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
@@ -6149,19 +6295,41 @@ Public Class Form3
         Dim leng As Integer = 6000000
         If RadioButton1.Checked Then
             mode = 0
-            pat = "butchersbridge\renata1"
+            pat = "butchersbridge\ambient"
             leng = 6000000
         ElseIf RadioButton2.Checked Then
             mode = 1
-            pat = "butchersbridge\renata1"
+            pat = "butchersbridge\ambient"
             leng = 6000000
         ElseIf RadioButton3.Checked Then
             mode = 2
-            pat = "butchersbridge\renata2"
+            pat = "butchersbridge\butcher's_bridge_early"
             leng = 6000000
         End If
         theme_end()
         theme_start(pat, leng)
     End Sub
+
+    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
+        RichTextBox1.Text = ""
+    End Sub
+
+    Private Sub end_timer_Tick(sender As Object, e As EventArgs) Handles end_timer.Tick
+        end_timer.Enabled = False
+        Form1.Button14.PerformClick()
+    End Sub
+
+    Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button14.Click
+        nns = 0
+        RichTextBox1.Clear()
+        'nnn = 0
+        nn = 0
+        yy = 0
+        yy_bin = 0
+        stats(nn)
+        Label1.Text = "on"
+    End Sub
+
+
 End Class
 
